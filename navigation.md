@@ -1,4 +1,4 @@
-# Your wiki name
+# Arno1235
 
 [Page 1](page1.md)
 [Page 2](page2.md)
