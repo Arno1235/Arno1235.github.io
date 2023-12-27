@@ -1,4 +1,4 @@
-# PyEnv working process
+# PyEnv
 
 Install pyenv (macos)
 
