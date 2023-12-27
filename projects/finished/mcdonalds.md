@@ -18,12 +18,11 @@ with mss() as sct:
 ```
 
 ## big mac game
-31 Aug 2023
 
 ## flappy wacko
-6 Jun 2023
 
 ## keeping up
+Dec 2022
 [GitHub](https://github.com/Arno1235/McDo_KeepingUp)
 
 In this game the goal is to keep the Christmas ball high by clicking on it. If you click on the left side of the ball it will move to the right, clicking on the bottom will make it jump up.
@@ -42,7 +41,7 @@ pyautogui.click()
 
 This formula simply says that the further the ball is from the center of the screen the further it should click from the center of the bauble.
 
-![](images/mcdo_keepingup.png "screeshot keeping up")
+![](https://raw.githubusercontent.com/Arno1235/Arno1235.github.io/main/images/mcdo_keepingup.png "screeshot keeping up")
 
 ## burger building
 
