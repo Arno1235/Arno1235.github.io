@@ -11,8 +11,9 @@ And almost every time I try to program a bot to beat the game. This isn't so muc
 
 ## keeping up
 [git](https://github.com/Arno1235/McDo_KeepingUp)
-In this game the goal is to keep the Christmas ball high by clicking on it. If you click on the left side of the ball it will move to the right, clicking on the bottom of the ball will make it jump up.
-After some testing, I found that I could quickly locate the Christmas bauble using Hough Circles Detection. After locating the Christmas bauble, I click using the formula below.
+
+In this game the goal is to keep the Christmas ball high by clicking on it. If you click on the left side of the ball it will move to the right, clicking on the bottom will make it jump up.
+After some testing, I found that I could quickly locate the Christmas ball using Hough Circles Detection. After locating the Christmas ball, the bot clicks using the formula below.
 
 ```
     x_og, y_og, r = circle
