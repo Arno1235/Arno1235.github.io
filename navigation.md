@@ -17,7 +17,7 @@
 [interesting]()
 
   * # workflows
-  * [git](git.md)
+  * [git](interesting/workflows/git.md)
   * [pyenv](subitem2.md)
   * [terminal](subitem2.md)
   - - - -
