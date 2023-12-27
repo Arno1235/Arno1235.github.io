@@ -35,6 +35,7 @@
   * [geohot](https://geohot.com/)
   * [smart questions](http://www.catb.org/~esr/faqs/smart-questions.html)
   * [how to drop out](https://ranprieur.com/essays/dropout.html)
+  * [wiby](https://wiby.me/)
   * [richard](https://h.43z.one/)
   * [lesswrong](https://www.lesswrong.com/)
   * [wikispooks](https://wikispooks.com/wiki/Main_Page)
@@ -45,4 +46,3 @@
   * [rules for radicals](https://en.wikipedia.org/wiki/Rules_for_Radicals)
   * [stephen diehl](https://www.stephendiehl.com/)
   * [advent of code](https://adventofcode.com/)
-  * [wiby](https://wiby.me/)
