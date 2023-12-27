@@ -20,6 +20,12 @@ git commit -m "..."
 git push
 ```
 
+Git pull reabse
+```
+git pull --rebase
+```
+
+
 Git force pull
 
 ```
