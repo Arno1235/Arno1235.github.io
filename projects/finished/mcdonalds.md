@@ -42,6 +42,8 @@ pyautogui.click()
 
 This formula simply says that the further the ball is from the center of the screen the further it should click from the center of the bauble.
 
+![](images/mcdo_keepingup.png "screeshot keeping up")
+
 ## burger building
 
 ## candy crush
