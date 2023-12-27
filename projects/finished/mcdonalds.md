@@ -39,7 +39,7 @@ pyautogui.moveTo((x+LEFT)/2, (y+TOP)/2)
 pyautogui.click()
 ```
 
-This formula simply says that the further the ball is from the center of the screen the further it should click from the center of the bauble.
+This formula simply says that the further the ball is from the center of the screen the further it should click from the center of the ball.
 
 ![](https://raw.githubusercontent.com/Arno1235/Arno1235.github.io/main/images/mcdo_keepingup_1.png "screeshot keeping up game")
 ![](https://raw.githubusercontent.com/Arno1235/Arno1235.github.io/main/images/mcdo_keepingup_2.png "screenshot keeping up score")
