@@ -18,8 +18,8 @@
 
   * # workflows
   * [git](interesting/workflows/git.md)
-  * [pyenv](subitem2.md)
-  * [terminal](subitem2.md)
+  * [pyenv](interesting/workflows/pyenv.md)
+  * [terminal](interesting/workflows/terminal.md)
   - - - -
   * # links
   * [smart questions](http://www.catb.org/~esr/faqs/smart-questions.html)
