@@ -5,14 +5,24 @@
 [projects]()
 
   * # finished
-  * [SubMenu Item 1](subitem1.md)
-  * [SubMenu Item 2](subitem2.md)
+  * [McDonald's saga](mcdonalds.md)
+  * [FB birthdays -> calendar](subitem2.md)
+  * [Juga Agenda](subitem2.md)
+  * [Catch the dot](subitem2.md)
+  * [llm messenger](subitem2.md)
+  * [touch id password](subitem2.md)
+  * [terminal typing test](subitem2.md)
+  * [FU-net](subitem2.md)
+  * [crypto ai](subitem2.md)
+  * [Farmy Hackathon](subitem2.md)
+  * [BLE notificator](subitem2.md)
   - - - -
   * # wip
-  * [SubMenu Item 3](subitem3.md)
   - - - -
   * # discontinued
-  * [SubMenu Item 3](subitem3.md)
+  * [Deep learning from scratch](subitem2.md)
+  * [chess bot](subitem2.md)
+  * [Fitness app](subitem2.md)
 
 [interesting]()
 
@@ -23,3 +33,4 @@
   - - - -
   * # links
   * [smart questions](http://www.catb.org/~esr/faqs/smart-questions.html)
+  * [advent of code]()
