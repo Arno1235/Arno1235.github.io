@@ -1,6 +1,6 @@
 # Arno1235
 
-[about me](aboutme.md)
+[about me](about_me.md)
 
 [projects]()
 
