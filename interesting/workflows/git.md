@@ -22,8 +22,15 @@ Push change
 
 ```
 git add .
-git commit -m "..."
+git commit -m <commit-mmesage>
 git push
+```
+
+Git switch branch
+
+```
+git fetch origin
+git checkout <branch-name>
 ```
 
 Git pull rebase
