@@ -2,7 +2,9 @@
 
 ## Installation
 
-MacOS using HomeBrew
+### MacOS
+
+Install with HomeBrew
 
 ```
 brew install git
