@@ -1,6 +1,10 @@
 # PyEnv
 
-Install pyenv (macos)
+## Installation
+
+### MacOs
+
+Install with HomeBrew
 
 ```
 brew install pyenv
@@ -14,6 +18,15 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
+
+### Ubuntu
+
+
+### Windows
+
+
+
+## Usage
 
 Create environment
 
