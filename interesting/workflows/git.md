@@ -1,10 +1,14 @@
 # Git
 
-Install git
+## Installation
+
+MacOS using HomeBrew
 
 ```
 brew install git
 ```
+
+## Usage
 
 Clone
 
@@ -20,11 +24,11 @@ git commit -m "..."
 git push
 ```
 
-Git pull reabse
+Git pull rebase
+
 ```
 git pull --rebase
 ```
-
 
 Git force pull
 
