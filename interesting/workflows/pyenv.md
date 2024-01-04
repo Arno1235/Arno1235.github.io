@@ -51,7 +51,7 @@ Make it available without restarting terminal
 exec $SHELL
 ```
 
-### Windows
+### Windows *TOTEST*
 
 Install with PowerShell as administrator
 
