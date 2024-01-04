@@ -28,20 +28,34 @@ eval "$(pyenv virtualenv-init -)"
 
 ## Usage
 
+List possible installs
+
+```
+pyenv install --list
+```
+
+List environments
+
+```
+pyenv versions
+```
+
+Install python version
+
+```
+pyenv install <version>
+```
+
 Create environment
 
 ```
-pyenv install 3.5.1
-cd python_projects
-mkdir myproject
-cd myproject
-pyenv virtualenv 3.5.1 venv_myproject
+pyenv virtualenv <version> <venv-name>
 ```
 
 Activate environment
 
 ```
-pyenv activate venv_myproject
+pyenv activate <venv-name>
 ```
 
 Install requirements.txt
