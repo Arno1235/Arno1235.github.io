@@ -1,5 +1,18 @@
 # Useful terminal commands
 
+Run multiple commands
+
+```
+# No matter the first command cmd1 run successfully or not, always run the second command cmd2
+# cmd1; cmd2
+
+# Only when the first command cmd1 run successfully, run the second command cmd2
+# cmd1 && cmd2
+
+# Only when the first command cmd1 failed to run, run the second command cmd2
+cmd1 || cmd2
+```
+
 Get my ip address
 ```
 ifconfig
