@@ -47,3 +47,4 @@
   * [rules for radicals](https://en.wikipedia.org/wiki/Rules_for_Radicals)
   * [stephen diehl](https://www.stephendiehl.com/)
   * [advent of code](https://adventofcode.com/)
+  * [github code search](https://cs.github.com/)
