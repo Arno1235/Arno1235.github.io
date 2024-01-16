@@ -43,3 +43,7 @@ Rename all files with a for loop
 for x in *; do mv $x S000001_$(printf "%06d" ${x%_img.png}+1).jpg; done
 ```
 
+Extracting large zip files on Ubuntu
+```
+dtrx <name-of-zip-file>
+```
