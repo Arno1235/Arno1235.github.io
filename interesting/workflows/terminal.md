@@ -50,5 +50,5 @@ dtrx <name-of-zip-file>
 
 Unlinking files
 ```
-mkdir tmp && for x in *; do cp -L $x tmp/ && rm $x && mv tmp/$x .;done && rmdir tmp
+mkdir tmp && for x in *; do cp -L $x tmp/ && rm $x && mv tmp/$x .;done; rmdir tmp
 ```
