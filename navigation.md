@@ -30,6 +30,7 @@
   * [styleguide](interesting/workflows/styleguide.md)
   * [git](interesting/workflows/git.md)
   * [pyenv](interesting/workflows/pyenv.md)
+  * [venv](interesting/workflows/venv.md)
   * [terminal](interesting/workflows/terminal.md)
   - - - -
   * # links
