@@ -1,5 +1,6 @@
 https://arducam.com/downloads/arducam-imx519-start-guide.pdf
 https://docs.arducam.com/Raspberry-Pi-Camera/Native-camera/Quick-Start-Guide/
+https://www.tomshardware.com/how-to/use-picamera2-take-photos-with-raspberry-pi
 4656 (H) × 3496 (V)
 
 
