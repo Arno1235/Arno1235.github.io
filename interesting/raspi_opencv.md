@@ -23,9 +23,32 @@ sudo apt-get install libprotobuf-dev protobuf-compiler
 python setup.py clean
 CMAKE_C_COMPILER=$(which mpicc) CMAKE_CXX_COMPILER=$(which mpicxx) USE_DISTRIBUTED=1 USE_NUMPY=1 BUILD_TEST=0 Protobuf_LIBRARY=/usr/lib/arm-linux-gnueabihf/libprotobuf.so USE_MKLDNN=OFF USE_CUDA=OFF USE_CUDNN=OFF python setup.py bdist_wheel
 
+
+
+CMAKE_C_COMPILER=$(which mpicc) CMAKE_CXX_COMPILER=$(which mpicxx) USE_DISTRIBUTED=1 USE_NUMPY=1 BUILD_TEST=0 Protobuf_LIBRARY=/usr/lib/arm-linux-gnueabihf/libprotobuf.so USE_MKLDNN=OFF USE_CUDA=OFF USE_CUDNN=OFF DCMAKE_CXX_FLAGS=-latomic DOPENCV_EXTRA_EXE_LINKER_FLAGS=-latomic python setup.py bdist_wheel
+
+
+CMAKE_C_COMPILER=$(which mpicc) \
+CMAKE_CXX_COMPILER=$(which mpicxx) \
+USE_DISTRIBUTED=1 \
+USE_NUMPY=1 \
+BUILD_TEST=0 \
+Protobuf_LIBRARY=/usr/lib/arm-linux-gnueabihf/libprotobuf.so \
+USE_MKLDNN=OFF \
+USE_CUDA=OFF \
+USE_CUDNN=OFF \
+DCMAKE_CXX_FLAGS="-latomic" \
+DOPENCV_EXTRA_EXE_LINKER_FLAGS="-latomic" \
+python setup.py bdist_wheel
+
+
+
+
 If fails alsways first:
 rm -rf build
 python setup.py clean
+
+
 
 --
 
