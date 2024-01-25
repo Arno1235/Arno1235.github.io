@@ -37,6 +37,7 @@ SFTP
 ```
 sftp TODO
 ```
+directory: -R
 
 Rename all files with a for loop
 ```
