@@ -12,7 +12,7 @@
 - https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
 - https://www.rpanion.com/product/pi-connect-lite/
 - https://github.com/stephendade/Pi-Connect/
-- 
+- https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746
 
 ## Requirements PCB board
 
