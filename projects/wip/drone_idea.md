@@ -10,6 +10,7 @@
 - https://github.com/chipiki/PXFmini_v2/
 - https://ardupilot.org/dev/docs/ros-aruco-detection.html
 - https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
+- http://wiki.ros.org/mavros
 - https://www.rpanion.com/product/pi-connect-lite/
 - https://github.com/stephendade/Pi-Connect/
 - https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746
