@@ -8,6 +8,11 @@
 - https://github.com/erlerobot/erle_gitbook_erlebrain/
 - https://github.com/erlerobot/PXF2/
 - https://github.com/chipiki/PXFmini_v2/
+- https://ardupilot.org/dev/docs/ros-aruco-detection.html
+- https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
+- https://www.rpanion.com/product/pi-connect-lite/
+- https://github.com/stephendade/Pi-Connect/
+- 
 
 ## Requirements PCB board
 
