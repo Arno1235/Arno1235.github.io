@@ -1,3 +1,5 @@
+# IMX 519
+
 https://arducam.com/downloads/arducam-imx519-start-guide.pdf
 https://docs.arducam.com/Raspberry-Pi-Camera/Native-camera/Quick-Start-Guide/
 https://www.tomshardware.com/how-to/use-picamera2-take-photos-with-raspberry-pi
@@ -46,3 +48,14 @@ picam2.start()
 time.sleep(2)
 picam2.capture_file("test.jpg")
 
+# TOF Camera
+
+git clone https://github.com/ArduCAM/Arducam_tof_camera.git
+
+cd Arducam_tof_camera
+
+./Install_dependencies.sh
+
+---
+
+./compile.sh
