@@ -30,3 +30,23 @@ FASE 2
 - Possibility to connect extra camera?
 - Expansion ports
 - GPS
+
+## Roadmap
+
+### Fase 0
+Get everything working separately
+
+- Drone flying for indoor (prop guards)
+- Raspberry pi + 3D sensor (+ RGB camera) in ROS
+
+### Fase 1
+Get it all talking to each other
+
+- Raspberry pi + mavlink + mavros
+- Get location data from the flight controller
+- Try SLAM
+
+### Fase 2
+Automated flying
+
+- Raspberry pi controls the drone
