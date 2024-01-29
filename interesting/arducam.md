@@ -59,3 +59,12 @@ cd Arducam_tof_camera
 ---
 
 ./compile.sh
+
+---
+
+in /boot/config.txt :
+dtoverlay=arducam-pivariety,media-controller=0
+
+sudo reboot
+
+
