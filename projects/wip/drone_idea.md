@@ -43,6 +43,7 @@ Get everything working separately
 Get it all talking to each other
 
 - Raspberry pi + mavlink + mavros
+- Power Raspberry pi from LIPO
 - Get location data from the flight controller
 - Try SLAM
 
