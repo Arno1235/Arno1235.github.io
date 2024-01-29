@@ -55,6 +55,7 @@ git clone https://github.com/ArduCAM/Arducam_tof_camera.git
 cd Arducam_tof_camera
 
 ./Install_dependencies.sh
+./Install_dependencies_python.sh
 
 ---
 
@@ -66,5 +67,45 @@ in /boot/config.txt :
 dtoverlay=arducam-pivariety,media-controller=0
 
 sudo reboot
+
+curl -s --compressed "https://arducam.github.io/arducam_ppa/KEY.gpg" | sudo apt-key add -
+sudo curl -s --compressed -o /etc/apt/sources.list.d/arducam_list_files.list "https://arducam.github.io/arducam_ppa/arducam_list_files.list"
+sudo apt update
+sudo apt install arducam-config-parser-dev arducam-usb-sdk-dev arducam-tof-sdk-dev
+
+sudo apt-get update
+sudo apt-get install build-essential cmake 
+sudo apt-get install libopencv-dev
+
+
+cd Arducam_tof_camera/example
+mkdir build && cd build
+cmake .. && make
+
+./c/test_c
+
+
+import sys
+import cv2
+import numpy as np
+import ArducamDepthCamera as ac
+
+if __name__ == "__main__":
+    cam = ac.ArducamCamera()
+    if cam.open(ac.TOFConnect.CSI,0) != 0 :
+        print("initialization failed")
+    if cam.start(ac.TOFOutput.RAW) != 0 :
+        print("Failed to start camera")
+
+    while True:
+        frame = cam.requestFrame(200)
+        if frame != None:
+            buf = frame.getRawData()
+            cam.releaseFrame(frame)
+            cv2.imwrite("frame.png", buf.astype(np.float32))
+            exit_ = True
+            cam.stop()
+            cam.close()
+            sys.exit(0)
 
 
