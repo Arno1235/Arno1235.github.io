@@ -86,6 +86,8 @@ cmake .. && make
 ./c/test_c
 ```
 
+Python test
+
 ```
 import sys
 import cv2
