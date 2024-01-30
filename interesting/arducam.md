@@ -10,9 +10,9 @@ https://www.tomshardware.com/how-to/use-picamera2-take-photos-with-raspberry-pi
 
 
 sudo raspi-config
--> enable camera
--> enable ssh
--> enable glamor
+- enable camera
+- enable ssh
+- enable glamor
 
 ```
 sudo apt update
