@@ -1,8 +1,11 @@
 # IMX 519
 
 https://arducam.com/downloads/arducam-imx519-start-guide.pdf
+
 https://docs.arducam.com/Raspberry-Pi-Camera/Native-camera/Quick-Start-Guide/
+
 https://www.tomshardware.com/how-to/use-picamera2-take-photos-with-raspberry-pi
+
 4656 (H) × 3496 (V)
 
 
@@ -11,6 +14,7 @@ sudo raspi-config
 -> enable ssh
 -> enable glamor
 
+```
 sudo apt update
 sudo apt full-upgrade
 
@@ -32,10 +36,13 @@ sudo apt-get install vim
 sudo vim /boot/config.txt
 ** add dtoverlay=imx519 under the line [all]
 ** comment dtoverlay under [pi4]
+
 sudo reboot
+```
 
-python test:
+Python test
 
+```
 from picamera2 import Picamera2
 import time
 
@@ -47,6 +54,7 @@ picam2.configure(camera_config)
 picam2.start()
 time.sleep(2)
 picam2.capture_file("test.jpg")
+```
 
 # TOF Camera
 
