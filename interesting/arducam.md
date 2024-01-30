@@ -57,7 +57,7 @@ time.sleep(2)
 picam2.capture_file("test.jpg")
 ```
 
-# TOF Camera
+# ToF Camera
 
 ```
 git clone https://github.com/ArduCAM/Arducam_tof_camera.git
