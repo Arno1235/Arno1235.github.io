@@ -50,6 +50,7 @@ picam2.capture_file("test.jpg")
 
 # TOF Camera
 
+```
 git clone https://github.com/ArduCAM/Arducam_tof_camera.git
 
 cd Arducam_tof_camera
@@ -57,17 +58,17 @@ cd Arducam_tof_camera
 ./Install_dependencies.sh
 ./Install_dependencies_python.sh
 
----
-
 ./compile.sh
+```
 
----
-
+```
 in /boot/config.txt :
 dtoverlay=arducam-pivariety,media-controller=0
 
 sudo reboot
+```
 
+```
 curl -s --compressed "https://arducam.github.io/arducam_ppa/KEY.gpg" | sudo apt-key add -
 sudo curl -s --compressed -o /etc/apt/sources.list.d/arducam_list_files.list "https://arducam.github.io/arducam_ppa/arducam_list_files.list"
 sudo apt update
@@ -83,8 +84,9 @@ mkdir build && cd build
 cmake .. && make
 
 ./c/test_c
+```
 
-
+```
 import sys
 import cv2
 import numpy as np
@@ -107,5 +109,4 @@ if __name__ == "__main__":
             cam.stop()
             cam.close()
             sys.exit(0)
-
-
+```
