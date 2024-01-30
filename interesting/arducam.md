@@ -8,11 +8,12 @@ https://www.tomshardware.com/how-to/use-picamera2-take-photos-with-raspberry-pi
 
 4656 (H) × 3496 (V)
 
-
+```
 sudo raspi-config
-- enable camera
-- enable ssh
-- enable glamor
+-> enable camera
+-> enable ssh
+-> enable glamor
+```
 
 ```
 sudo apt update
