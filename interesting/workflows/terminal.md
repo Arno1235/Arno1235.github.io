@@ -28,6 +28,15 @@ SSH
 ssh TODO
 ```
 
+Stop SSH command and run it in the background
+```
+Ctrl + Z
+disown -h %x # where x is the job number
+bg
+
+ps -ef # to see the running job
+```
+
 Secure copy
 ```
 scp TODO
