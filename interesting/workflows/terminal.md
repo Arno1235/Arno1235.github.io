@@ -37,6 +37,20 @@ bg
 ps -ef # to see the running job
 ```
 
+Linux screen commands
+```
+# Starting Named Session
+$ screen -S session_name
+# Close screen (with id)
+$ screen -X -S 12345 quit
+#All screen list
+$ screen -ls
+#Reattach to a Linux Screen
+$ screen -r 12345 (screen id)
+#Detach from Linux Screen Session
+$ Ctrl+a d
+```
+
 Secure copy
 ```
 scp TODO
