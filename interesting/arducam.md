@@ -71,7 +71,9 @@ cd Arducam_tof_camera
 ```
 
 ```
-in /boot/config.txt :
+sudo vim /boot/config.txt
+
+** add under the line [all]:
 dtoverlay=arducam-pivariety,media-controller=0
 
 sudo reboot
