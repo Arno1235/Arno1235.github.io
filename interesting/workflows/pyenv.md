@@ -19,6 +19,12 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
 
+Setup .bashrc
+
+```
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+```
+
 ### Ubuntu
 
 Install dependencies
