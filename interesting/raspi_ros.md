@@ -43,3 +43,8 @@ source ...
 ```
 
 ** Never succesfully installed... **
+
+
+https://www.arducam.com/time-of-flight-camera-raspberry-pi/
+
+https://docs.arducam.com/Raspberry-Pi-Camera/Tof-camera/ROS-With-Arducam-ToF-Camera/
