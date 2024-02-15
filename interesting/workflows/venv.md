@@ -1,5 +1,10 @@
 # Python 3 venv
 
+Install on Linux
+```
+sudo apt install python3.10-venv
+```
+
 Setup the environment
 ```
 python3 -m venv .<environment-name>
