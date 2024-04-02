@@ -46,4 +46,9 @@ git fetch --all
 git reset --hard origin/master
 ```
 
+Git force push
+
+```
+git push --force
+```
 
