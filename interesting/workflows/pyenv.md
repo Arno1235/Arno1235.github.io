@@ -122,4 +122,9 @@ Remove environment
 pyenv virtualenv-delete <venv-name>
 ```
 
+update the python versions
+
+```
+pyenv update
+```
 
