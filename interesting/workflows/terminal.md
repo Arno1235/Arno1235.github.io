@@ -25,7 +25,7 @@ nmap 192.168.0.0/24
 
 SSH
 ```
-ssh TODO
+ssh username@hostname
 ```
 
 Stop SSH command and run it in the background
@@ -53,14 +53,13 @@ $ Ctrl+a d
 
 Secure copy
 ```
-scp TODO
+scp source_file_path destination_username@destination_hostname:destination_path
 ```
 
 SFTP
 ```
-sftp TODO
+sftp username@hostname
 ```
-directory: -R
 
 Rename all files with a for loop
 ```
