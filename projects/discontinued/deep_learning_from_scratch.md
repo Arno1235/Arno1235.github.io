@@ -1,3 +1,0 @@
-# deep learning from scratch
-
-
