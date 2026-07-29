@@ -1434,6 +1434,7 @@ def render_index(projects: list[dict]) -> str:
         "  <h1>Arno Van Eetvelde</h1>",
         '  <p><a href="https://github.com/Arno1235">GitHub</a></p>',
         "  <h2>Personal Projects</h2>",
+        "  <br>",
         '  <table border="1" cellpadding="6" cellspacing="0" align="center">',
         "    <thead>",
         "      <tr>",
@@ -1458,7 +1459,9 @@ def render_index(projects: list[dict]) -> str:
     parts += [
         "    </tbody>",
         "  </table>",
+        "  <br><br>",
         "  <h2>Career</h2>",
+        "  <br>",
     ]
     for row in CAREER:
         link = row.get("link") or ""
@@ -1473,8 +1476,10 @@ def render_index(projects: list[dict]) -> str:
         )
         projects = row.get("projects") or []
         if not projects:
+            parts.append("  <br>")
             continue
         parts += [
+            "  <br>",
             '  <table border="1" cellpadding="6" cellspacing="0" align="center">',
             "    <thead>",
             "      <tr>",
@@ -1495,7 +1500,7 @@ def render_index(projects: list[dict]) -> str:
             parts.append(f'        <td align="center">{esc(proj.get("period") or "")}</td>')
             parts.append(f'        <td align="center">{project_link_cell(proj)}</td>')
             parts.append("      </tr>")
-        parts += ["    </tbody>", "  </table>"]
+        parts += ["    </tbody>", "  </table>", "  <br><br>"]
 
     parts += [
         "  </center>",
