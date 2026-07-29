@@ -1012,29 +1012,51 @@ CAREER = [
         "period": "2023-09 – present",
         "link": "https://www.coretecs.be/about/arno-van-eetvelde",
         "link_label": "coretecs.be",
-        # Optional nested projects for this role (pure HTML: table under the role heading).
+        # From Coretecs_PORTFOLIO_ARNO_2025-06-11.pdf (subject, client, period).
         "projects": [
+            {"subject": "IMEC", "client": "IMEC", "period": ""},
+            {"subject": "Fluvius", "client": "Fluvius", "period": ""},
             {
-                "name": "CabinetVision (dummy)",
-                "type": "R&D",
-                "period": "2024",
-                "link": "",
-                "link_label": "",
+                "subject": "Reading Analog Devices with Vision",
+                "client": "Under NDA",
+                "period": "",
             },
             {
-                "name": "Technoform quality control (dummy)",
-                "type": "Client",
-                "period": "2024 – 2025",
-                "link": "",
-                "link_label": "",
+                "subject": "Technoform label detection: Phase 1",
+                "client": "Technoform",
+                "period": "",
             },
             {
-                "name": "UNS monitoring (dummy)",
-                "type": "Internal",
-                "period": "2025",
-                "link": "",
-                "link_label": "",
+                "subject": "Feasibility Study: VAARR AI Object Reconstruction",
+                "client": "VAARR",
+                "period": "",
             },
+            {
+                "subject": "Accelerator Program: In-line Quality Control using Computer Vision",
+                "client": "Technoform",
+                "period": "",
+            },
+            {
+                "subject": "SCADA and Power BI application",
+                "client": "IMEC",
+                "period": "",
+            },
+            {
+                "subject": "Research & Development of AI model",
+                "client": "Coretecs",
+                "period": "",
+            },
+            {
+                "subject": "Computer Vision Engineer at Flanders Make",
+                "client": "Flanders Make",
+                "period": "",
+            },
+            {
+                "subject": "SCADA and Power Apps application",
+                "client": "MCAM",
+                "period": "",
+            },
+            {"subject": "SCADA application", "client": "IMEC", "period": ""},
         ],
     },
     {
@@ -1044,15 +1066,7 @@ CAREER = [
         "period": "2022 – 2023",
         "link": "https://www.kuleuven.be/",
         "link_label": "kuleuven.be",
-        "projects": [
-            {
-                "name": "Master thesis (dummy)",
-                "type": "Thesis",
-                "period": "2023",
-                "link": "",
-                "link_label": "",
-            },
-        ],
+        "projects": [],
     },
     {
         "role": "Master of Industrial Engineering",
@@ -1152,23 +1166,18 @@ def render_index(projects: list[dict]) -> str:
             "  <table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">",
             "    <thead>",
             "      <tr>",
-            "        <th>Project</th>",
-            "        <th>Type</th>",
+            "        <th>Subject</th>",
+            "        <th>Client</th>",
             "        <th>Period</th>",
-            "        <th>Link</th>",
             "      </tr>",
             "    </thead>",
             "    <tbody>",
         ]
         for proj in projects:
-            plink = proj.get("link") or ""
-            plabel = proj.get("link_label") or plink
-            pcell = f'<a href="{esc(plink)}">{esc(plabel)}</a>' if plink else ""
             parts.append("      <tr>")
-            parts.append(f"        <td>{esc(proj['name'])}</td>")
-            parts.append(f"        <td>{esc(proj.get('type') or '')}</td>")
+            parts.append(f"        <td>{esc(proj.get('subject') or proj.get('name') or '')}</td>")
+            parts.append(f"        <td>{esc(proj.get('client') or '')}</td>")
             parts.append(f"        <td>{esc(proj.get('period') or '')}</td>")
-            parts.append(f"        <td>{pcell}</td>")
             parts.append("      </tr>")
         parts += ["    </tbody>", "  </table>"]
 
