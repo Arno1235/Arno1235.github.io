@@ -1357,6 +1357,7 @@ CAREER = [
                 "client": "Materialise",
                 "period": "2022 – 2023",
                 "link": "confidential",
+                "todo": False,
             },
         ],
     },
