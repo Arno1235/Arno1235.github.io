@@ -1373,7 +1373,7 @@ CAREER = [
                 "subject": "Thesis: End-to-end approach to detect food on a compartmentalized plate (segmentation and classification)",
                 "client": "KU Leuven",
                 "period": "2021 – 2022",
-                "link": "files/master-thesis.pdf",
+                "link": "files/van-eetvelde-end-to-end-food-detection-thesis.pdf",
                 "link_label": "PDF",
             },
         ],
