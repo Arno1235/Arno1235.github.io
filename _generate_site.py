@@ -368,12 +368,12 @@ def project_page(p: dict) -> str:
 PROJECTS: list[dict] = [
     {
         "slug": "infurn",
-        "href": "infurn/",
+        "href": "projects/infurn/",
         "list_title": "infurn",
         "list_blurb": "Photoreal virtual staging — empty room photo to furnished room, architecture preserved.",
         "list_meta": "demo · private",
         "section": "Vision & ML",
-        "external_page": True,  # already exists at /infurn/
+        "external_page": True,  # handcrafted template page at projects/infurn/
     },
     
     {

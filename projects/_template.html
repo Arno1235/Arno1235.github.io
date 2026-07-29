@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>infurn</title>
+  <!-- Minimal CSS: only what the before/after slider needs. -->
+  <style>
+    .compare {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #111;
+      touch-action: none;
+      user-select: none;
+      cursor: ew-resize;
+    }
+    .compare img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .compare .after { z-index: 1; }
+    .compare .before {
+      z-index: 2;
+      clip-path: inset(0 50% 0 0);
+    }
+    .compare .handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: #fff;
+      z-index: 3;
+      transform: translateX(-50%);
+    }
+    img { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <center>
+    <p><a href="../../">← Arno Van Eetvelde</a></p>
+
+    <h1>infurn</h1>
+    <p>empty room → furnished · architecture preserved</p>
+
+    <h2>Input vs output</h2>
+    <p>
+      <label>
+        Style
+        <select id="style">
+          <option value="assets/styles/rustic.jpg" selected>rustic</option>
+          <option value="assets/styles/modern_clean.jpg">modern clean</option>
+          <option value="assets/styles/minimal_zen.jpg">minimal zen</option>
+          <option value="assets/styles/mid_century.jpg">mid century</option>
+          <option value="assets/styles/mediterranean.jpg">mediterranean</option>
+          <option value="assets/styles/luxury.jpg">luxury</option>
+          <option value="assets/styles/japandi.jpg">japandi</option>
+          <option value="assets/styles/farmhouse.jpg">farmhouse</option>
+          <option value="assets/styles/contemporary_warm.jpg">contemporary warm</option>
+          <option value="assets/styles/coastal.jpg">coastal</option>
+          <option value="assets/styles/bohemian.jpg">bohemian</option>
+          <option value="assets/styles/art_deco.jpg">art deco</option>
+          <option value="assets/styles/scandinavian.jpg">scandinavian</option>
+        </select>
+      </label>
+    </p>
+
+    <div class="compare" id="compare" aria-label="Before and after comparison">
+      <img class="after" id="after" alt="Furnished output" src="assets/styles/rustic.jpg" />
+      <img class="before" id="before" alt="Empty input" src="assets/input/source.jpg" />
+      <div class="handle" id="handle"></div>
+    </div>
+    <p>
+      <span>input</span>
+      —
+      <span id="outLabel">rustic</span>
+    </p>
+
+    <h2>Desktop app</h2>
+    <p>
+      <img src="assets/ui/prepare.jpg" alt="Prepare tab" width="640" loading="lazy" /><br>
+      Prepare
+    </p>
+    <p>
+      <img src="assets/ui/library.jpg" alt="Library tab" width="640" loading="lazy" /><br>
+      Library
+    </p>
+    <p>
+      <img src="assets/ui/jobs.jpg" alt="Jobs tab" width="640" loading="lazy" /><br>
+      Jobs
+    </p>
+    <p>
+      <img src="assets/ui/results.jpg" alt="Results tab with wipe compare" width="640" loading="lazy" /><br>
+      Results · wipe
+    </p>
+    <p>
+      <img src="assets/ui/results-grid.jpg" alt="Results tab grid view" width="640" loading="lazy" /><br>
+      Results · grid
+    </p>
+  </center>
+
+  <!-- Minimal JS: style select + drag slider only. -->
+  <script>
+    (function () {
+      var style = document.getElementById("style");
+      var after = document.getElementById("after");
+      var before = document.getElementById("before");
+      var outLabel = document.getElementById("outLabel");
+      var compare = document.getElementById("compare");
+      var handle = document.getElementById("handle");
+      var dragging = false;
+
+      style.addEventListener("change", function () {
+        after.src = style.value;
+        outLabel.textContent = style.options[style.selectedIndex].text;
+      });
+
+      function setSplit(pct) {
+        pct = Math.max(2, Math.min(98, pct));
+        before.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
+        handle.style.left = pct + "%";
+      }
+
+      function pctFromEvent(e) {
+        var rect = compare.getBoundingClientRect();
+        var x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+        return (x / rect.width) * 100;
+      }
+
+      function start(e) {
+        dragging = true;
+        setSplit(pctFromEvent(e));
+        e.preventDefault();
+      }
+      function move(e) {
+        if (!dragging) return;
+        setSplit(pctFromEvent(e));
+        e.preventDefault();
+      }
+      function end() {
+        dragging = false;
+      }
+
+      compare.addEventListener("mousedown", start);
+      window.addEventListener("mousemove", move);
+      window.addEventListener("mouseup", end);
+      compare.addEventListener("touchstart", start, { passive: false });
+      window.addEventListener("touchmove", move, { passive: false });
+      window.addEventListener("touchend", end);
+
+      setSplit(50);
+    })();
+  </script>
+</body>
+</html>
