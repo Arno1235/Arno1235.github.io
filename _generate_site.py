@@ -1487,6 +1487,7 @@ def render_index(projects: list[dict]) -> str:
         if not projects:
             parts.append("  <br>")
             continue
+        show_flag = any(todo_flag(proj) for proj in projects)
         parts += [
             "  <br>",
             '  <table border="1" cellpadding="6" cellspacing="0" align="center">',
@@ -1496,7 +1497,10 @@ def render_index(projects: list[dict]) -> str:
             '        <th align="center">Client</th>',
             '        <th align="center">Period</th>',
             '        <th align="center">Link</th>',
-            '        <th align="center">Flag</th>',
+        ]
+        if show_flag:
+            parts.append('        <th align="center">Flag</th>')
+        parts += [
             "      </tr>",
             "    </thead>",
             "    <tbody>",
@@ -1509,7 +1513,8 @@ def render_index(projects: list[dict]) -> str:
             parts.append(f'        <td align="center">{esc(proj.get("client") or "")}</td>')
             parts.append(f'        <td align="center">{esc(proj.get("period") or "")}</td>')
             parts.append(f'        <td align="center">{project_link_cell(proj)}</td>')
-            parts.append(f'        <td align="center">{esc(todo_flag(proj))}</td>')
+            if show_flag:
+                parts.append(f'        <td align="center">{esc(todo_flag(proj))}</td>')
             parts.append("      </tr>")
         parts += ["    </tbody>", "  </table>", "  <br><br><br>"]
 
