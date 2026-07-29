@@ -1281,6 +1281,14 @@ CAREER = [
                 "link": "",
             },
 {
+                "subject": "Accelerator Program: in-line computer vision quality control for surface anomalies on plastic extrusion",
+                "client": "Technoform",
+                "period": "2024-08-14",
+                "link": "files/van-eetvelde-technoform-accelerator-inline-quality-control-blogpost.pdf",
+                "link_label": "PDF",
+                "todo": False,
+            },
+            {
                 "subject": "R&D: LoRA fine-tuning of SAM for segmenting electrical cabinet components",
                 "client": "Coretecs",
                 "period": "2024-06-18",
