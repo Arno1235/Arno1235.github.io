@@ -457,29 +457,7 @@ PROJECTS: list[dict] = [
         "images_title": "Design sketches"
 },
     
-    {
-        "slug": "homelab",
-        "href": "projects/homelab/",
-        "list_title": "Homelab",
-        "list_blurb": "Local GPU box, 16 TB NAS, Proxmox, and a Raspberry Pi k3s cluster for HA, MQTT, and services.",
-        "list_meta": "notes only",
-        "section": "Homelab & IoT",
-        "title": "Homelab",
-        "tag": "GPU box · NAS · Proxmox · Raspberry Pi k3s",
-        "status": "notes only",
-        "stack": ["k3s", "Proxmox", "Home Assistant", "MQTT", "Docker"],
-        "about": [
-            "A home lab built for ML workloads, self-hosted services, and industrial-style IoT experiments.",
-            "Pieces include a GPU machine for training/inference, a multi-disk NAS, Proxmox VMs, and a Raspberry Pi k3s cluster running Home Assistant, EMQX, monitoring, and bridges.",
-        ],
-        "arch": [
-            {"title": "Supercomputer", "body": "Local Ubuntu GPU host for Docker ML workflows."},
-            {"title": "NAS", "body": "16 TB storage, Ignition/MQTT containers."},
-            {"title": "k3s cluster", "body": "Multiple Pi nodes for HA, MQTT, monitoring."},
-            {"title": "Proxmox", "body": "Windows/Ubuntu VMs and exporters."},
-        ],
-        "arch_cols": 4
-},
+    
     {
         "slug": "roborock-mqtt",
         "href": "projects/roborock-mqtt/",
@@ -995,7 +973,6 @@ DATES: dict[str, str] = {
     "quant-arena": "2026-06-25",
     "factory-os": "2026-04-23",
 
-    "homelab": "2024-08-18",
     "roborock-mqtt": "2025-12-12",
     "mqtt-ha": "2026-02-06",
     "sparkplug": "2024-09-18",
