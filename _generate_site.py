@@ -210,10 +210,8 @@ footer {
 }
 """.strip()
 
-
 def esc(s: str) -> str:
     return html.escape(s, quote=True)
-
 
 def render_images(images: list[dict], hero: bool = False) -> str:
     if not images:
@@ -227,7 +225,6 @@ def render_images(images: list[dict], hero: bool = False) -> str:
         )
     return f'<div class="{cls}">' + "".join(figs) + "</div>"
 
-
 def render_flow(steps: list[dict]) -> str:
     if not steps:
         return ""
@@ -235,7 +232,6 @@ def render_flow(steps: list[dict]) -> str:
         f"<li><strong>{esc(s['title'])}</strong><span>{esc(s['body'])}</span></li>" for s in steps
     )
     return f'<ol class="flow">{items}</ol>'
-
 
 def render_arch(boxes: list[dict], cols: int = 3) -> str:
     if not boxes:
@@ -245,7 +241,6 @@ def render_arch(boxes: list[dict], cols: int = 3) -> str:
         for b in boxes
     )
     return f'<div class="arch cols-{cols}">{items}</div>'
-
 
 def render_visual(p: dict) -> str:
     """SVG strip from flow or arch when no photo hero exists."""
@@ -293,7 +288,6 @@ def render_visual(p: dict) -> str:
             )
     parts.append("</svg></div>")
     return "".join(parts)
-
 
 def project_page(p: dict) -> str:
     parts = [
@@ -365,7 +359,6 @@ def project_page(p: dict) -> str:
     parts += ["  </main>", "</body>", "</html>", ""]
     return "\n".join(parts)
 
-
 # ---------------------------------------------------------------------------
 # Content
 # ---------------------------------------------------------------------------
@@ -380,34 +373,7 @@ PROJECTS: list[dict] = [
         "section": "Vision & ML",
         "external_page": True,  # already exists at /infurn/
     },
-    {
-        "slug": "takeout",
-        "href": "projects/takeout/",
-        "list_title": "takeout",
-        "list_blurb": "Printable neighbourhood takeout atlas and magnetic leaderboard for Hasselt.",
-        "list_meta": "private",
-        "section": "Apps & misc",
-        "title": "takeout",
-        "tag": "printable Hasselt takeout atlas · magnetic leaderboard",
-        "status": "private",
-        "stack": ["TypeScript", "print kit", "maps"],
-        "about": [
-            "A neighbourhood takeout map and ranking board for around Boerenkrijgsingel 44A in Hasselt.",
-            "Designed as an offline magnetic board: an A3 atlas with cuisine pins, plus a leaderboard for scores, surprises, and rematches.",
-        ],
-        "flow": [
-            {"title": "Atlas", "body": "10 km map with restaurant pins; top three get gold / silver / bronze magnets."},
-            {"title": "Leaderboard", "body": "Rank by place, cuisine, price, date, score, and whether you’d order again."},
-            {"title": "Print kit", "body": "Export high-res PNGs for the map, ranking board, resto cut-outs, and medal sprites."},
-        ],
-        "hero": [{"src": "assets/map.jpg", "caption": "A3 neighbourhood atlas", "alt": "Takeout map of Hasselt"}],
-        "images": [
-            {"src": "assets/leaderboard.jpg", "caption": "Leaderboard board"},
-            {"src": "assets/resto-sprites.jpg", "caption": "Restaurant magnet sprites"},
-            {"src": "assets/magnet-sprites.jpg", "caption": "Visit dots and podium medals"},
-        ],
-        "images_title": "Print kit",
-    },
+    
     {
         "slug": "cutsched",
         "href": "projects/cutsched/",
@@ -434,8 +400,8 @@ PROJECTS: list[dict] = [
             {"title": "Verifier", "body": "Canonical feasibility + objective checker."},
             {"title": "Hidden set", "body": "Speed instances the model never trains on."},
         ],
-        "arch_cols": 4,
-    },
+        "arch_cols": 4
+},
     {
         "slug": "quant-arena",
         "href": "projects/quant-arena/",
@@ -460,8 +426,8 @@ PROJECTS: list[dict] = [
             {"title": "Data", "body": "~500 stocks via yfinance, local store."},
             {"title": "Engine", "body": "Costs, metrics, and robust evaluation."},
             {"title": "Leaderboard", "body": "Static HTML report of rankings."},
-        ],
-    },
+        ]
+},
     {
         "slug": "factory-os",
         "href": "projects/factory-os/",
@@ -488,34 +454,9 @@ PROJECTS: list[dict] = [
             {"src": "assets/diagram-3.png", "caption": "Agent / data paths"},
             {"src": "assets/diagram-4.png", "caption": "Interface concept"},
         ],
-        "images_title": "Design sketches",
-    },
-    {
-        "slug": "scadaflow",
-        "href": "projects/scadaflow/",
-        "list_title": "ScadaFlow",
-        "list_blurb": "Self-hostable SCADA + home automation: multi-protocol acquisition, TimescaleDB, alarms, SVG HMI.",
-        "list_meta": "private",
-        "section": "Homelab & IoT",
-        "title": "ScadaFlow",
-        "tag": "self-hostable SCADA + home automation platform",
-        "status": "private",
-        "stack": ["Flask", "TimescaleDB", "Redis", "HTMX", "WebSocket"],
-        "about": [
-            "A complete, self-hostable SCADA and home-automation platform. Acquire from industrial and IoT devices, historize in TimescaleDB, evaluate alarms and automations in real time, and present live dashboards plus an SVG HMI builder.",
-            "Built to feel like a blend of Ignition, AVEVA/atvise, and Home Assistant — usable on a factory floor or in a smart home.",
-        ],
-        "arch": [
-            {"title": "Acquisition", "body": "Modbus, OPC-UA, MQTT, S7, BACnet, DNP3, and more."},
-            {"title": "Core", "body": "Redis live cache, Postgres/Timescale history, Celery jobs."},
-            {"title": "UI / API", "body": "Server-rendered web UI, REST + Socket.IO, SVG mimic builder."},
-        ],
-        "flow": [
-            {"title": "Ingest", "body": "Drivers pull or subscribe; store-and-forward into history."},
-            {"title": "Decide", "body": "Alarms and automations evaluate against live + historical state."},
-            {"title": "Operate", "body": "Trends, dashboards, and HMI in the browser."},
-        ],
-    },
+        "images_title": "Design sketches"
+},
+    
     {
         "slug": "homelab",
         "href": "projects/homelab/",
@@ -537,8 +478,8 @@ PROJECTS: list[dict] = [
             {"title": "k3s cluster", "body": "Multiple Pi nodes for HA, MQTT, monitoring."},
             {"title": "Proxmox", "body": "Windows/Ubuntu VMs and exporters."},
         ],
-        "arch_cols": 4,
-    },
+        "arch_cols": 4
+},
     {
         "slug": "roborock-mqtt",
         "href": "projects/roborock-mqtt/",
@@ -559,8 +500,8 @@ PROJECTS: list[dict] = [
             {"title": "Authenticate", "body": "Roborock login credentials as a Kubernetes secret."},
             {"title": "Bridge", "body": "Translate vacuum telemetry onto filtered MQTT topics."},
             {"title": "Consume", "body": "Home Assistant or custom UNS tooling reads the topics."},
-        ],
-    },
+        ]
+},
     {
         "slug": "mqtt-ha",
         "href": "projects/mqtt-ha/",
@@ -580,8 +521,8 @@ PROJECTS: list[dict] = [
             {"title": "Watch", "body": "Subscribe to configured topic patterns."},
             {"title": "Infer", "body": "Detect device/entity shape from topic structure and names."},
             {"title": "Discover", "body": "Publish Home Assistant discovery messages and keep them fresh."},
-        ],
-    },
+        ]
+},
     {
         "slug": "sparkplug",
         "href": "projects/sparkplug/",
@@ -602,8 +543,8 @@ PROJECTS: list[dict] = [
             {"title": "Connect", "body": "Broker session with Sparkplug identity."},
             {"title": "Publish", "body": "Structured Sparkplug payloads."},
             {"title": "Subscribe", "body": "Topic handlers via custom callbacks."},
-        ],
-    },
+        ]
+},
     {
         "slug": "yamal",
         "href": "projects/yamal/",
@@ -625,8 +566,8 @@ PROJECTS: list[dict] = [
             {"title": "Define", "body": "Describe nodes and wiring in a YAML launch file."},
             {"title": "Launch", "body": "Start parallel processes from that config."},
             {"title": "Message", "body": "Nodes exchange data through the messaging layer."},
-        ],
-    },
+        ]
+},
     {
         "slug": "hivemq-uns",
         "href": "projects/hivemq-uns/",
@@ -646,8 +587,8 @@ PROJECTS: list[dict] = [
             {"title": "Lifecycle", "body": "Observe connecting/disconnecting clients."},
             {"title": "Intercept", "body": "Inspect or reshape inbound publishes."},
             {"title": "Monitor", "body": "Surface UNS topic health and anomalies."},
-        ],
-    },
+        ]
+},
     {
         "slug": "market-ops",
         "href": "projects/market-ops/",
@@ -669,8 +610,8 @@ PROJECTS: list[dict] = [
             {"title": "Ingest", "body": "Market and fundamentals data into research pipelines."},
             {"title": "Research", "body": "Strategy notes, biotech screens, backtest ideas."},
             {"title": "Operate", "body": "Saxo flows, alerts, and agent-built algorithms."},
-        ],
-    },
+        ]
+},
     {
         "slug": "openinsider",
         "href": "projects/openinsider/",
@@ -690,29 +631,9 @@ PROJECTS: list[dict] = [
             {"title": "Poll", "body": "Fetch recent insider filings on a schedule."},
             {"title": "Filter", "body": "Require clustered large buys/sells at one company."},
             {"title": "Alert", "body": "Send a concise Telegram message."},
-        ],
-    },
-    {
-        "slug": "saxo-widget",
-        "href": "projects/saxo-widget/",
-        "list_title": "SAXO widget",
-        "list_blurb": "macOS / iOS widget experiments around Saxo trading data.",
-        "list_meta": "private",
-        "section": "Markets",
-        "title": "SAXO widget",
-        "tag": "Swift widget experiments for Saxo data",
-        "status": "private",
-        "stack": ["Swift", "WidgetKit", "Saxo API"],
-        "about": [
-            "Widget experiments to surface Saxo trading information on Apple platforms.",
-            "Part of the broader Market Ops tooling around portfolio visibility without opening the full trading UI.",
-        ],
-        "arch": [
-            {"title": "API", "body": "Pull account / position snapshots from Saxo."},
-            {"title": "Widget", "body": "Compact SwiftUI surfaces on macOS/iOS."},
-            {"title": "Refresh", "body": "Background timeline updates."},
-        ],
-    },
+        ]
+},
+    
     {
         "slug": "cryptoai",
         "href": "projects/cryptoai/",
@@ -733,8 +654,8 @@ PROJECTS: list[dict] = [
             {"src": "assets/actual.png", "caption": "Actual series"},
             {"src": "assets/prediction.png", "caption": "Model prediction"},
         ],
-        "images_title": "Example run",
-    },
+        "images_title": "Example run"
+},
     {
         "slug": "mvtec-yolo",
         "href": "projects/mvtec-yolo/",
@@ -751,8 +672,8 @@ PROJECTS: list[dict] = [
             "Experiments running YOLO detection/segmentation models on the MVTec anomaly detection dataset.",
             "Useful as a bridge between industrial inspection datasets and modern YOLO tooling.",
         ],
-        "hero": [{"src": "assets/predictions.jpg", "caption": "Validation batch predictions", "alt": "YOLO predictions on MVTec"}],
-    },
+        "hero": [{"src": "assets/predictions.jpg", "caption": "Validation batch predictions", "alt": "YOLO predictions on MVTec"}]
+},
     {
         "slug": "sam-lora",
         "href": "projects/sam-lora/",
@@ -772,30 +693,9 @@ PROJECTS: list[dict] = [
             {"title": "Base", "body": "Start from a SAM checkpoint."},
             {"title": "Adapt", "body": "Train low-rank adapters on target masks."},
             {"title": "Infer", "body": "Segment domain images with the adapted model."},
-        ],
-    },
-    {
-        "slug": "parking",
-        "href": "projects/parking/",
-        "list_title": "Parking check",
-        "list_blurb": "YOLOv5 + Telegram + Raspberry Pi to detect whether cars are parked.",
-        "list_meta_html": '<a href="https://github.com/Arno1235/car_parking_detection">github</a>',
-        "section": "Vision & ML",
-        "title": "Car parking detection",
-        "tag": "YOLOv5 · Telegram · Raspberry Pi",
-        "status": "public",
-        "github": "https://github.com/Arno1235/car_parking_detection",
-        "stack": ["Python", "YOLOv5", "Telegram", "Raspberry Pi"],
-        "about": [
-            "A small edge vision system that checks whether cars are parked and notifies via Telegram.",
-            "Runs detection on a Raspberry Pi camera feed and pushes status updates to a chat.",
-        ],
-        "flow": [
-            {"title": "Capture", "body": "Grab frames from the Pi camera."},
-            {"title": "Detect", "body": "YOLOv5 finds vehicles in the bay."},
-            {"title": "Notify", "body": "Telegram message when occupancy changes."},
-        ],
-    },
+        ]
+},
+    
     {
         "slug": "catch-the-dot",
         "href": "projects/catch-the-dot/",
@@ -821,8 +721,8 @@ PROJECTS: list[dict] = [
             {"title": "Input", "body": "Live webcam frames."},
             {"title": "Hands", "body": "MediaPipe landmark model."},
             {"title": "Game loop", "body": "Configurable players, dots, sizes."},
-        ],
-    },
+        ]
+},
     {
         "slug": "dl-scratch",
         "href": "projects/dl-scratch/",
@@ -842,30 +742,9 @@ PROJECTS: list[dict] = [
             {"title": "Tensors", "body": "Array ops and autograd-style basics."},
             {"title": "Layers", "body": "Composable network building blocks."},
             {"title": "Train", "body": "Losses, optimizers, and loop glue."},
-        ],
-    },
-    {
-        "slug": "local-chatgpt",
-        "href": "projects/local-chatgpt/",
-        "list_title": "Local ChatGPT",
-        "list_blurb": "Chat over local documents with LangChain.",
-        "list_meta_html": '<a href="https://github.com/Arno1235/chatGPT_on_localtext">github</a>',
-        "section": "Vision & ML",
-        "title": "ChatGPT on local text",
-        "tag": "retrieval chat over local documents · LangChain",
-        "status": "public",
-        "github": "https://github.com/Arno1235/chatGPT_on_localtext",
-        "stack": ["Python", "LangChain", "LLMs"],
-        "about": [
-            "A retrieval-augmented chat setup that answers questions using local text sources via LangChain.",
-            "Early exploration of private document Q&A before the current wave of local LLM tooling.",
-        ],
-        "flow": [
-            {"title": "Load", "body": "Ingest local documents into a searchable store."},
-            {"title": "Retrieve", "body": "Fetch relevant chunks for a question."},
-            {"title": "Answer", "body": "LLM responds grounded in those chunks."},
-        ],
-    },
+        ]
+},
+    
     {
         "slug": "datalab",
         "href": "projects/datalab/",
@@ -885,29 +764,9 @@ PROJECTS: list[dict] = [
             {"title": "Anonymize", "body": "Detect PII / quasi-identifiers; apply k-anonymity and related methods."},
             {"title": "Profile", "body": "Descriptive stats, tests, correlations."},
             {"title": "Model", "body": "Anomaly detection, clustering, time-series / AutoML-lite."},
-        ],
-    },
-    {
-        "slug": "companylens",
-        "href": "projects/companylens/",
-        "list_title": "CompanyLens",
-        "list_blurb": "Belgian company-intelligence MVP — KBO identity, NBB filings, Staatsblad events.",
-        "list_meta": "private",
-        "section": "Vision & ML",
-        "title": "CompanyLens",
-        "tag": "Belgian company intelligence · OpenTheBox-style MVP",
-        "status": "private",
-        "stack": ["Python", "PostgreSQL", "Docker"],
-        "about": [
-            "A self-hostable Belgian company-intelligence web app: search by name or enterprise number, then open a profile with identity, management, filed financials, and Staatsblad events.",
-            "Includes watchlists with change detection. Runs as docker compose with a Python app and Postgres.",
-        ],
-        "arch": [
-            {"title": "Search", "body": "Name, VAT, NACE, postal code, status."},
-            {"title": "Profile", "body": "Identity, mandates, financials, gazette events."},
-            {"title": "Watch", "body": "Snapshot diffs and optional alerts."},
-        ],
-    },
+        ]
+},
+    
     {
         "slug": "pcb-drone",
         "href": "projects/pcb-drone/",
@@ -932,8 +791,8 @@ PROJECTS: list[dict] = [
             {"title": "Design", "body": "Schematics and PCB versions in KiCad for JLCPCB."},
             {"title": "Bring-up", "body": "Test IMU, motor driver, buck converter, SBUS."},
             {"title": "Fly", "body": "Frame, ESCs, and control firmware on Pico."},
-        ],
-    },
+        ]
+},
     {
         "slug": "volvo-widgets",
         "href": "projects/volvo-widgets/",
@@ -954,8 +813,8 @@ PROJECTS: list[dict] = [
             {"title": "Battery widget", "body": "SwiftUI glanceable charge state."},
             {"title": "Trips", "body": "Render recorded trips into readable views."},
             {"title": "Refresh", "body": "Periodic updates via WidgetKit."},
-        ],
-    },
+        ]
+},
     {
         "slug": "gimbal",
         "href": "projects/gimbal/",
@@ -975,49 +834,10 @@ PROJECTS: list[dict] = [
             {"title": "Select", "body": "Choose the object to follow in the video feed."},
             {"title": "Track", "body": "Computer vision estimates target motion."},
             {"title": "Actuate", "body": "Gimbal motors keep the camera locked on."},
-        ],
-    },
-    {
-        "slug": "printer",
-        "href": "projects/printer/",
-        "list_title": "3D printer",
-        "list_blurb": "Firmware tweaks, custom pause scripts, upgrades, and print queue.",
-        "list_meta": "notes only",
-        "section": "Hardware",
-        "title": "3D printer",
-        "tag": "firmware · pause scripts · upgrades",
-        "status": "notes only",
-        "stack": ["firmware", "G-code", "hardware mods"],
-        "about": [
-            "Ongoing notes around a personal 3D printer: upgrade paths, filament drying, thermistor changes, and custom pause scripts for mid-print interventions.",
-        ],
-        "arch": [
-            {"title": "Firmware", "body": "Thermistor and motion tweaks."},
-            {"title": "Scripts", "body": "Custom pause / resume G-code flows."},
-            {"title": "Queue", "body": "Parts list and print backlog."},
-        ],
-    },
-    {
-        "slug": "dashboard",
-        "href": "projects/dashboard/",
-        "list_title": "Dashboard",
-        "list_blurb": "Personal finance and habits dashboard (Next.js, Prisma, PostgreSQL).",
-        "list_meta": "private",
-        "section": "Apps & misc",
-        "title": "Personal dashboard",
-        "tag": "finance + habits · Next.js",
-        "status": "private",
-        "stack": ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-        "about": [
-            "A modular personal dashboard for tracking finances and habits.",
-            "Built with Next.js, TypeScript, Prisma, and shadcn/ui against a PostgreSQL database on the local network. A v2 rewrite followed the first version.",
-        ],
-        "arch": [
-            {"title": "Web", "body": "Next.js app with modular widgets."},
-            {"title": "Data", "body": "Prisma models on PostgreSQL."},
-            {"title": "Habits / money", "body": "Tracking surfaces for daily life."},
-        ],
-    },
+        ]
+},
+    
+    
     {
         "slug": "ble-notificator",
         "href": "projects/ble-notificator/",
@@ -1032,8 +852,8 @@ PROJECTS: list[dict] = [
         "links": [
             {
                 "href": "https://play.google.com/store/apps/details?id=com.arnovaneetvelde.blenotificator",
-                "label": "Play Store",
-            }
+                "label": "Play Store"
+}
         ],
         "stack": ["Java", "Android", "Bluetooth LE"],
         "about": [
@@ -1044,8 +864,8 @@ PROJECTS: list[dict] = [
             {"src": "assets/screen-1.png", "caption": "Device list"},
             {"src": "assets/screen-2.png", "caption": "Notification settings"},
         ],
-        "images_title": "App screens",
-    },
+        "images_title": "App screens"
+},
     {
         "slug": "touchid",
         "href": "projects/touchid/",
@@ -1066,8 +886,8 @@ PROJECTS: list[dict] = [
             {"title": "Tap", "body": "Trigger the widget from the Touch Bar."},
             {"title": "Auth", "body": "Confirm with Touch ID."},
             {"title": "Unlock", "body": "Expose or use the stored password."},
-        ],
-    },
+        ]
+},
     {
         "slug": "fitnessapp",
         "href": "projects/fitnessapp/",
@@ -1090,8 +910,8 @@ PROJECTS: list[dict] = [
             {"src": "assets/pic02.jpg", "caption": "Screen 3"},
             {"src": "assets/pic03.jpg", "caption": "Screen 4"},
         ],
-        "images_title": "UI",
-    },
+        "images_title": "UI"
+},
     {
         "slug": "farmy",
         "href": "projects/farmy/",
@@ -1112,30 +932,9 @@ PROJECTS: list[dict] = [
             {"title": "AR", "body": "Place the defense field in the real world."},
             {"title": "Defend", "body": "Tower defense loop on the tracked plane."},
             {"title": "Hackathon", "body": "Built under time pressure as a team demo."},
-        ],
-    },
-    {
-        "slug": "typing-test",
-        "href": "projects/typing-test/",
-        "list_title": "typing test",
-        "list_blurb": "Minimal Dutch typing test in the terminal.",
-        "list_meta_html": '<a href="https://github.com/Arno1235/typing_test">github</a>',
-        "section": "Apps & misc",
-        "title": "typing test",
-        "tag": "Dutch terminal typing test",
-        "status": "public",
-        "github": "https://github.com/Arno1235/typing_test",
-        "stack": ["Python", "CLI"],
-        "about": [
-            "A very small Dutch typing test that runs in the terminal.",
-            "Word list from OpenTaal. Example: python3 typing_test.py --words=100",
-        ],
-        "flow": [
-            {"title": "Load", "body": "Pull N words from the Dutch word list."},
-            {"title": "Type", "body": "Terminal prompt measures speed and accuracy."},
-            {"title": "Score", "body": "Report results when the run finishes."},
-        ],
-    },
+        ]
+},
+    
     {
         "slug": "chess-bot",
         "href": "projects/chess-bot/",
@@ -1154,29 +953,9 @@ PROJECTS: list[dict] = [
             {"title": "Rules", "body": "Template board + legal move generation."},
             {"title": "Search", "body": "Evaluate positions under a hard time budget."},
             {"title": "Constraint", "body": "NumPy only — no chess libraries."},
-        ],
-    },
-    {
-        "slug": "immoweb",
-        "href": "projects/immoweb/",
-        "list_title": "Immoweb scrape",
-        "list_blurb": "Notebook experiments scraping Belgian real-estate listings.",
-        "list_meta": "private",
-        "section": "Apps & misc",
-        "title": "Immoweb scraping",
-        "tag": "Belgian real-estate listing experiments",
-        "status": "private",
-        "stack": ["Python", "Jupyter"],
-        "about": [
-            "Notebook experiments for scraping and exploring Belgian real-estate listings from Immoweb.",
-            "Used for personal housing research rather than as a productized scraper.",
-        ],
-        "flow": [
-            {"title": "Fetch", "body": "Collect listing pages of interest."},
-            {"title": "Parse", "body": "Extract price, location, and features."},
-            {"title": "Explore", "body": "Notebook analysis over the resulting table."},
-        ],
-    },
+        ]
+},
+    
     {
         "slug": "mcdo-bots",
         "href": "projects/mcdo-bots/",
@@ -1204,18 +983,18 @@ PROJECTS: list[dict] = [
             {"src": "assets/flappy-1.png", "caption": "Flappy template 1"},
             {"src": "assets/flappy-2.png", "caption": "Flappy template 2"},
         ],
-        "images_title": "Captures",
-    },
+        "images_title": "Captures"
+},
 ]
 
 # Approx start dates from related GitHub repos / notes (YYYY-MM-DD).
 DATES: dict[str, str] = {
     "infurn": "2026-02-15",
-    "takeout": "2026-07-29",
+
     "cutsched": "2026-07-22",
     "quant-arena": "2026-06-25",
     "factory-os": "2026-04-23",
-    "scadaflow": "2026-07-13",
+
     "homelab": "2024-08-18",
     "roborock-mqtt": "2025-12-12",
     "mqtt-ha": "2026-02-06",
@@ -1224,31 +1003,29 @@ DATES: dict[str, str] = {
     "hivemq-uns": "2025-06-13",
     "market-ops": "2025-03-11",
     "openinsider": "2026-03-09",
-    "saxo-widget": "2026-01-14",
+
     "cryptoai": "2021-04-04",
     "mvtec-yolo": "2024-09-28",
     "sam-lora": "2024-03-21",
-    "parking": "2024-01-29",
+
     "catch-the-dot": "2023-08-02",
     "dl-scratch": "2023-01-29",
-    "local-chatgpt": "2023-07-05",
+
     "datalab": "2026-07-12",
-    "companylens": "2026-07-12",
+
     "pcb-drone": "2025-08-09",
     "volvo-widgets": "2025-04-22",
     "gimbal": "2019-05-31",
-    "printer": "2024-08-18",
-    "dashboard": "2026-03-01",
+
     "ble-notificator": "2020-08-19",
     "touchid": "2023-05-31",
     "fitnessapp": "2020-06-26",
     "farmy": "2020-11-29",
-    "typing-test": "2023-05-12",
-    "chess-bot": "2023-01-22",
-    "immoweb": "2025-09-10",
-    "mcdo-bots": "2022-12-05",
-}
 
+    "chess-bot": "2023-01-22",
+
+    "mcdo-bots": "2022-12-05"
+}
 
 def visibility(p: dict) -> str:
     status = (p.get("status") or p.get("list_meta") or "").lower()
@@ -1261,7 +1038,6 @@ def visibility(p: dict) -> str:
     if "notes" in status:
         return "notes"
     return "private"
-
 
 def github_cell(p: dict) -> str:
     if p.get("github"):
@@ -1277,7 +1053,6 @@ def github_cell(p: dict) -> str:
     if "github.com" in meta:
         return meta
     return ""
-
 
 def render_index(projects: list[dict]) -> str:
     """Home page: pure HTML table — no CSS, no JS."""
@@ -1331,7 +1106,6 @@ def render_index(projects: list[dict]) -> str:
     ]
     return "\n".join(parts)
 
-
 def main() -> None:
     (ROOT / "index.html").write_text(render_index(PROJECTS), encoding="utf-8")
     print("wrote index.html")
@@ -1354,7 +1128,6 @@ def main() -> None:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(project_page(p), encoding="utf-8")
         print(f"wrote {out.relative_to(ROOT)}")
-
 
 if __name__ == "__main__":
     main()
