@@ -1297,7 +1297,7 @@ def render_index(projects: list[dict]) -> str:
         "<body>",
         "  <h1>Arno Van Eetvelde</h1>",
         '  <p><a href="https://github.com/Arno1235">GitHub</a></p>',
-        "  <table>",
+        "  <table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">",
         "    <thead>",
         "      <tr>",
         "        <th>Project</th>",
