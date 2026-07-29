@@ -1004,18 +1004,6 @@ DATES: dict[str, str] = {
     "mcdo-bots": "2022-12-05"
 }
 
-def visibility(p: dict) -> str:
-    status = (p.get("status") or p.get("list_meta") or "").lower()
-    if "public" in status or p.get("github") or p.get("list_meta_html"):
-        if "private" in status:
-            return "private"
-        if "notes" in status:
-            return "notes"
-        return "public"
-    if "notes" in status:
-        return "notes"
-    return "private"
-
 def github_cell(p: dict) -> str:
     if p.get("github"):
         return f'<a href="{esc(p["github"])}">{esc(p["github"].rstrip("/").split("/")[-1])}</a>'
@@ -1053,10 +1041,8 @@ def render_index(projects: list[dict]) -> str:
         "    <thead>",
         "      <tr>",
         "        <th>Project</th>",
-        "        <th>Page</th>",
         "        <th>Type</th>",
         "        <th>Date</th>",
-        "        <th>Visibility</th>",
         "        <th>GitHub</th>",
         "      </tr>",
         "    </thead>",
@@ -1068,10 +1054,8 @@ def render_index(projects: list[dict]) -> str:
         parts.append(
             f'        <td><a href="{esc(p["href"])}">{esc(p["list_title"])}</a></td>'
         )
-        parts.append(f'        <td><a href="{esc(p["href"])}">page</a></td>')
         parts.append(f"        <td>{esc(p['section'])}</td>")
         parts.append(f"        <td>{esc(date)}</td>")
-        parts.append(f"        <td>{esc(visibility(p))}</td>")
         parts.append(f"        <td>{github_cell(p)}</td>")
         parts.append("      </tr>")
     parts += [
