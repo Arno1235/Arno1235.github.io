@@ -1012,62 +1012,74 @@ CAREER = [
         "period": "2023-09 – present",
         "link": "https://www.coretecs.be/about/arno-van-eetvelde",
         "link_label": "coretecs.be",
-        # From Coretecs_PORTFOLIO_ARNO_2025-06-11.pdf (subject, client, period).
+        # From Coretecs_PORTFOLIO_ARNO_2025-06-11.pdf (subject, client, period, link).
         "projects": [
             {
                 "subject": "Emergency stop circuit integration into Yokogawa CIServer SCADA via OPC UA",
                 "client": "IMEC",
                 "period": "",
+                "link": "",
             },
             {
                 "subject": "High-availability PostgreSQL setup for MQTT device authentication and authorization",
                 "client": "Fluvius",
                 "period": "",
+                "link": "",
             },
             {
                 "subject": "Computer vision pipeline to digitize analog device readings (Databricks batch inference)",
                 "client": "Under NDA",
                 "period": "",
+                "link": "",
             },
             {
                 "subject": "Real-time laser label detection on extruded strips (line-scan camera, YOLO, OCR)",
                 "client": "Technoform",
                 "period": "",
+                "link": "",
             },
             {
                 "subject": "Feasibility study: AI point-cloud reconstruction for repairing damaged 3D-scanned parts",
                 "client": "VAARR",
                 "period": "",
+                "link": "",
             },
             {
                 "subject": "In-line computer vision quality control for surface anomalies on plastic extrusion",
                 "client": "Technoform",
                 "period": "",
+                "link": "",
             },
             {
                 "subject": "SCADA and Power BI integration for hazardous gas sensors on a PILZ safety PLC",
                 "client": "IMEC",
                 "period": "",
+                "link": "",
             },
             {
                 "subject": "R&D: LoRA fine-tuning of SAM for segmenting electrical cabinet components",
                 "client": "Coretecs",
                 "period": "",
+                "link": "",
             },
             {
                 "subject": "Computer vision dataset generation, YOLO training, and anomaly detection framework testing",
                 "client": "Flanders Make",
                 "period": "",
+                "link": "https://coock.flandersmake.be/nl/blog/visie-ai-sneller-genereren-van-datasets",
+                "link_label": "blog",
             },
             {
                 "subject": "SCADA machine-stage tracking with SQL storage and Power Apps time-utilization views",
                 "client": "MCAM",
                 "period": "",
+                "link": "",
             },
             {
                 "subject": "Gas measurement system integration into existing Yokogawa CIServer SCADA",
                 "client": "IMEC",
                 "period": "",
+                "link": "",
             },
         ],
     },
@@ -1083,6 +1095,7 @@ CAREER = [
                 "subject": "Thesis: Titanium 3D printing — computer vision-based anomaly detection and classification for critical components",
                 "client": "Materialise",
                 "period": "2022 – 2023",
+                "link": "confidential",
             },
         ],
     },
@@ -1098,6 +1111,8 @@ CAREER = [
                 "subject": "Thesis: End-to-end approach to detect food on a compartmentalized plate (segmentation and classification)",
                 "client": "KU Leuven",
                 "period": "2021 – 2022",
+                "link": "files/master-thesis.pdf",
+                "link_label": "PDF",
             },
         ],
     },
@@ -1111,6 +1126,18 @@ CAREER = [
         "projects": [],
     },
 ]
+
+def project_link_cell(proj: dict) -> str:
+    """Render link cell: plain text for 'confidential', otherwise optional hyperlink."""
+    link = (proj.get("link") or "").strip()
+    if not link:
+        return ""
+    if link.lower() == "confidential":
+        return "confidential"
+    label = proj.get("link_label") or ("PDF" if link.lower().endswith(".pdf") else link)
+    # Relative file links from nested career section need to stay site-root relative.
+    return f'<a href="{esc(link)}">{esc(label)}</a>'
+
 
 def github_cell(p: dict) -> str:
     if p.get("github"):
@@ -1193,6 +1220,7 @@ def render_index(projects: list[dict]) -> str:
             "        <th>Subject</th>",
             "        <th>Client</th>",
             "        <th>Period</th>",
+            "        <th>Link</th>",
             "      </tr>",
             "    </thead>",
             "    <tbody>",
@@ -1202,6 +1230,7 @@ def render_index(projects: list[dict]) -> str:
             parts.append(f"        <td>{esc(proj.get('subject') or proj.get('name') or '')}</td>")
             parts.append(f"        <td>{esc(proj.get('client') or '')}</td>")
             parts.append(f"        <td>{esc(proj.get('period') or '')}</td>")
+            parts.append(f"        <td>{project_link_cell(proj)}</td>")
             parts.append("      </tr>")
         parts += ["    </tbody>", "  </table>"]
 
