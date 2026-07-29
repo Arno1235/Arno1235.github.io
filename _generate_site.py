@@ -1133,10 +1133,6 @@ def render_index(projects: list[dict]) -> str:
         "    </tbody>",
         "  </table>",
         "  <h2>Career</h2>",
-        "  <p>",
-        "    Each role is listed below. When a role has projects, they appear in a nested table",
-        "    under that role (pure HTML, no CSS/JS).",
-        "  </p>",
     ]
     for row in CAREER:
         link = row.get("link") or ""
