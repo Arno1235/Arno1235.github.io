@@ -23,11 +23,13 @@ body {
   color: var(--ink);
   background: linear-gradient(180deg, #d8d8dc 0%, var(--bg) 36%, #e8e8ea 100%);
   line-height: 1.5;
+  text-align: center;
 }
 main {
   max-width: 880px;
   margin: 0 auto;
   padding: 40px 20px 96px;
+  text-align: center;
 }
 main.narrow { max-width: 680px; padding-top: 56px; }
 a { color: var(--accent); text-decoration: none; }
@@ -1428,16 +1430,17 @@ def render_index(projects: list[dict]) -> str:
         "  <title>Arno Van Eetvelde</title>",
         "</head>",
         "<body>",
+        "  <center>",
         "  <h1>Arno Van Eetvelde</h1>",
         '  <p><a href="https://github.com/Arno1235">GitHub</a></p>',
         "  <h2>Personal Projects</h2>",
-        "  <table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">",
+        '  <table border="1" cellpadding="6" cellspacing="0" align="center">',
         "    <thead>",
         "      <tr>",
-        "        <th>Project</th>",
-        "        <th>Type</th>",
-        "        <th>Date</th>",
-        "        <th>GitHub</th>",
+        '        <th align="center">Project</th>',
+        '        <th align="center">Type</th>',
+        '        <th align="center">Date</th>',
+        '        <th align="center">GitHub</th>',
         "      </tr>",
         "    </thead>",
         "    <tbody>",
@@ -1446,11 +1449,11 @@ def render_index(projects: list[dict]) -> str:
         date = DATES.get(p["slug"], "")
         parts.append("      <tr>")
         parts.append(
-            f'        <td><a href="{esc(p["href"])}">{esc(p["list_title"])}</a></td>'
+            f'        <td align="center"><a href="{esc(p["href"])}">{esc(p["list_title"])}</a></td>'
         )
-        parts.append(f"        <td>{esc(p['section'])}</td>")
-        parts.append(f"        <td>{esc(date)}</td>")
-        parts.append(f"        <td>{github_cell(p)}</td>")
+        parts.append(f'        <td align="center">{esc(p["section"])}</td>')
+        parts.append(f'        <td align="center">{esc(date)}</td>')
+        parts.append(f'        <td align="center">{github_cell(p)}</td>')
         parts.append("      </tr>")
     parts += [
         "    </tbody>",
@@ -1472,27 +1475,30 @@ def render_index(projects: list[dict]) -> str:
         if not projects:
             continue
         parts += [
-            "  <table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">",
+            '  <table border="1" cellpadding="6" cellspacing="0" align="center">',
             "    <thead>",
             "      <tr>",
-            "        <th>Subject</th>",
-            "        <th>Client</th>",
-            "        <th>Period</th>",
-            "        <th>Link</th>",
+            '        <th align="center">Subject</th>',
+            '        <th align="center">Client</th>',
+            '        <th align="center">Period</th>',
+            '        <th align="center">Link</th>',
             "      </tr>",
             "    </thead>",
             "    <tbody>",
         ]
         for proj in projects:
             parts.append("      <tr>")
-            parts.append(f"        <td>{esc(proj.get('subject') or proj.get('name') or '')}</td>")
-            parts.append(f"        <td>{esc(proj.get('client') or '')}</td>")
-            parts.append(f"        <td>{esc(proj.get('period') or '')}</td>")
-            parts.append(f"        <td>{project_link_cell(proj)}</td>")
+            parts.append(
+                f'        <td align="center">{esc(proj.get("subject") or proj.get("name") or "")}</td>'
+            )
+            parts.append(f'        <td align="center">{esc(proj.get("client") or "")}</td>')
+            parts.append(f'        <td align="center">{esc(proj.get("period") or "")}</td>')
+            parts.append(f'        <td align="center">{project_link_cell(proj)}</td>')
             parts.append("      </tr>")
         parts += ["    </tbody>", "  </table>"]
 
     parts += [
+        "  </center>",
         "</body>",
         "</html>",
         "",
