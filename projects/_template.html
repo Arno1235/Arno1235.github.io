@@ -8,15 +8,14 @@
   <style>
     .compare {
       position: relative;
-      width: 100%;
-      max-width: 420px;
-      margin: 0 auto;
+      width: 320px;
       aspect-ratio: 3 / 4;
       overflow: hidden;
       background: #111;
       touch-action: none;
       user-select: none;
       cursor: ew-resize;
+      margin: 0 auto;
     }
     .compare img {
       position: absolute;
@@ -92,16 +91,62 @@
       </label>
     </p>
 
-    <div class="compare" id="compare" aria-label="Before and after comparison">
-      <img class="after" id="after" alt="Furnished output" src="assets/styles/rustic.jpg" />
-      <img class="before" id="before" alt="Empty input" src="assets/input/source.jpg" />
-      <div class="handle" id="handle"></div>
-    </div>
-    <p>
-      <span>input</span>
-      —
-      <span id="outLabel">rustic</span>
-    </p>
+    <table width="672" cellpadding="8" cellspacing="0" align="center">
+      <tr>
+        <td align="center">
+          <div class="compare" aria-label="Child bedroom before and after">
+            <img class="after" alt="Furnished output" src="assets/styles/rustic.jpg" />
+            <img class="before" alt="Empty input" src="assets/input/source.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>child bedroom · <span class="outLabel">rustic</span>
+        </td>
+        <td align="center">
+          <div class="compare" aria-label="Child bedroom before and after">
+            <img class="after" alt="Furnished output" src="assets/styles/rustic.jpg" />
+            <img class="before" alt="Empty input" src="assets/input/source.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>child bedroom · <span class="outLabel">rustic</span>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <div class="compare" aria-label="Child bedroom before and after">
+            <img class="after" alt="Furnished output" src="assets/styles/rustic.jpg" />
+            <img class="before" alt="Empty input" src="assets/input/source.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>child bedroom · <span class="outLabel">rustic</span>
+        </td>
+        <td align="center">
+          <div class="compare" aria-label="Child bedroom before and after">
+            <img class="after" alt="Furnished output" src="assets/styles/rustic.jpg" />
+            <img class="before" alt="Empty input" src="assets/input/source.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>child bedroom · <span class="outLabel">rustic</span>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <div class="compare" aria-label="Child bedroom before and after">
+            <img class="after" alt="Furnished output" src="assets/styles/rustic.jpg" />
+            <img class="before" alt="Empty input" src="assets/input/source.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>child bedroom · <span class="outLabel">rustic</span>
+        </td>
+        <td align="center">
+          <div class="compare" aria-label="Child bedroom before and after">
+            <img class="after" alt="Furnished output" src="assets/styles/rustic.jpg" />
+            <img class="before" alt="Empty input" src="assets/input/source.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>child bedroom · <span class="outLabel">rustic</span>
+        </td>
+      </tr>
+    </table>
 
     <h2>Desktop app</h2>
     <table width="672" cellpadding="8" cellspacing="0" align="center">
@@ -135,56 +180,65 @@
     </table>
   </center>
 
-  <!-- Minimal JS: style select + drag slider only. -->
+  <!-- Minimal JS: shared style select + per-slider drag. -->
   <script>
     (function () {
       var style = document.getElementById("style");
-      var after = document.getElementById("after");
-      var before = document.getElementById("before");
-      var outLabel = document.getElementById("outLabel");
-      var compare = document.getElementById("compare");
-      var handle = document.getElementById("handle");
-      var dragging = false;
+      var compares = document.querySelectorAll(".compare");
 
       style.addEventListener("change", function () {
-        after.src = style.value;
-        outLabel.textContent = style.options[style.selectedIndex].text;
+        var file = style.value;
+        var label = style.options[style.selectedIndex].text;
+        document.querySelectorAll(".compare .after").forEach(function (img) {
+          img.src = file;
+        });
+        document.querySelectorAll(".outLabel").forEach(function (el) {
+          el.textContent = label;
+        });
       });
 
-      function setSplit(pct) {
-        pct = Math.max(2, Math.min(98, pct));
-        before.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
-        handle.style.left = pct + "%";
+      function bindCompare(compare) {
+        var before = compare.querySelector(".before");
+        var handle = compare.querySelector(".handle");
+        var dragging = false;
+
+        function setSplit(pct) {
+          pct = Math.max(2, Math.min(98, pct));
+          before.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
+          handle.style.left = pct + "%";
+        }
+
+        function pctFromEvent(e) {
+          var rect = compare.getBoundingClientRect();
+          var point = e.touches ? e.touches[0] : e;
+          return ((point.clientX - rect.left) / rect.width) * 100;
+        }
+
+        function start(e) {
+          dragging = true;
+          setSplit(pctFromEvent(e));
+          e.preventDefault();
+        }
+        function move(e) {
+          if (!dragging) return;
+          setSplit(pctFromEvent(e));
+          e.preventDefault();
+        }
+        function end() {
+          dragging = false;
+        }
+
+        compare.addEventListener("mousedown", start);
+        window.addEventListener("mousemove", move);
+        window.addEventListener("mouseup", end);
+        compare.addEventListener("touchstart", start, { passive: false });
+        window.addEventListener("touchmove", move, { passive: false });
+        window.addEventListener("touchend", end);
+
+        setSplit(50);
       }
 
-      function pctFromEvent(e) {
-        var rect = compare.getBoundingClientRect();
-        var x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-        return (x / rect.width) * 100;
-      }
-
-      function start(e) {
-        dragging = true;
-        setSplit(pctFromEvent(e));
-        e.preventDefault();
-      }
-      function move(e) {
-        if (!dragging) return;
-        setSplit(pctFromEvent(e));
-        e.preventDefault();
-      }
-      function end() {
-        dragging = false;
-      }
-
-      compare.addEventListener("mousedown", start);
-      window.addEventListener("mousemove", move);
-      window.addEventListener("mouseup", end);
-      compare.addEventListener("touchstart", start, { passive: false });
-      window.addEventListener("touchmove", move, { passive: false });
-      window.addEventListener("touchend", end);
-
-      setSplit(50);
+      compares.forEach(bindCompare);
     })();
   </script>
 </body>
