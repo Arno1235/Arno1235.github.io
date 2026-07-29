@@ -1004,6 +1004,33 @@ DATES: dict[str, str] = {
     "mcdo-bots": "2022-12-05"
 }
 
+CAREER = [
+    {
+        "role": "AI & Software Engineer",
+        "organization": "Coretecs",
+        "type": "Job",
+        "period": "2023-09 – present",
+        "link": "https://www.coretecs.be/about/arno-van-eetvelde",
+        "link_label": "coretecs.be",
+    },
+    {
+        "role": "Advanced Master of Artificial Intelligence",
+        "organization": "KU Leuven",
+        "type": "Education",
+        "period": "– 2023",
+        "link": "https://www.kuleuven.be/",
+        "link_label": "kuleuven.be",
+    },
+    {
+        "role": "Master of Industrial Engineering",
+        "organization": "KU Leuven",
+        "type": "Education",
+        "period": "– 2022",
+        "link": "https://www.kuleuven.be/",
+        "link_label": "kuleuven.be",
+    },
+]
+
 def github_cell(p: dict) -> str:
     if p.get("github"):
         return f'<a href="{esc(p["github"])}">{esc(p["github"].rstrip("/").split("/")[-1])}</a>'
@@ -1037,6 +1064,7 @@ def render_index(projects: list[dict]) -> str:
         "<body>",
         "  <h1>Arno Van Eetvelde</h1>",
         '  <p><a href="https://github.com/Arno1235">GitHub</a></p>',
+        "  <h2>Personal Projects</h2>",
         "  <table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">",
         "    <thead>",
         "      <tr>",
@@ -1057,6 +1085,32 @@ def render_index(projects: list[dict]) -> str:
         parts.append(f"        <td>{esc(p['section'])}</td>")
         parts.append(f"        <td>{esc(date)}</td>")
         parts.append(f"        <td>{github_cell(p)}</td>")
+        parts.append("      </tr>")
+    parts += [
+        "    </tbody>",
+        "  </table>",
+        "  <h2>Career</h2>",
+        "  <table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">",
+        "    <thead>",
+        "      <tr>",
+        "        <th>Role</th>",
+        "        <th>Organization</th>",
+        "        <th>Type</th>",
+        "        <th>Period</th>",
+        "        <th>Link</th>",
+        "      </tr>",
+        "    </thead>",
+        "    <tbody>",
+    ]
+    for row in CAREER:
+        link = row.get("link") or ""
+        link_cell = f'<a href="{esc(link)}">{esc(row.get("link_label") or link)}</a>' if link else ""
+        parts.append("      <tr>")
+        parts.append(f"        <td>{esc(row['role'])}</td>")
+        parts.append(f"        <td>{esc(row['organization'])}</td>")
+        parts.append(f"        <td>{esc(row['type'])}</td>")
+        parts.append(f"        <td>{esc(row['period'])}</td>")
+        parts.append(f"        <td>{link_cell}</td>")
         parts.append("      </tr>")
     parts += [
         "    </tbody>",
