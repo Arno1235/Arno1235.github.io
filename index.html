@@ -1,5 +1,430 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arno Van Eetvelde</title>
+  <meta name="description" content="Side projects by Arno Van Eetvelde — software engineer." />
+  <style>
+    :root {
+      --bg: #ececec;
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: #c3c3c7;
+      --accent: #0a64f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #d8d8dc 0%, var(--bg) 36%, #e8e8ea 100%);
+      line-height: 1.5;
+    }
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 20px 96px;
+    }
+    header { margin-bottom: 48px; }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      letter-spacing: -0.03em;
+      font-weight: 650;
+    }
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 36em;
+    }
+    .links {
+      margin-top: 14px;
+      font-size: 14px;
+    }
+    .links a { margin-right: 14px; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    h2 {
+      margin: 40px 0 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+    }
+    section:first-of-type h2 {
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+    dl { margin: 0; }
+    .project {
+      display: grid;
+      grid-template-columns: minmax(7.5rem, 9.5rem) 1fr;
+      gap: 6px 18px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(195, 195, 199, 0.55);
+    }
+    .project:last-child { border-bottom: 0; }
+    dt {
+      margin: 0;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+    dd {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink);
+    }
+    dd p { margin: 0 0 4px; }
+    .meta {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .meta a { color: var(--muted); }
+    .meta a:hover { color: var(--accent); }
+    footer {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    @media (max-width: 560px) {
+      main { padding-top: 36px; }
+      h1 { font-size: 28px; }
+      .project {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        padding: 14px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Arno Van Eetvelde</h1>
+      <p class="lede">
+        Software engineer. In free time I build side projects across
+        computer vision, industrial systems, home automation, markets, and hardware.
+      </p>
+      <p class="links">
+        <a href="https://github.com/Arno1235">GitHub</a>
+      </p>
+    </header>
 
----
+    <section>
+      <h2>Recent</h2>
+      <dl>
+        <div class="project">
+          <dt>infurn</dt>
+          <dd>
+            <p>Photoreal virtual staging — empty room photo to furnished room, architecture preserved. FLUX.1 Kontext + desktop UI on ephemeral GPUs.</p>
+            <p class="meta"><a href="infurn/">demo</a> · private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>takeout</dt>
+          <dd>
+            <p>Printable neighbourhood takeout atlas and magnetic leaderboard for Hasselt.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>CutSched</dt>
+          <dd>
+            <p>LLM optimization benchmark: speed up a correct cutting-stock + scheduling CP-SAT solver without breaking the contract.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Quant Arena</dt>
+          <dd>
+            <p>Competitive playground where agents submit stock-trading algorithms and race on a shared backtest leaderboard.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>factory-os</dt>
+          <dd>
+            <p>AI layer on a MQTT Unified Namespace — chat with plant data, configure agents, surface detections and actions.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>ScadaFlow</dt>
+          <dd>
+            <p>Self-hostable SCADA + home automation: multi-protocol acquisition, TimescaleDB history, alarms, SVG HMI, REST/WebSocket.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+      </dl>
+    </section>
 
-<a href="projects/projects.html">projects</a>
+    <section>
+      <h2>Homelab &amp; IoT</h2>
+      <dl>
+        <div class="project">
+          <dt>Homelab</dt>
+          <dd>
+            <p>Local GPU box, 16&nbsp;TB NAS, Proxmox, and a Raspberry Pi k3s cluster running Home Assistant, MQTT, monitoring, and small services.</p>
+            <p class="meta">notes only</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Roborock MQTT</dt>
+          <dd>
+            <p>Bridge Roborock vacuum telemetry into MQTT for a k3s / Home Assistant setup.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/RoborockMQTTBridge">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>MQTT → HA</dt>
+          <dd>
+            <p>Auto Home Assistant MQTT discovery from wildcard topics, packaged for Kubernetes.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Sparkplug B</dt>
+          <dd>
+            <p>Python client framework for MQTT Sparkplug B — birth/death, publish, subscribe, callbacks.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/MQTT_SparkplugB_Client">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>YAMAL</dt>
+          <dd>
+            <p>Lightweight ROS-inspired Python framework for parallel nodes and messaging via YAML launch files.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/YAMAL">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>HiveMQ UNS ext.</dt>
+          <dd>
+            <p>HiveMQ extension experiments around Unified Namespace monitoring.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Markets</h2>
+      <dl>
+        <div class="project">
+          <dt>Market Ops</dt>
+          <dd>
+            <p>Ongoing trading research — pipelines, Saxo flows, biotech angles, and agent-built strategies (roboquant / stockbook).</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>OpenInsider</dt>
+          <dd>
+            <p>Telegram alerts when multiple executives buy or sell large blocks on openinsider.com.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>SAXO widget</dt>
+          <dd>
+            <p>macOS / iOS widget experiments around Saxo trading data.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>CryptoAI</dt>
+          <dd>
+            <p>Early crypto prediction experiments. Discontinued.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/CryptoAI">github</a></p>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Vision &amp; ML</h2>
+      <dl>
+        <div class="project">
+          <dt>MVTec YOLO</dt>
+          <dd>
+            <p>Run YOLO models on the MVTec anomaly detection dataset.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/MVTec_YOLO">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>SAM LoRA</dt>
+          <dd>
+            <p>Fine-tuning Segment Anything with LoRA.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Parking check</dt>
+          <dd>
+            <p>YOLOv5 + Telegram + Raspberry Pi to detect whether cars are parked.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/car_parking_detection">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Catch The Dot</dt>
+          <dd>
+            <p>Webcam finger-tracking game with MediaPipe, built for an Ordina case.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/CatchTheDot">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>DL from scratch</dt>
+          <dd>
+            <p>Small neural-net framework written from scratch in Python.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/DeepLearning_from_scratch">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Local ChatGPT</dt>
+          <dd>
+            <p>Chat over local documents with LangChain.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/chatGPT_on_localtext">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>DataLab</dt>
+          <dd>
+            <p>Desktop toolkit for CSV anonymization and progressive statistical / ML analysis.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>CompanyLens</dt>
+          <dd>
+            <p>Belgian company-intelligence MVP — KBO identity, NBB filings, Staatsblad events.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Hardware</h2>
+      <dl>
+        <div class="project">
+          <dt>PCB drone</dt>
+          <dd>
+            <p>Raspberry Pi Pico flight controller on custom PCBs — ESC, IMU, power, SBUS, printable frame.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Volvo widgets</dt>
+          <dd>
+            <p>Swift battery widget and trip rendering for a Volvo EV.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Gimbal / tracking</dt>
+          <dd>
+            <p>Object-tracking gimbal software so a camera follows a selected target.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>3D printer</dt>
+          <dd>
+            <p>Firmware tweaks, custom pause scripts, upgrades, and print queue.</p>
+            <p class="meta">notes only</p>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Apps &amp; misc</h2>
+      <dl>
+        <div class="project">
+          <dt>Dashboard</dt>
+          <dd>
+            <p>Personal finance and habits dashboard (Next.js, Prisma, PostgreSQL).</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>BLE Notificator</dt>
+          <dd>
+            <p>Android app that notifies when Bluetooth Low Energy devices appear.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/BLENotificator">github</a> · <a href="https://play.google.com/store/apps/details?id=com.arnovaneetvelde.blenotificator">Play Store</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Touch ID password</dt>
+          <dd>
+            <p>Pock Touch Bar widget that unlocks a password with Touch ID.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/TouchID_password">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>FitnessApp</dt>
+          <dd>
+            <p>Workout builder and progress tracker — mainly to practice app design.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/FitnessApp">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Farmy</dt>
+          <dd>
+            <p>AR tower-defense game from a hackathon. Discontinued.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/Farmy--Hackathon-">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>typing test</dt>
+          <dd>
+            <p>Minimal Dutch typing test in the terminal.</p>
+            <p class="meta"><a href="https://github.com/Arno1235/typing_test">github</a></p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>chess bot</dt>
+          <dd>
+            <p>Chess engine challenge — numpy only, move within three seconds.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>Immoweb scrape</dt>
+          <dd>
+            <p>Notebook experiments scraping Belgian real-estate listings.</p>
+            <p class="meta">private</p>
+          </dd>
+        </div>
+        <div class="project">
+          <dt>McDo bots</dt>
+          <dd>
+            <p>Small Python bots for McDonald’s web games (Candy Crush, Flappy, Burger Building, …).</p>
+            <p class="meta">
+              <a href="https://github.com/Arno1235/McDo_CandyCrush">candy</a> ·
+              <a href="https://github.com/Arno1235/McDo_FlappyWacko">flappy</a> ·
+              <a href="https://github.com/Arno1235/McDo_BurgerBuilding">burger</a> ·
+              <a href="https://github.com/Arno1235/McDo_KeepingUp">keeping up</a>
+            </p>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <footer>
+      Curated from personal projects and public GitHub repos. Private work is listed without a link.
+    </footer>
+  </main>
+</body>
+</html>

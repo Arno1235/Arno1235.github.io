@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>infurn — virtual staging</title>
+  <style>
+    :root {
+      --bg: #ececec;
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: #c3c3c7;
+      --card: #f7f7f8;
+      --accent: #0a64f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #d8d8dc 0%, var(--bg) 40%, #e8e8ea 100%);
+      line-height: 1.4;
+    }
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+    .tag {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 36px 0 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .styles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .styles button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--ink);
+    }
+    .styles button.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #eef4ff;
+    }
+    .compare {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #111;
+      user-select: none;
+      touch-action: none;
+      cursor: ew-resize;
+    }
+    .compare img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .compare .after { z-index: 1; }
+    .compare .before {
+      z-index: 2;
+      clip-path: inset(0 50% 0 0);
+    }
+    .compare .handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: #fff;
+      z-index: 3;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.25);
+    }
+    .compare .handle::after {
+      content: "⟷";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      color: #333;
+      box-shadow: 0 1px 4px rgba(0,0,0,.25);
+    }
+    .labels {
+      display: flex;
+      justify-content: space-between;
+      max-width: 420px;
+      margin: 8px auto 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .shots {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 700px) {
+      .shots { grid-template-columns: 1fr 1fr; }
+    }
+    .shots figure {
+      margin: 0;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      padding: 10px 10px 0;
+    }
+    .shots img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .shots figcaption {
+      padding: 8px 0 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .back {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .back:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../">← Arno Van Eetvelde</a>
+    <h1>infurn</h1>
+    <p class="tag">empty room → furnished · architecture preserved</p>
+
+    <h2>Input vs output</h2>
+    <div class="styles" id="styles"></div>
+    <div class="compare" id="compare" aria-label="Before and after comparison">
+      <img class="after" id="after" alt="Furnished output" src="assets/styles/rustic.jpg" />
+      <img class="before" id="before" alt="Empty input" src="assets/input/source.jpg" />
+      <div class="handle" id="handle"></div>
+    </div>
+    <div class="labels">
+      <span>input</span>
+      <span id="outLabel">rustic</span>
+    </div>
+
+    <h2>Desktop app</h2>
+    <div class="shots">
+      <figure>
+        <img src="assets/ui/prepare.jpg" alt="Prepare tab" loading="lazy" />
+        <figcaption>Prepare</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/ui/library.jpg" alt="Library tab" loading="lazy" />
+        <figcaption>Library</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/ui/jobs.jpg" alt="Jobs tab" loading="lazy" />
+        <figcaption>Jobs</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/ui/results.jpg" alt="Results tab with wipe compare" loading="lazy" />
+        <figcaption>Results · wipe</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/ui/results-grid.jpg" alt="Results tab grid view" loading="lazy" />
+        <figcaption>Results · grid</figcaption>
+      </figure>
+    </div>
+  </main>
+
+  <script>
+    const STYLES = [
+      { id: "rustic", label: "rustic", file: "assets/styles/rustic.jpg" },
+      { id: "modern_clean", label: "modern clean", file: "assets/styles/modern_clean.jpg" },
+      { id: "minimal_zen", label: "minimal zen", file: "assets/styles/minimal_zen.jpg" },
+      { id: "mid_century", label: "mid century", file: "assets/styles/mid_century.jpg" },
+      { id: "mediterranean", label: "mediterranean", file: "assets/styles/mediterranean.jpg" },
+      { id: "luxury", label: "luxury", file: "assets/styles/luxury.jpg" },
+      { id: "japandi", label: "japandi", file: "assets/styles/japandi.jpg" },
+      { id: "farmhouse", label: "farmhouse", file: "assets/styles/farmhouse.jpg" },
+      { id: "contemporary_warm", label: "contemporary warm", file: "assets/styles/contemporary_warm.jpg" },
+      { id: "coastal", label: "coastal", file: "assets/styles/coastal.jpg" },
+      { id: "bohemian", label: "bohemian", file: "assets/styles/bohemian.jpg" },
+      { id: "art_deco", label: "art deco", file: "assets/styles/art_deco.jpg" },
+      { id: "scandinavian", label: "scandinavian", file: "assets/styles/scandinavian.jpg" }
+    ];
+
+    const stylesEl = document.getElementById("styles");
+    const after = document.getElementById("after");
+    const before = document.getElementById("before");
+    const outLabel = document.getElementById("outLabel");
+    const compare = document.getElementById("compare");
+    const handle = document.getElementById("handle");
+
+    STYLES.forEach((s, i) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = s.label;
+      if (i === 0) btn.classList.add("active");
+      btn.addEventListener("click", () => {
+        stylesEl.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        after.src = s.file;
+        outLabel.textContent = s.label;
+      });
+      stylesEl.appendChild(btn);
+    });
+
+    function setSplit(pct) {
+      pct = Math.max(2, Math.min(98, pct));
+      before.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
+      handle.style.left = pct + "%";
+    }
+
+    function pctFromEvent(e) {
+      const rect = compare.getBoundingClientRect();
+      const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+      return (x / rect.width) * 100;
+    }
+
+    let dragging = false;
+    const start = (e) => { dragging = true; setSplit(pctFromEvent(e)); e.preventDefault(); };
+    const move = (e) => { if (dragging) { setSplit(pctFromEvent(e)); e.preventDefault(); } };
+    const end = () => { dragging = false; };
+
+    compare.addEventListener("mousedown", start);
+    window.addEventListener("mousemove", move);
+    window.addEventListener("mouseup", end);
+    compare.addEventListener("touchstart", start, { passive: false });
+    window.addEventListener("touchmove", move, { passive: false });
+    window.addEventListener("touchend", end);
+
+    setSplit(50);
+  </script>
+</body>
+</html>
