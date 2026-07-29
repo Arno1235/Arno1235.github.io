@@ -1284,7 +1284,9 @@ CAREER = [
                 "subject": "R&D: LoRA fine-tuning of SAM for segmenting electrical cabinet components",
                 "client": "Coretecs",
                 "period": "2024-06-18",
-                "link": "",
+                "link": "files/van-eetvelde-sam-lora-electrical-cabinet-segmentation-whitepaper.pdf",
+                "link_label": "PDF",
+                "todo": False,
             },
 {
                 "subject": "R&D camera setup and image acquisition for computer vision experiments",
