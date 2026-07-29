@@ -1012,6 +1012,30 @@ CAREER = [
         "period": "2023-09 – present",
         "link": "https://www.coretecs.be/about/arno-van-eetvelde",
         "link_label": "coretecs.be",
+        # Optional nested projects for this role (pure HTML: table under the role heading).
+        "projects": [
+            {
+                "name": "CabinetVision (dummy)",
+                "type": "R&D",
+                "period": "2024",
+                "link": "",
+                "link_label": "",
+            },
+            {
+                "name": "Technoform quality control (dummy)",
+                "type": "Client",
+                "period": "2024 – 2025",
+                "link": "",
+                "link_label": "",
+            },
+            {
+                "name": "UNS monitoring (dummy)",
+                "type": "Internal",
+                "period": "2025",
+                "link": "",
+                "link_label": "",
+            },
+        ],
     },
     {
         "role": "Advanced Master of Artificial Intelligence",
@@ -1020,6 +1044,15 @@ CAREER = [
         "period": "2022 – 2023",
         "link": "https://www.kuleuven.be/",
         "link_label": "kuleuven.be",
+        "projects": [
+            {
+                "name": "Master thesis (dummy)",
+                "type": "Thesis",
+                "period": "2023",
+                "link": "",
+                "link_label": "",
+            },
+        ],
     },
     {
         "role": "Master of Industrial Engineering",
@@ -1028,6 +1061,7 @@ CAREER = [
         "period": "2021 – 2022",
         "link": "https://www.kuleuven.be/",
         "link_label": "kuleuven.be",
+        "projects": [],
     },
     {
         "role": "Bachelor of Industrial Engineering",
@@ -1036,6 +1070,7 @@ CAREER = [
         "period": "2018 – 2021",
         "link": "https://www.kuleuven.be/",
         "link_label": "kuleuven.be",
+        "projects": [],
     },
 ]
 
@@ -1098,31 +1133,50 @@ def render_index(projects: list[dict]) -> str:
         "    </tbody>",
         "  </table>",
         "  <h2>Career</h2>",
-        "  <table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">",
-        "    <thead>",
-        "      <tr>",
-        "        <th>Role</th>",
-        "        <th>Organization</th>",
-        "        <th>Type</th>",
-        "        <th>Period</th>",
-        "        <th>Link</th>",
-        "      </tr>",
-        "    </thead>",
-        "    <tbody>",
+        "  <p>",
+        "    Each role is listed below. When a role has projects, they appear in a nested table",
+        "    under that role (pure HTML, no CSS/JS).",
+        "  </p>",
     ]
     for row in CAREER:
         link = row.get("link") or ""
-        link_cell = f'<a href="{esc(link)}">{esc(row.get("link_label") or link)}</a>' if link else ""
-        parts.append("      <tr>")
-        parts.append(f"        <td>{esc(row['role'])}</td>")
-        parts.append(f"        <td>{esc(row['organization'])}</td>")
-        parts.append(f"        <td>{esc(row['type'])}</td>")
-        parts.append(f"        <td>{esc(row['period'])}</td>")
-        parts.append(f"        <td>{link_cell}</td>")
-        parts.append("      </tr>")
+        link_bit = (
+            f' · <a href="{esc(link)}">{esc(row.get("link_label") or link)}</a>'
+            if link
+            else ""
+        )
+        parts.append(f"  <h3>{esc(row['role'])} — {esc(row['organization'])}</h3>")
+        parts.append(
+            f"  <p>{esc(row['type'])} · {esc(row['period'])}{link_bit}</p>"
+        )
+        projects = row.get("projects") or []
+        if not projects:
+            continue
+        parts += [
+            "  <table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">",
+            "    <thead>",
+            "      <tr>",
+            "        <th>Project</th>",
+            "        <th>Type</th>",
+            "        <th>Period</th>",
+            "        <th>Link</th>",
+            "      </tr>",
+            "    </thead>",
+            "    <tbody>",
+        ]
+        for proj in projects:
+            plink = proj.get("link") or ""
+            plabel = proj.get("link_label") or plink
+            pcell = f'<a href="{esc(plink)}">{esc(plabel)}</a>' if plink else ""
+            parts.append("      <tr>")
+            parts.append(f"        <td>{esc(proj['name'])}</td>")
+            parts.append(f"        <td>{esc(proj.get('type') or '')}</td>")
+            parts.append(f"        <td>{esc(proj.get('period') or '')}</td>")
+            parts.append(f"        <td>{pcell}</td>")
+            parts.append("      </tr>")
+        parts += ["    </tbody>", "  </table>"]
+
     parts += [
-        "    </tbody>",
-        "  </table>",
         "</body>",
         "</html>",
         "",
