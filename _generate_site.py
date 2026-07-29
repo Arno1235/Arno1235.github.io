@@ -1209,16 +1209,60 @@ PROJECTS: list[dict] = [
 ]
 
 SECTIONS = [
-    "Recent",
-    "Homelab & IoT",
-    "Markets",
-    "Vision & ML",
-    "Hardware",
-    "Apps & misc",
+    ("recent", "Recent"),
+    ("homelab-iot", "Homelab & IoT"),
+    ("markets", "Markets"),
+    ("vision-ml", "Vision & ML"),
+    ("hardware", "Hardware"),
+    ("apps", "Apps & misc"),
 ]
 
 
+def section_slug(name: str) -> str:
+    for slug, label in SECTIONS:
+        if label == name:
+            return slug
+    raise KeyError(name)
+
+
+def project_href(p: dict, prefix: str) -> str:
+    href = p["href"]
+    if prefix and not href.startswith(("http://", "https://", "/")):
+        return prefix + href
+    return href
+
+
+def render_filter_nav(active: str | None, prefix: str) -> list[str]:
+    """Pure-HTML filter: separate pages per project type."""
+    parts = ["  <h2>Filter</h2>", "  <ul>"]
+    all_href = f"{prefix}index.html"
+    if active is None:
+        parts.append("    <li><strong>All</strong></li>")
+    else:
+        parts.append(f'    <li><a href="{esc(all_href)}">All</a></li>')
+    for slug, label in SECTIONS:
+        href = f"{prefix}type/{slug}.html"
+        if active == slug:
+            parts.append(f"    <li><strong>{esc(label)}</strong></li>")
+        else:
+            parts.append(f'    <li><a href="{esc(href)}">{esc(label)}</a></li>')
+    parts.append("  </ul>")
+    return parts
+
+
+def render_project_list(projects: list[dict], prefix: str = "") -> list[str]:
+    parts = ["  <ul>"]
+    for p in projects:
+        href = project_href(p, prefix)
+        parts.append(
+            f'    <li><a href="{esc(href)}">{esc(p["list_title"])}</a></li>'
+        )
+    parts.append("  </ul>")
+    return parts
+
+
 def render_index(projects: list[dict]) -> str:
+    """Home page: pure HTML only — no CSS, no JS."""
     parts = [
         "<!DOCTYPE html>",
         '<html lang="en">',
@@ -1226,53 +1270,41 @@ def render_index(projects: list[dict]) -> str:
         '  <meta charset="utf-8" />',
         '  <meta name="viewport" content="width=device-width, initial-scale=1" />',
         "  <title>Arno Van Eetvelde</title>",
-        '  <meta name="description" content="Side projects by Arno Van Eetvelde — software engineer." />',
-        "  <style>",
-        CSS,
-        "  </style>",
         "</head>",
         "<body>",
-        '  <main class="narrow">',
-        '    <header class="home">',
-        "      <h1>Arno Van Eetvelde</h1>",
-        '      <p class="lede">',
-        "        Software engineer. In free time I build side projects across",
-        "        computer vision, industrial systems, home automation, markets, and hardware.",
-        "      </p>",
-        '      <p class="links">',
-        '        <a href="https://github.com/Arno1235">GitHub</a>',
-        "      </p>",
-        "    </header>",
+        "  <h1>Arno Van Eetvelde</h1>",
+        '  <p><a href="https://github.com/Arno1235">GitHub</a></p>',
+        *render_filter_nav(active=None, prefix=""),
+        "  <h2>Projects</h2>",
     ]
 
-    for section in SECTIONS:
-        items = [p for p in projects if p["section"] == section]
+    for slug, label in SECTIONS:
+        items = [p for p in projects if p["section"] == label]
         if not items:
             continue
-        parts.append(f'    <section class="list">')
-        parts.append(f"      <h2>{esc(section)}</h2>")
-        parts.append("      <dl>")
-        for p in items:
-            meta = p.get("list_meta_html") or esc(p.get("list_meta", ""))
-            parts.append('        <div class="project">')
-            parts.append(
-                f'          <dt><a href="{esc(p["href"])}">{esc(p["list_title"])}</a></dt>'
-            )
-            parts.append("          <dd>")
-            parts.append(f"            <p>{esc(p['list_blurb'])}</p>")
-            parts.append(
-                f'            <p class="meta"><a href="{esc(p["href"])}">page</a> · {meta}</p>'
-            )
-            parts.append("          </dd>")
-            parts.append("        </div>")
-        parts.append("      </dl>")
-        parts.append("    </section>")
+        parts.append(f'  <h3 id="{esc(slug)}">{esc(label)}</h3>')
+        parts.extend(render_project_list(items, prefix=""))
 
-    parts += [
-        "    <footer>",
-        "      Each project has its own page. Public repos link out to GitHub; private work is listed without a repo link.",
-        "    </footer>",
-        "  </main>",
+    parts += ["</body>", "</html>", ""]
+    return "\n".join(parts)
+
+
+def render_type_page(slug: str, label: str, projects: list[dict]) -> str:
+    """Filtered list page — still pure HTML only."""
+    items = [p for p in projects if p["section"] == label]
+    parts = [
+        "<!DOCTYPE html>",
+        '<html lang="en">',
+        "<head>",
+        '  <meta charset="utf-8" />',
+        '  <meta name="viewport" content="width=device-width, initial-scale=1" />',
+        f"  <title>{esc(label)} — Arno Van Eetvelde</title>",
+        "</head>",
+        "<body>",
+        "  <h1>Arno Van Eetvelde</h1>",
+        f"  <h2>{esc(label)}</h2>",
+        *render_filter_nav(active=slug, prefix="../"),
+        *render_project_list(items, prefix="../"),
         "</body>",
         "</html>",
         "",
@@ -1283,6 +1315,13 @@ def render_index(projects: list[dict]) -> str:
 def main() -> None:
     (ROOT / "index.html").write_text(render_index(PROJECTS), encoding="utf-8")
     print("wrote index.html")
+
+    type_dir = ROOT / "type"
+    type_dir.mkdir(parents=True, exist_ok=True)
+    for slug, label in SECTIONS:
+        out = type_dir / f"{slug}.html"
+        out.write_text(render_type_page(slug, label, PROJECTS), encoding="utf-8")
+        print(f"wrote {out.relative_to(ROOT)}")
 
     for p in PROJECTS:
         if p.get("external_page"):
