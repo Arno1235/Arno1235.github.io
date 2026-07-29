@@ -1375,6 +1375,7 @@ CAREER = [
                 "period": "2021 – 2022",
                 "link": "files/van-eetvelde-end-to-end-food-detection-thesis.pdf",
                 "link_label": "PDF",
+                "todo": False,
             },
         ],
     },
