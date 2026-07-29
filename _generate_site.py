@@ -377,7 +377,7 @@ PROJECTS: list[dict] = [
         "list_title": "infurn",
         "list_blurb": "Photoreal virtual staging — empty room photo to furnished room, architecture preserved.",
         "list_meta": "demo · private",
-        "section": "Recent",
+        "section": "Vision & ML",
         "external_page": True,  # already exists at /infurn/
     },
     {
@@ -386,7 +386,7 @@ PROJECTS: list[dict] = [
         "list_title": "takeout",
         "list_blurb": "Printable neighbourhood takeout atlas and magnetic leaderboard for Hasselt.",
         "list_meta": "private",
-        "section": "Recent",
+        "section": "Apps & misc",
         "title": "takeout",
         "tag": "printable Hasselt takeout atlas · magnetic leaderboard",
         "status": "private",
@@ -414,7 +414,7 @@ PROJECTS: list[dict] = [
         "list_title": "CutSched",
         "list_blurb": "LLM optimization benchmark: speed up a cutting-stock + scheduling CP-SAT solver without breaking the contract.",
         "list_meta": "private",
-        "section": "Recent",
+        "section": "Vision & ML",
         "title": "CutSched",
         "tag": "LLM optimization benchmark · cutting stock + scheduling",
         "status": "private",
@@ -442,7 +442,7 @@ PROJECTS: list[dict] = [
         "list_title": "Quant Arena",
         "list_blurb": "Competitive playground where agents submit stock-trading algorithms and race on a shared backtest leaderboard.",
         "list_meta": "private",
-        "section": "Recent",
+        "section": "Markets",
         "title": "Quant Arena",
         "tag": "agent trading algorithms · shared backtest leaderboard",
         "status": "private",
@@ -468,7 +468,7 @@ PROJECTS: list[dict] = [
         "list_title": "factory-os",
         "list_blurb": "AI layer on a MQTT Unified Namespace — chat with plant data, configure agents, surface detections and actions.",
         "list_meta": "private",
-        "section": "Recent",
+        "section": "Homelab & IoT",
         "title": "factory-os",
         "tag": "AI industrial OS on a MQTT Unified Namespace",
         "status": "private",
@@ -496,7 +496,7 @@ PROJECTS: list[dict] = [
         "list_title": "ScadaFlow",
         "list_blurb": "Self-hostable SCADA + home automation: multi-protocol acquisition, TimescaleDB, alarms, SVG HMI.",
         "list_meta": "private",
-        "section": "Recent",
+        "section": "Homelab & IoT",
         "title": "ScadaFlow",
         "tag": "self-hostable SCADA + home automation platform",
         "status": "private",
@@ -1208,61 +1208,84 @@ PROJECTS: list[dict] = [
     },
 ]
 
-SECTIONS = [
-    ("recent", "Recent"),
-    ("homelab-iot", "Homelab & IoT"),
-    ("markets", "Markets"),
-    ("vision-ml", "Vision & ML"),
-    ("hardware", "Hardware"),
-    ("apps", "Apps & misc"),
-]
+# Approx start dates from related GitHub repos / notes (YYYY-MM-DD).
+DATES: dict[str, str] = {
+    "infurn": "2026-02-15",
+    "takeout": "2026-07-29",
+    "cutsched": "2026-07-22",
+    "quant-arena": "2026-06-25",
+    "factory-os": "2026-04-23",
+    "scadaflow": "2026-07-13",
+    "homelab": "2024-08-18",
+    "roborock-mqtt": "2025-12-12",
+    "mqtt-ha": "2026-02-06",
+    "sparkplug": "2024-09-18",
+    "yamal": "2024-02-07",
+    "hivemq-uns": "2025-06-13",
+    "market-ops": "2025-03-11",
+    "openinsider": "2026-03-09",
+    "saxo-widget": "2026-01-14",
+    "cryptoai": "2021-04-04",
+    "mvtec-yolo": "2024-09-28",
+    "sam-lora": "2024-03-21",
+    "parking": "2024-01-29",
+    "catch-the-dot": "2023-08-02",
+    "dl-scratch": "2023-01-29",
+    "local-chatgpt": "2023-07-05",
+    "datalab": "2026-07-12",
+    "companylens": "2026-07-12",
+    "pcb-drone": "2025-08-09",
+    "volvo-widgets": "2025-04-22",
+    "gimbal": "2019-05-31",
+    "printer": "2024-08-18",
+    "dashboard": "2026-03-01",
+    "ble-notificator": "2020-08-19",
+    "touchid": "2023-05-31",
+    "fitnessapp": "2020-06-26",
+    "farmy": "2020-11-29",
+    "typing-test": "2023-05-12",
+    "chess-bot": "2023-01-22",
+    "immoweb": "2025-09-10",
+    "mcdo-bots": "2022-12-05",
+}
 
 
-def section_slug(name: str) -> str:
-    for slug, label in SECTIONS:
-        if label == name:
-            return slug
-    raise KeyError(name)
+def visibility(p: dict) -> str:
+    status = (p.get("status") or p.get("list_meta") or "").lower()
+    if "public" in status or p.get("github") or p.get("list_meta_html"):
+        if "private" in status:
+            return "private"
+        if "notes" in status:
+            return "notes"
+        return "public"
+    if "notes" in status:
+        return "notes"
+    return "private"
 
 
-def project_href(p: dict, prefix: str) -> str:
-    href = p["href"]
-    if prefix and not href.startswith(("http://", "https://", "/")):
-        return prefix + href
-    return href
-
-
-def render_filter_nav(active: str | None, prefix: str) -> list[str]:
-    """Pure-HTML filter: separate pages per project type."""
-    parts = ["  <h2>Filter</h2>", "  <ul>"]
-    all_href = f"{prefix}index.html"
-    if active is None:
-        parts.append("    <li><strong>All</strong></li>")
-    else:
-        parts.append(f'    <li><a href="{esc(all_href)}">All</a></li>')
-    for slug, label in SECTIONS:
-        href = f"{prefix}type/{slug}.html"
-        if active == slug:
-            parts.append(f"    <li><strong>{esc(label)}</strong></li>")
-        else:
-            parts.append(f'    <li><a href="{esc(href)}">{esc(label)}</a></li>')
-    parts.append("  </ul>")
-    return parts
-
-
-def render_project_list(projects: list[dict], prefix: str = "") -> list[str]:
-    parts = ["  <ul>"]
-    for p in projects:
-        href = project_href(p, prefix)
-        parts.append(
-            f'    <li><a href="{esc(href)}">{esc(p["list_title"])}</a></li>'
+def github_cell(p: dict) -> str:
+    if p.get("github"):
+        return f'<a href="{esc(p["github"])}">{esc(p["github"].rstrip("/").split("/")[-1])}</a>'
+    links = p.get("links") or []
+    gh_links = [l for l in links if "github.com" in l.get("href", "")]
+    if gh_links:
+        return " · ".join(
+            f'<a href="{esc(l["href"])}">{esc(l["label"])}</a>' for l in gh_links
         )
-    parts.append("  </ul>")
-    return parts
+    # pull first github link from list_meta_html if present
+    meta = p.get("list_meta_html") or ""
+    if "github.com" in meta:
+        return meta
+    return ""
 
 
 def render_index(projects: list[dict]) -> str:
-    """Home page: pure HTML only — no CSS, no JS."""
+    """Home page: pure HTML table — no CSS, no JS."""
+    rows = sorted(
+        projects,
+        key=lambda p: DATES.get(p["slug"], "0000-00-00"),
+        reverse=True,
+    )
     parts = [
         "<!DOCTYPE html>",
         '<html lang="en">',
@@ -1274,37 +1297,32 @@ def render_index(projects: list[dict]) -> str:
         "<body>",
         "  <h1>Arno Van Eetvelde</h1>",
         '  <p><a href="https://github.com/Arno1235">GitHub</a></p>',
-        *render_filter_nav(active=None, prefix=""),
-        "  <h2>Projects</h2>",
+        "  <table>",
+        "    <thead>",
+        "      <tr>",
+        "        <th>Project</th>",
+        "        <th>Page</th>",
+        "        <th>Type</th>",
+        "        <th>Date</th>",
+        "        <th>Visibility</th>",
+        "        <th>GitHub</th>",
+        "      </tr>",
+        "    </thead>",
+        "    <tbody>",
     ]
-
-    for slug, label in SECTIONS:
-        items = [p for p in projects if p["section"] == label]
-        if not items:
-            continue
-        parts.append(f'  <h3 id="{esc(slug)}">{esc(label)}</h3>')
-        parts.extend(render_project_list(items, prefix=""))
-
-    parts += ["</body>", "</html>", ""]
-    return "\n".join(parts)
-
-
-def render_type_page(slug: str, label: str, projects: list[dict]) -> str:
-    """Filtered list page — still pure HTML only."""
-    items = [p for p in projects if p["section"] == label]
-    parts = [
-        "<!DOCTYPE html>",
-        '<html lang="en">',
-        "<head>",
-        '  <meta charset="utf-8" />',
-        '  <meta name="viewport" content="width=device-width, initial-scale=1" />',
-        f"  <title>{esc(label)} — Arno Van Eetvelde</title>",
-        "</head>",
-        "<body>",
-        "  <h1>Arno Van Eetvelde</h1>",
-        f"  <h2>{esc(label)}</h2>",
-        *render_filter_nav(active=slug, prefix="../"),
-        *render_project_list(items, prefix="../"),
+    for p in rows:
+        date = DATES.get(p["slug"], "")
+        parts.append("      <tr>")
+        parts.append(f"        <td>{esc(p['list_title'])}</td>")
+        parts.append(f'        <td><a href="{esc(p["href"])}">{esc(p["href"])}</a></td>')
+        parts.append(f"        <td>{esc(p['section'])}</td>")
+        parts.append(f"        <td>{esc(date)}</td>")
+        parts.append(f"        <td>{esc(visibility(p))}</td>")
+        parts.append(f"        <td>{github_cell(p)}</td>")
+        parts.append("      </tr>")
+    parts += [
+        "    </tbody>",
+        "  </table>",
         "</body>",
         "</html>",
         "",
@@ -1317,11 +1335,15 @@ def main() -> None:
     print("wrote index.html")
 
     type_dir = ROOT / "type"
-    type_dir.mkdir(parents=True, exist_ok=True)
-    for slug, label in SECTIONS:
-        out = type_dir / f"{slug}.html"
-        out.write_text(render_type_page(slug, label, PROJECTS), encoding="utf-8")
-        print(f"wrote {out.relative_to(ROOT)}")
+    if type_dir.exists():
+        for f in type_dir.glob("*.html"):
+            f.unlink()
+            print(f"removed {f.relative_to(ROOT)}")
+        try:
+            type_dir.rmdir()
+            print("removed type/")
+        except OSError:
+            pass
 
     for p in PROJECTS:
         if p.get("external_page"):
