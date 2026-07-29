@@ -1014,49 +1014,61 @@ CAREER = [
         "link_label": "coretecs.be",
         # From Coretecs_PORTFOLIO_ARNO_2025-06-11.pdf (subject, client, period).
         "projects": [
-            {"subject": "IMEC", "client": "IMEC", "period": ""},
-            {"subject": "Fluvius", "client": "Fluvius", "period": ""},
             {
-                "subject": "Reading Analog Devices with Vision",
-                "client": "Under NDA",
-                "period": "",
-            },
-            {
-                "subject": "Technoform label detection: Phase 1",
-                "client": "Technoform",
-                "period": "",
-            },
-            {
-                "subject": "Feasibility Study: VAARR AI Object Reconstruction",
-                "client": "VAARR",
-                "period": "",
-            },
-            {
-                "subject": "Accelerator Program: In-line Quality Control using Computer Vision",
-                "client": "Technoform",
-                "period": "",
-            },
-            {
-                "subject": "SCADA and Power BI application",
+                "subject": "Emergency stop circuit integration into Yokogawa CIServer SCADA via OPC UA",
                 "client": "IMEC",
                 "period": "",
             },
             {
-                "subject": "Research & Development of AI model",
+                "subject": "High-availability PostgreSQL setup for MQTT device authentication and authorization",
+                "client": "Fluvius",
+                "period": "",
+            },
+            {
+                "subject": "Computer vision pipeline to digitize analog device readings (Databricks batch inference)",
+                "client": "Under NDA",
+                "period": "",
+            },
+            {
+                "subject": "Real-time laser label detection on extruded strips (line-scan camera, YOLO, OCR)",
+                "client": "Technoform",
+                "period": "",
+            },
+            {
+                "subject": "Feasibility study: AI point-cloud reconstruction for repairing damaged 3D-scanned parts",
+                "client": "VAARR",
+                "period": "",
+            },
+            {
+                "subject": "In-line computer vision quality control for surface anomalies on plastic extrusion",
+                "client": "Technoform",
+                "period": "",
+            },
+            {
+                "subject": "SCADA and Power BI integration for hazardous gas sensors on a PILZ safety PLC",
+                "client": "IMEC",
+                "period": "",
+            },
+            {
+                "subject": "R&D: LoRA fine-tuning of SAM for segmenting electrical cabinet components",
                 "client": "Coretecs",
                 "period": "",
             },
             {
-                "subject": "Computer Vision Engineer at Flanders Make",
+                "subject": "Computer vision dataset generation, YOLO training, and anomaly detection framework testing",
                 "client": "Flanders Make",
                 "period": "",
             },
             {
-                "subject": "SCADA and Power Apps application",
+                "subject": "SCADA machine-stage tracking with SQL storage and Power Apps time-utilization views",
                 "client": "MCAM",
                 "period": "",
             },
-            {"subject": "SCADA application", "client": "IMEC", "period": ""},
+            {
+                "subject": "Gas measurement system integration into existing Yokogawa CIServer SCADA",
+                "client": "IMEC",
+                "period": "",
+            },
         ],
     },
     {
@@ -1066,7 +1078,13 @@ CAREER = [
         "period": "2022 – 2023",
         "link": "https://www.kuleuven.be/",
         "link_label": "kuleuven.be",
-        "projects": [],
+        "projects": [
+            {
+                "subject": "Thesis: Titanium 3D printing — computer vision-based anomaly detection and classification for critical components",
+                "client": "Materialise",
+                "period": "2022 – 2023",
+            },
+        ],
     },
     {
         "role": "Master of Industrial Engineering",
@@ -1075,7 +1093,13 @@ CAREER = [
         "period": "2021 – 2022",
         "link": "https://www.kuleuven.be/",
         "link_label": "kuleuven.be",
-        "projects": [],
+        "projects": [
+            {
+                "subject": "Thesis: End-to-end approach to detect food on a compartmentalized plate (segmentation and classification)",
+                "client": "KU Leuven",
+                "period": "2021 – 2022",
+            },
+        ],
     },
     {
         "role": "Bachelor of Industrial Engineering",
