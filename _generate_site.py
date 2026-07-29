@@ -1313,8 +1313,10 @@ def render_index(projects: list[dict]) -> str:
     for p in rows:
         date = DATES.get(p["slug"], "")
         parts.append("      <tr>")
-        parts.append(f"        <td>{esc(p['list_title'])}</td>")
-        parts.append(f'        <td><a href="{esc(p["href"])}">{esc(p["href"])}</a></td>')
+        parts.append(
+            f'        <td><a href="{esc(p["href"])}">{esc(p["list_title"])}</a></td>'
+        )
+        parts.append(f'        <td><a href="{esc(p["href"])}">page</a></td>')
         parts.append(f"        <td>{esc(p['section'])}</td>")
         parts.append(f"        <td>{esc(date)}</td>")
         parts.append(f"        <td>{esc(visibility(p))}</td>")
