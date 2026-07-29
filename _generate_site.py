@@ -1388,6 +1388,11 @@ CAREER = [
     },
 ]
 
+def todo_flag(item: dict) -> str:
+    """Show a todo marker until the project page is finished (set todo=False to clear)."""
+    return "todo" if item.get("todo", True) else ""
+
+
 def project_link_cell(proj: dict) -> str:
     """Render link cell: plain text for 'confidential', otherwise optional hyperlink."""
     link = (proj.get("link") or "").strip()
@@ -1442,6 +1447,7 @@ def render_index(projects: list[dict]) -> str:
         '        <th align="center">Type</th>',
         '        <th align="center">Date</th>',
         '        <th align="center">GitHub</th>',
+        '        <th align="center">Flag</th>',
         "      </tr>",
         "    </thead>",
         "    <tbody>",
@@ -1455,6 +1461,7 @@ def render_index(projects: list[dict]) -> str:
         parts.append(f'        <td align="center">{esc(p["section"])}</td>')
         parts.append(f'        <td align="center">{esc(date)}</td>')
         parts.append(f'        <td align="center">{github_cell(p)}</td>')
+        parts.append(f'        <td align="center">{esc(todo_flag(p))}</td>')
         parts.append("      </tr>")
     parts += [
         "    </tbody>",
@@ -1487,6 +1494,7 @@ def render_index(projects: list[dict]) -> str:
             '        <th align="center">Client</th>',
             '        <th align="center">Period</th>',
             '        <th align="center">Link</th>',
+            '        <th align="center">Flag</th>',
             "      </tr>",
             "    </thead>",
             "    <tbody>",
@@ -1499,6 +1507,7 @@ def render_index(projects: list[dict]) -> str:
             parts.append(f'        <td align="center">{esc(proj.get("client") or "")}</td>')
             parts.append(f'        <td align="center">{esc(proj.get("period") or "")}</td>')
             parts.append(f'        <td align="center">{project_link_cell(proj)}</td>')
+            parts.append(f'        <td align="center">{esc(todo_flag(proj))}</td>')
             parts.append("      </tr>")
         parts += ["    </tbody>", "  </table>", "  <br><br><br>"]
 
