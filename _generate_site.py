@@ -1459,7 +1459,7 @@ def render_index(projects: list[dict]) -> str:
     parts += [
         "    </tbody>",
         "  </table>",
-        "  <br><br>",
+        "  <br><br><br>",
         "  <h2>Career</h2>",
         "  <br>",
     ]
@@ -1500,7 +1500,7 @@ def render_index(projects: list[dict]) -> str:
             parts.append(f'        <td align="center">{esc(proj.get("period") or "")}</td>')
             parts.append(f'        <td align="center">{project_link_cell(proj)}</td>')
             parts.append("      </tr>")
-        parts += ["    </tbody>", "  </table>", "  <br><br>"]
+        parts += ["    </tbody>", "  </table>", "  <br><br><br>"]
 
     parts += [
         "  </center>",
