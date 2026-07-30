@@ -1323,12 +1323,6 @@ CAREER = [
                 "todo": False,
             },
 {
-                "subject": "Manufacturing events tracking for MCAM production systems",
-                "client": "MCAM",
-                "period": "2023-12-08",
-                "link": "",
-            },
-{
                 "subject": "SQL / data integration supporting IMEC SCADA applications",
                 "client": "IMEC",
                 "period": "2023-11-20",
