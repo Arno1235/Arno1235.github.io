@@ -1323,12 +1323,6 @@ CAREER = [
                 "todo": False,
             },
 {
-                "subject": "SQL / data integration supporting IMEC SCADA applications",
-                "client": "IMEC",
-                "period": "2023-11-20",
-                "link": "",
-            },
-{
                 "subject": "Multithreaded Python demo / simulation environment for Coretecs",
                 "client": "Coretecs",
                 "period": "2023-10-18",
