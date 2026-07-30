@@ -1210,12 +1210,6 @@ CAREER = [
                 "link": "",
             },
 {
-                "subject": "Colruyt demo solution",
-                "client": "Colruyt",
-                "period": "2025-04-03",
-                "link": "",
-            },
-{
                 "subject": "PILZ safety PLC / SCADA work for IMEC FAB23",
                 "client": "IMEC",
                 "period": "2025-03-26",
