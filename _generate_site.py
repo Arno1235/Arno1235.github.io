@@ -1192,12 +1192,6 @@ CAREER = [
                 "link": "",
             },
 {
-                "subject": "Wienerberger industrial software engagement",
-                "client": "Wienerberger",
-                "period": "2025-06-30",
-                "link": "",
-            },
-{
                 "subject": "UNS monitoring platform (MQTT, observability) — internal Coretecs productization",
                 "client": "Coretecs",
                 "period": "2025-06-03",
