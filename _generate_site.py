@@ -1339,6 +1339,7 @@ CAREER = [
                 "client": "MCAM",
                 "period": "2023-10-12",
                 "link": "",
+                "todo": False,
             },
 {
                 "subject": "Gas measurement system (SIFT-MS) integration into Yokogawa CIServer SCADA",
