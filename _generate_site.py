@@ -372,7 +372,8 @@ PROJECTS: list[dict] = [
         "list_title": "infurn",
         "list_blurb": "Photoreal virtual staging — empty room photo to furnished room, architecture preserved.",
         "list_meta": "demo · private",
-        "section": "Vision & ML",
+        "section": "AI wrapper",
+        "todo": False,
         "external_page": True,  # handcrafted template page at projects/infurn/
     },
     
