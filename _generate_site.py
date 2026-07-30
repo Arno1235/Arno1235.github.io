@@ -1329,7 +1329,7 @@ CAREER = [
                 "link": "",
             },
 {
-                "subject": "Internal demo / simulation environment for Coretecs solutions",
+                "subject": "Multithreaded Python demo / simulation environment for Coretecs solutions",
                 "client": "Coretecs",
                 "period": "2023-10-18",
                 "link": "",
