@@ -1078,12 +1078,6 @@ CAREER = [
                 "link": "",
             },
 {
-                "subject": "Coretecs internal portal",
-                "client": "Coretecs",
-                "period": "2026-02-20",
-                "link": "",
-            },
-{
                 "subject": "IMEC CI103 fix",
                 "client": "IMEC",
                 "period": "2026-02-09",
