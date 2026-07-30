@@ -1319,8 +1319,8 @@ CAREER = [
                 "subject": "Computer vision dataset generation, YOLO training, and anomaly detection framework testing",
                 "client": "Flanders Make",
                 "period": "2023-12-22",
-                "link": "https://coock.flandersmake.be/nl/blog/visie-ai-sneller-genereren-van-datasets",
-                "link_label": "blog",
+                "link": "",
+                "todo": False,
             },
 {
                 "subject": "Manufacturing events tracking for MCAM production systems",
