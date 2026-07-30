@@ -1150,12 +1150,6 @@ CAREER = [
                 "link": "",
             },
 {
-                "subject": "OPC UA connectivity tests for ELAI",
-                "client": "ELAI",
-                "period": "2025-09-15",
-                "link": "",
-            },
-{
                 "subject": "SWDE diagnostics tooling and support",
                 "client": "SWDE",
                 "period": "2025-09-15",
