@@ -1298,18 +1298,6 @@ CAREER = [
                 "todo": False,
             },
 {
-                "subject": "R&D camera setup and image acquisition for computer vision experiments",
-                "client": "Coretecs",
-                "period": "2024-04-19",
-                "link": "",
-            },
-{
-                "subject": "GPU connectivity and remote training setup for AI workloads",
-                "client": "Coretecs",
-                "period": "2024-04-04",
-                "link": "",
-            },
-{
                 "subject": "SCADA and Power BI integration for sensors off a PILZ safety PLC",
                 "client": "IMEC",
                 "period": "2024-04-02",
