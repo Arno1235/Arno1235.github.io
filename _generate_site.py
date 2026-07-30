@@ -1335,7 +1335,7 @@ CAREER = [
                 "link": "",
             },
 {
-                "subject": "SCADA machine-stage tracking with SQL storage and Power Apps time-utilization views",
+                "subject": "Yokogawa CIServer state-machine tracking with SQL storage and Power Apps time-utilization views",
                 "client": "MCAM",
                 "period": "2023-10-12",
                 "link": "",
