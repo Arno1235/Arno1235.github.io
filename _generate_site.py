@@ -1329,10 +1329,11 @@ CAREER = [
                 "link": "",
             },
 {
-                "subject": "Multithreaded Python demo / simulation environment for Coretecs solutions",
+                "subject": "Multithreaded Python demo / simulation environment for Coretecs",
                 "client": "Coretecs",
                 "period": "2023-10-18",
                 "link": "",
+                "todo": False,
             },
 {
                 "subject": "Yokogawa CIServer state-machine tracking with SQL storage and Power Apps time-utilization views",
