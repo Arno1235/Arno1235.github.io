@@ -1346,6 +1346,7 @@ CAREER = [
                 "client": "IMEC",
                 "period": "2023-10-06",
                 "link": "",
+                "todo": False,
             },
         ],
 
