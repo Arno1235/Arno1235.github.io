@@ -1310,10 +1310,11 @@ CAREER = [
                 "link": "",
             },
 {
-                "subject": "SCADA and Power BI integration for hazardous gas sensors on a PILZ safety PLC",
+                "subject": "SCADA and Power BI integration for sensors off a PILZ safety PLC",
                 "client": "IMEC",
                 "period": "2024-04-02",
                 "link": "",
+                "todo": False,
             },
 {
                 "subject": "Computer vision dataset generation, YOLO training, and anomaly detection framework testing",
