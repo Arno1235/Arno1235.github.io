@@ -1406,6 +1406,16 @@ def todo_flag(item: dict) -> str:
     return "todo" if item.get("todo", True) else ""
 
 
+def progress_counts(projects: list[dict], career: list[dict]) -> tuple[int, int]:
+    """Done / total across personal + career table rows (todo=False counts as done)."""
+    items: list[dict] = list(projects)
+    for row in career:
+        items.extend(row.get("projects") or [])
+    total = len(items)
+    done = sum(1 for item in items if not todo_flag(item))
+    return done, total
+
+
 def project_link_cell(proj: dict) -> str:
     """Render link cell: plain text for 'confidential', otherwise optional hyperlink."""
     link = (proj.get("link") or "").strip()
@@ -1439,6 +1449,8 @@ def render_index(projects: list[dict]) -> str:
         key=lambda p: DATES.get(p["slug"], "0000-00-00"),
         reverse=True,
     )
+    done, total = progress_counts(projects, CAREER)
+    pct = round(100 * done / total) if total else 0
     parts = [
         "<!DOCTYPE html>",
         '<html lang="en">',
@@ -1451,6 +1463,8 @@ def render_index(projects: list[dict]) -> str:
         "  <center>",
         "  <h1>Arno Van Eetvelde</h1>",
         '  <p><a href="https://github.com/Arno1235">GitHub</a></p>',
+        # Temporary personal progress tracker — remove before going live.
+        f"  <p>Progress: {done}/{total} done ({pct}%)</p>",
         "  <h2>Personal Projects</h2>",
         "  <br>",
         '  <table border="1" cellpadding="6" cellspacing="0" align="center">',
