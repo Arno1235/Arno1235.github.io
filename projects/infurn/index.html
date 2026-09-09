@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>infurn</title>
+  <!-- Minimal CSS: only what the before/after slider needs. -->
+  <style>
+    .compare {
+      position: relative;
+      width: 320px;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #111;
+      touch-action: none;
+      user-select: none;
+      cursor: ew-resize;
+      margin: 0 auto;
+    }
+    .compare img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .compare .after { z-index: 1; }
+    .compare .before {
+      z-index: 2;
+      clip-path: inset(0 50% 0 0);
+    }
+    .compare .handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: #fff;
+      z-index: 3;
+      transform: translateX(-50%);
+    }
+    img { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <center>
+    <p><a href="../../">← Arno Van Eetvelde</a></p>
+
+    <!-- 1. Title -->
+    <h1>infurn</h1>
+
+    <!-- 2. GitHub (optional) — private, omitted -->
+
+    <!-- 3. Date -->
+    <p>2026-02-15</p>
+
+    <!-- 4. Description -->
+    <table width="672" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center">
+          Photoreal virtual staging: empty room photo → furnished room, without
+          changing the architecture (walls, ceiling, floor, windows, doors, geometry).
+          Desktop UI rents an ephemeral GPU, runs the job, downloads results, and
+          terminates.
+        </td>
+      </tr>
+    </table>
+
+    <!-- 5. Other content (examples, outputs, images, …) -->
+    <h2>Input vs output</h2>
+    <table width="672" cellpadding="8" cellspacing="0" align="center">
+      <tr>
+        <td align="center">
+          <div class="compare" data-room="child-bedroom" aria-label="Child bedroom before and after">
+            <img class="after" alt="Furnished child bedroom" src="assets/rooms/child-bedroom/rustic.jpg" />
+            <img class="before" alt="Empty child bedroom" src="assets/rooms/child-bedroom/input.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>child bedroom<br>
+          <label>
+            Style
+            <select class="style-select" data-room="child-bedroom">
+              <option value="art-deco">art deco</option>
+              <option value="bohemian">bohemian</option>
+              <option value="coastal">coastal</option>
+              <option value="contemporary-warm">contemporary warm</option>
+              <option value="farmhouse">farmhouse</option>
+              <option value="industrial">industrial</option>
+              <option value="japandi">japandi</option>
+              <option value="luxury">luxury</option>
+              <option value="mediterranean">mediterranean</option>
+              <option value="mid-century">mid century</option>
+              <option value="minimal-zen">minimal zen</option>
+              <option value="modern-clean">modern clean</option>
+              <option value="rustic" selected>rustic</option>
+              <option value="scandinavian">scandinavian</option>
+            </select>
+          </label>
+        </td>
+        <td align="center">
+          <div class="compare" data-room="bathroom" aria-label="Bathroom before and after">
+            <img class="after" alt="Furnished bathroom" src="assets/rooms/bathroom/art-deco.jpg" />
+            <img class="before" alt="Empty bathroom" src="assets/rooms/bathroom/input.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>bathroom<br>
+          <label>
+            Style
+            <select class="style-select" data-room="bathroom">
+              <option value="art-deco" selected>art deco</option>
+              <option value="contemporary-warm">contemporary warm</option>
+              <option value="industrial">industrial</option>
+              <option value="japandi">japandi</option>
+              <option value="luxury">luxury</option>
+              <option value="modern-clean">modern clean</option>
+              <option value="scandinavian">scandinavian</option>
+            </select>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <div class="compare" data-room="desk" aria-label="Desk before and after">
+            <img class="after" alt="Furnished desk" src="assets/rooms/desk/contemporary-warm.jpg" />
+            <img class="before" alt="Empty desk" src="assets/rooms/desk/input.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>desk<br>
+          <label>
+            Style
+            <select class="style-select" data-room="desk">
+              <option value="contemporary-warm" selected>contemporary warm</option>
+              <option value="farmhouse">farmhouse</option>
+              <option value="japandi">japandi</option>
+              <option value="luxury">luxury</option>
+              <option value="mediterranean">mediterranean</option>
+              <option value="mid-century">mid century</option>
+              <option value="minimal-zen">minimal zen</option>
+              <option value="modern-clean">modern clean</option>
+              <option value="scandinavian">scandinavian</option>
+            </select>
+          </label>
+        </td>
+        <td align="center">
+          <div class="compare" data-room="master-bedroom" aria-label="Master bedroom before and after">
+            <img class="after" alt="Furnished master bedroom" src="assets/rooms/master-bedroom/bohemian.jpg" />
+            <img class="before" alt="Empty master bedroom" src="assets/rooms/master-bedroom/input.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>master bedroom<br>
+          <label>
+            Style
+            <select class="style-select" data-room="master-bedroom">
+              <option value="bohemian" selected>bohemian</option>
+              <option value="coastal">coastal</option>
+            </select>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <div class="compare" data-room="kitchen-living" aria-label="Kitchen living before and after">
+            <img class="after" alt="Furnished kitchen living" src="assets/rooms/kitchen-living/art-deco.jpg" />
+            <img class="before" alt="Empty kitchen living" src="assets/rooms/kitchen-living/input.jpg" />
+            <div class="handle"></div>
+          </div>
+          <br>kitchen / living<br>
+          <label>
+            Style
+            <select class="style-select" data-room="kitchen-living">
+              <option value="art-deco" selected>art deco</option>
+              <option value="contemporary-warm">contemporary warm</option>
+              <option value="industrial">industrial</option>
+              <option value="mid-century">mid century</option>
+            </select>
+          </label>
+        </td>
+        <td></td>
+      </tr>
+    </table>
+
+    <h2>Desktop app</h2>
+    <table width="672" cellpadding="8" cellspacing="0" align="center">
+      <tr>
+        <td align="center">
+          <img src="assets/ui/prepare.jpg" alt="Prepare tab" width="320" loading="lazy" /><br>
+          Prepare
+        </td>
+        <td align="center">
+          <img src="assets/ui/library.jpg" alt="Library tab" width="320" loading="lazy" /><br>
+          Library
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <img src="assets/ui/jobs.jpg" alt="Jobs tab" width="320" loading="lazy" /><br>
+          Jobs
+        </td>
+        <td align="center">
+          <img src="assets/ui/results.jpg" alt="Results tab with wipe compare" width="320" loading="lazy" /><br>
+          Results · wipe
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <img src="assets/ui/results-grid.jpg" alt="Results tab grid view" width="320" loading="lazy" /><br>
+          Results · grid
+        </td>
+        <td></td>
+      </tr>
+    </table>
+  </center>
+
+  <!-- Minimal JS: per-room style select + per-slider drag. -->
+  <script>
+    (function () {
+      document.querySelectorAll(".style-select").forEach(function (select) {
+        select.addEventListener("change", function () {
+          var room = select.getAttribute("data-room");
+          var compare = document.querySelector('.compare[data-room="' + room + '"]');
+          if (!compare) return;
+          compare.querySelector(".after").src =
+            "assets/rooms/" + room + "/" + select.value + ".jpg";
+        });
+      });
+
+      function bindCompare(compare) {
+        var before = compare.querySelector(".before");
+        var handle = compare.querySelector(".handle");
+        var dragging = false;
+
+        function setSplit(pct) {
+          pct = Math.max(2, Math.min(98, pct));
+          before.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
+          handle.style.left = pct + "%";
+        }
+
+        function pctFromEvent(e) {
+          var rect = compare.getBoundingClientRect();
+          var point = e.touches ? e.touches[0] : e;
+          return ((point.clientX - rect.left) / rect.width) * 100;
+        }
+
+        function start(e) {
+          dragging = true;
+          setSplit(pctFromEvent(e));
+          e.preventDefault();
+        }
+        function move(e) {
+          if (!dragging) return;
+          setSplit(pctFromEvent(e));
+          e.preventDefault();
+        }
+        function end() {
+          dragging = false;
+        }
+
+        compare.addEventListener("mousedown", start);
+        window.addEventListener("mousemove", move);
+        window.addEventListener("mouseup", end);
+        compare.addEventListener("touchstart", start, { passive: false });
+        window.addEventListener("touchmove", move, { passive: false });
+        window.addEventListener("touchend", end);
+
+        setSplit(50);
+      }
+
+      document.querySelectorAll(".compare").forEach(bindCompare);
+    })();
+  </script>
+</body>
+</html>
