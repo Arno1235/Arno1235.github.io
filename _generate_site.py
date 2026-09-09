@@ -597,23 +597,12 @@ PROJECTS: list[dict] = [
         "slug": "openinsider",
         "href": "projects/openinsider/",
         "list_title": "OpenInsider",
-        "list_blurb": "Telegram alerts when multiple executives buy or sell large blocks on openinsider.com.",
-        "list_meta": "private",
+        "list_blurb": "Telegram alerts and a Streamlit backtester for clustered insider trades on openinsider.com.",
         "section": "Markets",
-        "title": "OpenInsider notifier",
-        "tag": "insider transaction Telegram alerts",
-        "status": "private",
-        "stack": ["Python", "Telegram", "Docker"],
-        "about": [
-            "Polls openinsider.com every few hours for insider transactions.",
-            "When three or more executives at a company each buy or sell shares worth at least $200k, a Telegram alert fires with company details, names, and amounts.",
-        ],
-        "flow": [
-            {"title": "Poll", "body": "Fetch recent insider filings on a schedule."},
-            {"title": "Filter", "body": "Require clustered large buys/sells at one company."},
-            {"title": "Alert", "body": "Send a concise Telegram message."},
-        ]
-},
+        "todo": False,
+        "external_page": True,  # handcrafted template page at projects/openinsider/
+        "github": "https://github.com/Arno1235/openinsider_notifier",
+    },
     
     {
         "slug": "cryptoai",
