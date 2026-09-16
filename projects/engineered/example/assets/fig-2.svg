@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
-  <rect width="800" height="420" fill="#111111"/>
-  <g fill="none" stroke="#2a2a2a" stroke-width="1">
-    <path d="M56 40h688M56 110h688M56 180h688M56 250h688M56 320h688M56 380h688"/>
-  </g>
-  <path d="M56 80 L120 96 L200 140 L280 128 L360 210 L440 190 L520 268 L600 250 L680 330 L744 318 L744 380 L56 380 Z" fill="#2a2a2a"/>
-  <path d="M56 80 L120 96 L200 140 L280 128 L360 210 L440 190 L520 268 L600 250 L680 330 L744 318" fill="none" stroke="#f2f2f2" stroke-width="1.5"/>
-  <text x="56" y="28" fill="#9a9a9a" font-family="ui-monospace, Menlo, monospace" font-size="12">dummy · drawdown</text>
-</svg>
