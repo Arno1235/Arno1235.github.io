@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <rect width="800" height="420" fill="#111111"/>
+  <g fill="none" stroke="#2a2a2a" stroke-width="1">
+    <path d="M56 56h688v308H56z"/>
+    <path d="M228 56v308M400 56v308M572 56v308"/>
+    <path d="M56 133h688M56 210h688M56 287h688"/>
+  </g>
+  <rect x="80" y="168" width="120" height="196" fill="#555555"/>
+  <rect x="252" y="210" width="120" height="154" fill="#9a9a9a"/>
+  <rect x="424" y="133" width="120" height="231" fill="#f2f2f2"/>
+  <rect x="596" y="250" width="120" height="114" fill="#555555"/>
+  <text x="56" y="28" fill="#9a9a9a" font-family="ui-monospace, Menlo, monospace" font-size="12">dummy · grid</text>
+</svg>

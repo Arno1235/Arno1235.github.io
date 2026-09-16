@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>example — Arno Van Eetvelde</title>
+  <link rel="stylesheet" href="../../../css/site.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("ave-theme");
+        if (t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <h1>example</h1>
+  <p>A copy-me project page: headings, lists, tables, figures, and pre<br>
+  <small><a href="../../../">arno van eetvelde</a> / projects / example · arno1235-00 · v2.0.0 · </small><small id="theme">light / dark</small></p>
+  <hr>
+  <p><small><a href="../../../">← projects</a> · private · engineered</small></p>
+  <p>This folder is the template. Duplicate it, drop files in <code>assets/</code>, and edit this HTML. Home lists one row per project; empty tiers stay as headers with no rows.</p>
+  <p>Layout is the v2 document: headings, paragraphs, tables, hr, pre, images. No classes. The stylesheet is fourteen element defaults plus a dark theme and a mobile fold.</p>
+  <p><small>HTML · CSS · no build</small></p>
+
+  <h2>system · v2.0.0</h2>
+  <table>
+    <tbody>
+      <tr><th scope="row" width="100">type</th><td><code>Helvetica Neue 400 / 500 for words · Menlo (SF Mono) for metadata, values, tokens</code></td></tr>
+      <tr><th scope="row">scale</th><td><code>20 · 14 · 12 · 11 px — sans title and body · mono values and metadata</code></td></tr>
+      <tr><th scope="row">light</th><td><code>#ffffff paper · #000000 ink · #555555 muted · #e5e5e5 hairline</code></td></tr>
+      <tr><th scope="row">dark</th><td><code>#111111 paper · #f2f2f2 ink · #9a9a9a muted · #2a2a2a hairline</code></td></tr>
+      <tr><th scope="row">rules</th><td><code>hr is the ink rule — under the header, before prev / next · every table row opens with a hairline · no boxes, no radius, no shadow, no hover</code></td></tr>
+      <tr><th scope="row">elements</th><td><code>h1 h2 p hr table tr th td time small code b pre a img ul ol · no div, no span, no class</code></td></tr>
+      <tr><th scope="row">grammar</th><td><code>numbered sections 01–04, tiers 01.01 … · lowercase mono section lines · metadata inline, separated by ·</code></td></tr>
+      <tr><th scope="row">identity</th><td><code>arno1235 as drawing number · semantic version, bumped on every change</code></td></tr>
+      <tr><th scope="row">folder</th><td><code>projects/engineered/example/ — copy this directory</code></td></tr>
+      <tr><th scope="row">mobile</th><td><code>the same document; tables fold to two columns — date, then everything else</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2>results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th width="130">strategy</th>
+        <th width="130">spy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Total return</td><td><code>+12.4%</code></td><td><small><code>+8.1%</code></small></td></tr>
+      <tr><td>CAGR</td><td><code>6.2%</code></td><td><small><code>4.0%</code></small></td></tr>
+      <tr><td>Sharpe</td><td><code>0.91</code></td><td><small><code>0.74</code></small></td></tr>
+      <tr><td>Max drawdown</td><td><code>−9.3%</code></td><td><small><code>−14.8%</code></small></td></tr>
+      <tr><td>Notes / n/a</td><td><code>dummy</code></td><td><small><code>—</code></small></td></tr>
+    </tbody>
+  </table>
+
+  <h2>figures · dummy assets</h2>
+  <table style="table-layout:fixed">
+    <tbody>
+      <tr>
+        <td width="50%"><img src="assets/fig-1.svg" alt="Dummy line chart"><br><small>fig. 1 — line, equity-style</small></td>
+        <td width="50%"><img src="assets/fig-2.svg" alt="Dummy bar chart"><br><small>fig. 2 — bars, drawdown-style</small></td>
+      </tr>
+      <tr>
+        <td width="50%"><img src="assets/fig-3.svg" alt="Dummy grid figure"><br><small>fig. 3 — grid, odd cell</small></td>
+        <td width="50%"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>notes</h2>
+  <ul>
+    <li>Replace the title, tag line, and about paragraphs with the project.</li>
+    <li>Swap the dummy figures for files in <code>assets/</code> (jpg, png, svg, pdf).</li>
+    <li>Delete any block this project does not need: results, figures, lists, pre, specimen.</li>
+  </ul>
+
+  <h2>sequence</h2>
+  <ol>
+    <li>Copy this folder to <code>projects/&lt;tier&gt;/&lt;slug&gt;/</code>.</li>
+    <li>Edit <code>index.html</code> in the copy.</li>
+    <li>Add one row to the matching tier table on the home page.</li>
+  </ol>
+
+  <h2>stylesheet · the whole thing</h2>
+  <pre>body{margin:0 auto;max-width:880px;padding:48px 24px 36px;box-sizing:border-box;font:14px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;--fg:#000;--bg:#fff;--mute:#555;--line:#e5e5e5;color:var(--fg);background:var(--bg);color-scheme:light}
+body.dark{--fg:#f2f2f2;--bg:#111;--mute:#9a9a9a;--line:#2a2a2a;color-scheme:dark}
+h1{margin:0;font-size:20px;font-weight:500;line-height:1.2;letter-spacing:-.01em}
+h2,th,small,time{font:11px/1.6 ui-monospace,"SF Mono",Menlo,Monaco,monospace;color:var(--mute)}
+h2{margin:44px 0 6px}
+code,pre{font:12px/1.6 ui-monospace,"SF Mono",Menlo,Monaco,monospace}
+pre{margin:0;padding-top:9px;border-top:1px solid var(--line);white-space:pre-wrap}
+table{width:100%;border-collapse:collapse}
+td,th{padding:9px 0;border-top:1px solid var(--line);text-align:left;vertical-align:baseline}
+td+td,th+th{padding-left:14px}
+hr{margin:20px 0;border:0;border-top:1px solid var(--fg)}
+img{max-width:100%;height:auto;box-sizing:border-box;border:1px solid var(--line)}
+b{font-weight:500}
+a{color:inherit}</pre>
+
+  <h2>type · one sans, one mono</h2>
+  <table>
+    <tbody>
+      <tr><th scope="row" width="100">h1</th><td>Helvetica Neue 500 · 20 px · the title above</td></tr>
+      <tr><th scope="row">p td</th><td>Helvetica Neue 400 · 14 px · words</td></tr>
+      <tr><th scope="row">b</th><td><b>Helvetica Neue 500 · 14 px · roles, clients</b></td></tr>
+      <tr><th scope="row">h2 th small time</th><td><small>Menlo 11 px · section lines, headers, metadata, dates</small></td></tr>
+      <tr><th scope="row">code pre</th><td><code>Menlo 12 px · values, contact, tokens</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2>palette · four greys</h2>
+  <table>
+    <thead>
+      <tr>
+        <th width="100"></th>
+        <th colspan="2">light</th>
+        <th colspan="2">dark</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">paper</th><td width="25%" bgcolor="#ffffff">&nbsp;</td><td><small>#ffffff</small></td><td width="25%" bgcolor="#111111">&nbsp;</td><td><small>#111111</small></td></tr>
+      <tr><th scope="row">ink</th><td bgcolor="#000000">&nbsp;</td><td><small>#000000</small></td><td bgcolor="#f2f2f2">&nbsp;</td><td><small>#f2f2f2</small></td></tr>
+      <tr><th scope="row">muted</th><td bgcolor="#555555">&nbsp;</td><td><small>#555555</small></td><td bgcolor="#9a9a9a">&nbsp;</td><td><small>#9a9a9a</small></td></tr>
+      <tr><th scope="row">hairline</th><td bgcolor="#e5e5e5">&nbsp;</td><td><small>#e5e5e5</small></td><td bgcolor="#2a2a2a">&nbsp;</td><td><small>#2a2a2a</small></td></tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <p><small>arno1235-00 · v2.0.0 · arno1235.github.io/projects/engineered/example</small></p>
+  <script src="../../../js/theme.js"></script>
+</body>
+</html>

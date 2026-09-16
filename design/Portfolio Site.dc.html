@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><style>body{margin:0;--bg:#fff;--fg:#000;--mute:#555;--line:#e5e5e5;--hover:#fafafa;background:var(--bg);color:var(--fg);color-scheme:light}body.dark{--bg:#111;--fg:#f2f2f2;--mute:#9a9a9a;--line:#2a2a2a;--hover:#1a1a1a;color-scheme:dark}a{color:var(--fg)}a:hover{color:var(--fg)}body.nocss{all:revert}body.nocss [data-site],body.nocss [data-site] *{all:revert!important}body.nocss [data-site] img{max-width:100%!important;height:auto!important}</style></helmet>
+<div data-site="1" style="max-width:880px;margin:0 auto;padding:48px clamp(20px,6vw,56px) 36px;box-sizing:border-box;min-height:100vh;font:14px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg)">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<header data-screen-label="Home" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px 24px;flex-wrap:wrap">
+<div><h1 style="margin:0;font-size:20px;font-weight:500;letter-spacing:-.01em;line-height:1.2">Arno Van Eetvelde</h1><p style="margin:4px 0 0;color:var(--mute)">Software Engineer — AI &amp; Industry · Coretecs, Belgium</p></div>
+<div style="flex:none;white-space:nowrap;font:11px/1.6 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute);text-align:right">arno1235<br>v1.1.0 · <sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ setLight }}" style="background:none;border:0;padding:0;margin:0;font:inherit;color:var(--mute);cursor:pointer" style-hover="color:var(--fg)">light</button> / <span style="color:var(--fg)">dark</span></sc-if><sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}"><span style="color:var(--fg)">light</span> / <button type="button" onClick="{{ setDark }}" style="background:none;border:0;padding:0;margin:0;font:inherit;color:var(--mute);cursor:pointer" style-hover="color:var(--fg)">dark</button></sc-if> · <sc-if value="{{ isCss }}" hint-placeholder-val="{{ true }}"><span style="color:var(--fg)">css</span> / <button type="button" onClick="{{ cssOff }}" title="render without css" style="background:none;border:0;padding:0;margin:0;font:inherit;color:var(--mute);cursor:pointer" style-hover="color:var(--fg)">none</button></sc-if><sc-if value="{{ isNoCss }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ cssOn }}" title="restore css" style="background:none;border:0;padding:0;margin:0;font:inherit;color:var(--mute);cursor:pointer" style-hover="color:var(--fg)">css</button> / <span style="color:var(--fg)">none</span></sc-if></div>
+</header>
+<nav style="display:flex;gap:24px;flex-wrap:wrap;margin-top:20px;padding:12px 0;border-top:1px solid var(--fg);border-bottom:1px solid var(--line);font:11px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><a href="#projects" style="color:var(--mute);text-decoration:none" style-hover="color:var(--fg)">01 projects</a> <a href="#writing" style="color:var(--mute);text-decoration:none" style-hover="color:var(--fg)">02 writing</a> <a href="#experience" style="color:var(--mute);text-decoration:none" style-hover="color:var(--fg)">03 experience</a> <a href="#contact" style="color:var(--mute);text-decoration:none" style-hover="color:var(--fg)">04 contact</a></nav>
+<p style="margin:28px 0 0;max-width:60ch;color:var(--mute);text-wrap:pretty">Industrial software — SCADA, MQTT / UNS, PLC integration — and computer vision / ML. Personal projects below in three tiers; source is public where a repository is listed.</p>
+<div id="projects" style="display:flex;justify-content:space-between;margin:44px 0 0;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">01 projects</h2> <span>{{ projectsMeta }}</span></div>
+<sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:26px 0 6px;font:10px/1.5 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute);text-transform:lowercase"><h3 style="margin:0;font:inherit;color:var(--fg)">{{ t.no }} {{ t.label }}{{ t.countLabel }}</h3> <span>{{ t.desc }}</span></div>
+<ul style="list-style:none;margin:0;padding:0"><sc-for list="{{ t.items }}" as="p" hint-placeholder-count="1"><li style="display:grid;grid-template-columns:64px minmax(120px,160px) 84px minmax(0,1fr) minmax(0,140px);gap:0 14px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline" style-hover="background:var(--hover)"><span style="font:11px ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)">{{ p.ym }}</span> <a href="#projects/{{ p.slug }}" onClick="{{ p.open }}" style="color:var(--fg);font-weight:500;text-decoration:none" style-hover="text-decoration:underline">{{ p.name }}</a> <span style="font:11px ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)">{{ p.dir }}</span> <span style="font-size:13px;color:var(--mute);text-wrap:pretty">{{ p.blurb }}</span> <a href="{{ p.repoUrl }}" target="_blank" rel="noopener" style="font:11px ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" style-hover="color:var(--fg)">{{ p.repoLabel }}</a></li></sc-for></ul>
+</sc-for>
+<div id="writing" style="display:flex;justify-content:space-between;margin:44px 0 6px;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">02 writing</h2> <span>3 files · pdf</span></div>
+<ul style="list-style:none;margin:0;padding:0"><sc-for list="{{ writing }}" as="w" hint-placeholder-count="3"><li style="display:grid;grid-template-columns:64px minmax(0,1fr) 110px minmax(0,150px);gap:0 14px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline" style-hover="background:var(--hover)"><span style="font:11px ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)">{{ w.date }}</span> <a href="{{ w.url }}" target="_blank" rel="noopener" style="color:var(--fg);font-weight:500;text-decoration:none" style-hover="text-decoration:underline">{{ w.title }}</a> <span style="font-size:13px;color:var(--mute)">{{ w.kind }}</span> <a href="{{ w.url }}" target="_blank" rel="noopener" style="font:11px ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" style-hover="color:var(--fg)">{{ w.file }}</a></li></sc-for></ul>
+<div id="experience" style="display:flex;justify-content:space-between;margin:44px 0 6px;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">03 experience</h2></div>
+<ul style="list-style:none;margin:0;padding:0"><sc-for list="{{ career }}" as="e" hint-placeholder-count="4"><li style="display:grid;grid-template-columns:110px minmax(0,1fr) minmax(0,200px);gap:0 14px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline"><span style="font:11px ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)">{{ e.period }}</span> <span style="font-weight:500">{{ e.role }}</span> <span style="font-size:13px;color:var(--mute)">{{ e.org }}</span></li></sc-for></ul>
+<h3 style="margin:22px 0 0;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)">selected client work · coretecs</h3>
+<ul style="list-style:none;margin:0;padding:0"><sc-for list="{{ clients }}" as="c" hint-placeholder-count="6"><li style="display:grid;grid-template-columns:64px minmax(90px,130px) minmax(0,1fr);gap:0 14px;padding:9px 0;border-top:1px solid var(--line);align-items:baseline" style-hover="background:var(--hover)"><span style="font:11px ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)">{{ c.date }}</span> <span style="font-weight:500">{{ c.client }}</span> <span style="font-size:13px;color:var(--mute);text-wrap:pretty">{{ c.subject }}</span></li></sc-for></ul>
+<div id="contact" style="display:flex;justify-content:space-between;margin:44px 0 6px;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">04 contact</h2></div>
+<dl style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:0 14px;margin:0;padding:10px 0;border-top:1px solid var(--line);font:12px/1.9 ui-monospace,'SF Mono',Menlo,Monaco,monospace"><dt style="color:var(--mute)">github</dt> <dd style="margin:0"><a href="https://github.com/arno1235" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none" style-hover="text-decoration:underline">github.com/arno1235</a></dd> <dt style="color:var(--mute)">web</dt> <dd style="margin:0"><a href="https://arno1235.github.io" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none" style-hover="text-decoration:underline">arno1235.github.io</a></dd> <dt style="color:var(--mute)">mail</dt> <dd style="margin:0"><a href="mailto:arno.ve2000@gmail.com" style="color:var(--fg);text-decoration:none" style-hover="text-decoration:underline">arno.ve2000@gmail.com</a></dd> <dt style="color:var(--mute)">gsm</dt> <dd style="margin:0"><a href="tel:+32490111778" style="color:var(--fg);text-decoration:none" style-hover="text-decoration:underline">+32 490 11 17 78</a></dd></dl>
+<footer style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:12px;border-top:1px solid var(--line);font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><span>arno1235 · v1.1.0</span> <span>arno1235.github.io</span></footer>
+</sc-if>
+
+<sc-if value="{{ isProject }}" hint-placeholder-val="{{ false }}">
+<header data-screen-label="Project" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px 24px;flex-wrap:wrap">
+<div><p style="margin:0 0 8px;font:11px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><a href="#" onClick="{{ goHome }}" style="color:var(--mute);text-decoration:none" style-hover="color:var(--fg)">arno van eetvelde</a> / {{ cur.crumb }}</p><h1 style="margin:0;font-size:20px;font-weight:500;letter-spacing:-.01em;line-height:1.2">{{ cur.name }}</h1><p style="margin:4px 0 0;color:var(--mute);max-width:60ch;text-wrap:pretty">{{ cur.tag }}</p></div>
+<div style="flex:none;white-space:nowrap;font:11px/1.6 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute);text-align:right">{{ cur.dwg }}<br>v1.1.0 · <sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ setLight }}" style="background:none;border:0;padding:0;margin:0;font:inherit;color:var(--mute);cursor:pointer" style-hover="color:var(--fg)">light</button> / <span style="color:var(--fg)">dark</span></sc-if><sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}"><span style="color:var(--fg)">light</span> / <button type="button" onClick="{{ setDark }}" style="background:none;border:0;padding:0;margin:0;font:inherit;color:var(--mute);cursor:pointer" style-hover="color:var(--fg)">dark</button></sc-if> · <sc-if value="{{ isCss }}" hint-placeholder-val="{{ true }}"><span style="color:var(--fg)">css</span> / <button type="button" onClick="{{ cssOff }}" title="render without css" style="background:none;border:0;padding:0;margin:0;font:inherit;color:var(--mute);cursor:pointer" style-hover="color:var(--fg)">none</button></sc-if><sc-if value="{{ isNoCss }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ cssOn }}" title="restore css" style="background:none;border:0;padding:0;margin:0;font:inherit;color:var(--mute);cursor:pointer" style-hover="color:var(--fg)">css</button> / <span style="color:var(--fg)">none</span></sc-if></div>
+</header>
+<nav style="display:flex;gap:24px;flex-wrap:wrap;margin-top:20px;padding:12px 0;border-top:1px solid var(--fg);border-bottom:1px solid var(--line);font:11px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><a href="#" onClick="{{ goHome }}" style="color:var(--mute);text-decoration:none" style-hover="color:var(--fg)">← projects</a> <sc-if value="{{ cur.hasRepo }}" hint-placeholder-val="{{ true }}"><span>source <a href="{{ cur.repoUrl }}" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none" style-hover="text-decoration:underline">{{ cur.repoPath }}</a></span> </sc-if><span>{{ cur.visibility }}</span> <span>{{ cur.tierLabel }}</span> <span>{{ cur.dir }}</span></nav>
+<div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;max-width:62ch"><sc-for list="{{ cur.about }}" as="para" hint-placeholder-count="0"><p style="margin:0;font-size:15px;text-wrap:pretty">{{ para }}</p></sc-for></div>
+<sc-if value="{{ cur.hasParams }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;justify-content:space-between;gap:16px;margin:44px 0 6px;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">{{ cur.paramsLabel }}</h2> <span>{{ cur.paramsRight }}</span></div>
+<dl style="margin:0"><sc-for list="{{ cur.params }}" as="kv" hint-placeholder-count="0"><div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:0 14px;padding:8px 0;border-top:1px solid var(--line);font:11px/1.5 ui-monospace,'SF Mono',Menlo,Monaco,monospace"><dt style="color:var(--mute)">{{ kv.k }}</dt> <dd style="margin:0;text-wrap:pretty">{{ kv.v }}</dd></div></sc-for></dl>
+</sc-if>
+<sc-if value="{{ cur.hasMetrics }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;justify-content:space-between;gap:16px;margin:44px 0 6px;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">results</h2> <span>strategy · spy</span></div>
+<ul style="list-style:none;margin:0;padding:0"><sc-for list="{{ cur.metrics }}" as="m" hint-placeholder-count="0"><li style="display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,140px) minmax(90px,140px);gap:0 16px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline" style-hover="background:var(--hover)"><span>{{ m.k }}</span> <span style="font:12.5px ui-monospace,'SF Mono',Menlo,Monaco,monospace">{{ m.a }}</span> <span style="font:12.5px ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)">{{ m.b }}</span></li></sc-for></ul>
+</sc-if>
+<sc-if value="{{ cur.hasFigures }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;justify-content:space-between;gap:16px;margin:44px 0 14px;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">{{ cur.figLabel }}</h2> <span>{{ cur.figRight }}</span></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px"><sc-for list="{{ cur.figures }}" as="f" hint-placeholder-count="0"><figure style="margin:0">{{ f.img }}<figcaption style="font:10px/1.5 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute);margin-top:8px">{{ f.cap }}</figcaption></figure></sc-for></div>
+</sc-if>
+<sc-if value="{{ cur.hasPre }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;justify-content:space-between;gap:16px;margin:44px 0 6px;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">{{ cur.preLabel }}</h2></div>
+<pre style="margin:0;padding:10px 0 0;border-top:1px solid var(--line);font:11.5px/1.6 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--fg);white-space:pre-wrap">{{ cur.pre }}</pre>
+</sc-if>
+<sc-if value="{{ cur.isBranding }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;justify-content:space-between;gap:16px;margin:44px 0 6px;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">specimen</h2> <span>type · colour · card</span></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;border-top:1px solid var(--line)">
+<div style="padding:16px 0 18px"><div style="font-size:20px;font-weight:500;letter-spacing:-.01em;line-height:1.2">Helvetica Neue 500 — 20</div><div style="font-size:15px;margin-top:6px">Helvetica Neue 400 — 15, prose</div><div style="font-size:14px;color:var(--mute);margin-top:4px">400 — 14, muted</div><div style="font-size:13px;color:var(--mute);margin-top:4px">400 — 13, descriptions</div><div style="font:12px/1.6 ui-monospace,'SF Mono',Menlo,Monaco,monospace;margin-top:10px">Menlo 12 — contact, figures</div><div style="font:11px/1.6 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)">Menlo 11 — dates, repos, header meta</div><div style="font:10px/1.6 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)">menlo 10 — section lines, footer</div></div>
+<div style="padding:16px 0 18px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-content:start;font:10px/1.5 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><div><div style="height:40px;background:#fff;border:1px solid var(--line)"></div>#fff</div><div><div style="height:40px;background:#000;border:1px solid var(--line)"></div>#000</div><div><div style="height:40px;background:#555;border:1px solid var(--line)"></div>#555</div><div><div style="height:40px;background:#e5e5e5;border:1px solid var(--line)"></div>#e5e5e5</div><div><div style="height:40px;background:#fafafa;border:1px solid var(--line)"></div>#fafafa</div><div><div style="height:40px;background:#111;border:1px solid var(--line)"></div>#111</div><div><div style="height:40px;background:#f2f2f2;border:1px solid var(--line)"></div>#f2f2f2</div><div><div style="height:40px;background:#9a9a9a;border:1px solid var(--line)"></div>#9a9a9a</div><div><div style="height:40px;background:#2a2a2a;border:1px solid var(--line)"></div>#2a2a2a</div><div><div style="height:40px;background:#1a1a1a;border:1px solid var(--line)"></div>#1a1a1a</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;padding-top:18px;border-top:1px solid var(--line)">
+<div><div style="aspect-ratio:85/55;padding:8.5% 9%;box-sizing:border-box;background:#fff;color:#000;border:1px solid var(--line);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;display:flex;flex-direction:column"><div style="font-size:15px;font-weight:500;letter-spacing:-.01em">Arno Van Eetvelde</div><div style="font-size:11px;color:#555;margin-top:4px">Software Engineer — AI &amp; Industry</div><div style="margin-top:auto;display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid #e5e5e5;font:7.5px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;letter-spacing:.04em;color:#555"><span>arno1235</span> <span>v1.1.0</span></div></div><div style="font:10px/1.5 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute);margin-top:8px">card — front, 85 × 55 mm</div></div>
+<div><div style="aspect-ratio:85/55;padding:8.5% 9%;box-sizing:border-box;background:#fff;color:#000;border:1px solid var(--line);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;display:flex;flex-direction:column"><div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:7px 12px;font:9.5px/1.4 ui-monospace,'SF Mono',Menlo,Monaco,monospace"><span style="color:#555">github</span> <span>github.com/arno1235</span> <span style="color:#555">web</span> <span>arno1235.github.io</span> <span style="color:#555">mail</span> <span>arno.ve2000@gmail.com</span> <span style="color:#555">gsm</span> <span>+32 490 11 17 78</span></div><div style="margin-top:auto;display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid #e5e5e5;font:7.5px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;letter-spacing:.04em;color:#555"><span>arno1235</span> <span>v1.1.0</span></div></div><div style="font:10px/1.5 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute);margin-top:8px">card — back</div></div>
+</div>
+</sc-if>
+<sc-if value="{{ cur.hasStack }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;justify-content:space-between;gap:16px;margin:44px 0 6px;font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><h2 style="margin:0;font:inherit">stack</h2></div>
+<p style="margin:0;padding:10px 0;border-top:1px solid var(--line);font:12px/1.6 ui-monospace,'SF Mono',Menlo,Monaco,monospace">{{ cur.stackLine }}</p>
+</sc-if>
+<nav style="display:flex;justify-content:space-between;gap:16px;margin-top:44px;padding-top:12px;border-top:1px solid var(--fg);font:12px/1.5 ui-monospace,'SF Mono',Menlo,Monaco,monospace">
+<div><sc-if value="{{ cur.hasPrev }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ cur.prevOpen }}" style="color:var(--fg);text-decoration:none" style-hover="text-decoration:underline">← {{ cur.prevName }}</a></sc-if></div>
+<div><sc-if value="{{ cur.hasNext }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ cur.nextOpen }}" style="color:var(--fg);text-decoration:none" style-hover="text-decoration:underline">{{ cur.nextName }} →</a></sc-if></div>
+</nav>
+<footer style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:12px;border-top:1px solid var(--line);font:10px/1 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)"><span>{{ cur.dwg }} · v1.1.0</span> <span>{{ cur.url }}</span></footer>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;system&quot;,&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;system&quot;,&quot;tsType&quot;:&quot;'system' | 'light' | 'dark'&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;projectsPerTier&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1,&quot;min&quot;:1,&quot;max&quot;:15,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Project tiers&quot;},&quot;tier1Name&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;engineered&quot;,&quot;hand-built&quot;,&quot;handmade&quot;,&quot;stable&quot;,&quot;crafted&quot;],&quot;default&quot;:&quot;engineered&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Project tiers&quot;},&quot;tier3Name&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;archived&quot;,&quot;dumpster&quot;,&quot;unfinished&quot;,&quot;graveyard&quot;,&quot;deprecated&quot;],&quot;default&quot;:&quot;archived&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Project tiers&quot;},&quot;showTierNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Project tiers&quot;}}">
+class Component extends DCLogic {
+  state = { slug: null, dark: false, nocss: false };
+  all = [
+    ['00', 'arno1235', 'branding', 'design', '2026-09-13', 'arno1235.github.io', 'Personal brand and this site: two typefaces, five greys, a spec-sheet grammar. Designed in dialogue with Claude.', 'v'],
+    ['01', 'CutSched', 'cutsched', 'vision-ml', '2026-07-22', '', 'LLM optimization benchmark: speed up a cutting-stock + scheduling CP-SAT solver without breaking the contract.', 'v'],
+    ['02', 'DataLab', 'datalab', 'vision-ml', '2026-07-12', '', 'Desktop toolkit for CSV anonymization and progressive statistical / ML analysis.', 'v'],
+    ['03', 'Quant Arena', 'quant-arena', 'markets', '2026-06-25', '', 'Agents submit stock-trading algorithms and race on a shared backtest leaderboard.', 'v'],
+    ['04', 'factory-os', 'factory-os', 'homelab-iot', '2026-04-23', '', 'AI layer on an MQTT Unified Namespace: chat with plant data, configure agents, surface detections.', 'v'],
+    ['05', 'OpenInsider', 'openinsider', 'markets', '2026-03-09', 'openinsider_notifier', 'Telegram alerts and a Streamlit backtester for clustered insider trades on openinsider.com.', 'v'],
+    ['06', 'infurn', 'infurn', 'ai-wrapper', '2026-02-15', '', 'Photoreal virtual staging: empty room photo to furnished room, architecture preserved.', 'v'],
+    ['07', 'MQTT → HA', 'mqtt-ha', 'homelab-iot', '2026-02-06', '', 'Automatic Home Assistant MQTT discovery from wildcard topics, packaged for Kubernetes.', 'v'],
+    ['08', 'Roborock MQTT', 'roborock-mqtt', 'homelab-iot', '2025-12-12', 'RoborockMQTTBridge', 'Bridges Roborock vacuum telemetry into MQTT for a k3s / Home Assistant setup.', 'e'],
+    ['09', 'PCB drone', 'pcb-drone', 'hardware', '2025-08-09', '', 'Raspberry Pi Pico flight controller on custom PCBs: ESC, IMU, power, SBUS, printable frame.', 'e'],
+    ['10', 'HiveMQ UNS ext.', 'hivemq-uns', 'homelab-iot', '2025-06-13', '', 'HiveMQ extension experiments around Unified Namespace monitoring.', 'a'],
+    ['11', 'Volvo widgets', 'volvo-widgets', 'hardware', '2025-04-22', '', 'Swift battery widget and trip rendering for a Volvo EV.', 'e'],
+    ['12', 'Market Ops', 'market-ops', 'markets', '2025-03-11', '', 'Trading research: pipelines, Saxo flows, agent-built strategies.', 'v'],
+    ['13', 'MVTec YOLO', 'mvtec-yolo', 'vision-ml', '2024-09-28', 'MVTec_YOLO', 'YOLO detection and segmentation on the MVTec anomaly-detection dataset.', 'e'],
+    ['14', 'Sparkplug B', 'sparkplug', 'homelab-iot', '2024-09-18', 'MQTT_SparkplugB_Client', 'Python client framework for MQTT Sparkplug B: birth/death, publish, subscribe, callbacks.', 'e'],
+    ['15', 'SAM LoRA', 'sam-lora', 'vision-ml', '2024-03-21', '', 'Fine-tuning Segment Anything with LoRA adapters for domain-specific segmentation.', 'e'],
+    ['16', 'YAMAL', 'yamal', 'homelab-iot', '2024-02-07', 'YAMAL', 'ROS-inspired Python framework for parallel nodes and messaging via YAML launch files.', 'e'],
+    ['17', 'Catch The Dot', 'catch-the-dot', 'vision-ml', '2023-08-02', 'CatchTheDot', 'Webcam finger-tracking game on MediaPipe hand landmarks.', 'e'],
+    ['18', 'Touch ID password', 'touchid', 'apps', '2023-05-31', 'TouchID_password', 'Pock Touch Bar widget that unlocks a password with Touch ID.', 'e'],
+    ['19', 'DL from scratch', 'dl-scratch', 'vision-ml', '2023-01-29', 'DeepLearning_from_scratch', 'Neural-net framework written from scratch in Python and NumPy.', 'e'],
+    ['20', 'chess bot', 'chess-bot', 'apps', '2023-01-22', '', 'Chess engine challenge: NumPy only, a move within three seconds.', 'e'],
+    ['21', 'McDo bots', 'mcdo-bots', 'apps', '2022-12-05', 'McDo_BurgerBuilding', 'Python bots for McDonald’s promotional browser games.', 'a'],
+    ['22', 'CryptoAI', 'cryptoai', 'markets', '2021-04-04', 'CryptoAI', 'Early crypto price-prediction experiments. Discontinued.', 'a'],
+    ['23', 'Farmy', 'farmy', 'apps', '2020-11-29', 'Farmy--Hackathon-', 'AR tower-defense game built at a hackathon. Discontinued.', 'a'],
+    ['24', 'BLE Notificator', 'ble-notificator', 'apps', '2020-08-19', 'BLENotificator', 'Android app that notifies when Bluetooth LE devices come into range. On the Play Store.', 'e'],
+    ['25', 'FitnessApp', 'fitnessapp', 'apps', '2020-06-26', 'FitnessApp', 'Workout builder and progress tracker. On hold.', 'a'],
+    ['26', 'Gimbal / tracking', 'gimbal', 'hardware', '2019-05-31', '', 'Object-tracking gimbal software so a camera follows a selected target.', 'e']
+  ].map(([no, name, slug, dir, date, repo, blurb, tier]) => ({ no, name, slug, dir, date, ym: date.slice(0, 7), repo, repoLabel: repo || '—', repoUrl: repo ? 'https://github.com/Arno1235/' + repo : '#', repoPath: 'github.com/Arno1235/' + repo, blurb, tier }));
+  details = {
+    branding: {
+      tag: 'Personal brand and the design of this site',
+      about: ['A design system for one person: business card, this site, and whatever document comes next. Brief: minimal, industrial, the calm of Apple Terminal in light mode and the honesty of unstyled HTML.', 'Brainstormed as a series of numbered options with Claude — default-stylesheet page, terminal session, engineering datasheet, man page, thesis, RFC memo — then narrowed to the datasheet family and turned down to this quiet version. The generated system is what you are looking at; the source of this page is its own specimen.'],
+      paramsLabel: 'system', paramsRight: 'v1.1.0',
+      params: [['type', 'Helvetica Neue 400 / 500 for words · Menlo (SF Mono) for metadata, figures, labels'], ['scale', '20 · 15 · 14 · 13 · 12 · 11 · 10 px — two families, no display sizes'], ['light', '#FFFFFF paper · #000000 ink · #555555 muted · #E5E5E5 hairline · #FAFAFA hover'], ['dark', '#111111 paper · #F2F2F2 ink · #9A9A9A muted · #2A2A2A hairline · #1A1A1A hover'], ['rules', 'one 1 px ink rule under the header; hairlines everywhere else; no boxes, no radius, no shadow'], ['grammar', 'numbered sections 01–04, sub-numbers 01.01 … · lowercase mono section lines · metadata right-aligned'], ['identity', 'arno1235 as drawing number, left · semantic version, right · bumped on every change · 85 × 55 mm card, two-sided'], ['tone', 'dry, technical, ISO dates, no adjectives'], ['fonts', 'system only — the site ships 0 KB of type']],
+      preLabel: 'tokens',
+      pre: '--paper   #ffffff  |  #111111\n--ink     #000000  |  #f2f2f2\n--muted   #555555  |  #9a9a9a\n--line    #e5e5e5  |  #2a2a2a\n--hover   #fafafa  |  #1a1a1a\n\n--sans    "Helvetica Neue", Helvetica, Arial, sans-serif\n--mono    ui-monospace, "SF Mono", Menlo, Monaco, monospace\n\n--rule    1px solid var(--ink)      header\n--hair    1px solid var(--line)     rows, footer\n--measure 60ch                      prose',
+      stack: ['HTML', 'CSS custom properties', 'no JavaScript required', 'Claude']
+    },
+    openinsider: {
+      tag: 'Telegram alerts and a Streamlit backtester for clustered insider trades',
+      about: ['Two tools that share one scraper of openinsider.com. A Telegram notifier polls every few hours and alerts when three or more executives at a company each buy or sell at least $200k. A Streamlit backtester replays those signals against configurable strategy rules and compares equity to the S&P 500.', 'Alerts are deduplicated for 24 hours. The backtest below runs the default cluster-buy rule from January 2023 to today against buy-and-hold SPY.'],
+      paramsLabel: 'backtest', paramsRight: '2023-01-02 → 2026-09-09',
+      params: [['signal', 'cluster buy · 3+ executives · ≥ $200k each · 30-day window'], ['hold', '20 trading days'], ['capital', '$100k · equal-weight · max 10 positions'], ['fill', 'next-day open'], ['benchmark', 'SPY, buy and hold']],
+      metrics: [['Total return', '+90.9%', '+100.2%'], ['CAGR', '19.2%', '20.7%'], ['Sharpe', '0.81', '1.20'], ['Max drawdown', '−31.7%', '−19.0%'], ['Alpha (annual)', '+9.6%', '—'], ['Beta vs SPY', '0.53', '1.00'], ['Trades / win rate', '277 / 52.4%', '—']],
+      figLabel: 'figures', figRight: 'exported from the streamlit backtester',
+      figures: [['assets/openinsider-equity.jpg', 'Equity curve vs SPY', 'fig. 1 — equity vs spy, exposure'], ['assets/openinsider-drawdown.jpg', 'Drawdown', 'fig. 2 — drawdown']],
+      preLabel: 'sample alert',
+      pre: 'Insider Cluster Alert — Apple Inc. (AAPL) — 4 executives\n  2024-03-15  Tim Cook (CEO)         BUY  $2.45M\n  2024-03-14  Luca Maestri (CFO)     BUY  $890,000\n  2024-03-12  Jeff Williams (COO)    BUY  $1.20M\n  2024-03-11  Kate Adams (GC)        BUY  $320,000\n  total $4.86M · deduplicated 24h',
+      stack: ['Python', 'Streamlit', 'Telegram Bot API']
+    },
+    infurn: {
+      tag: 'Photoreal virtual staging — empty room photo to furnished room, architecture preserved',
+      about: ['Photoreal virtual staging: an empty room photo becomes a furnished room without changing the architecture — walls, ceiling, floor, windows, doors, geometry.', 'A desktop app prepares the job, rents an ephemeral GPU, runs it, downloads the results and terminates the machine. Results open in a wipe compare or a grid.'],
+      paramsLabel: 'scope', paramsRight: '5 rooms · 14 styles',
+      params: [['rooms', 'bathroom · child bedroom · desk · kitchen / living · master bedroom'], ['styles', 'art deco · bohemian · coastal · contemporary warm · farmhouse · industrial · japandi · luxury · mediterranean · mid-century · minimal zen · modern clean · rustic · scandinavian'], ['constraint', 'architecture preserved — walls, ceiling, floor, windows, doors, geometry'], ['compute', 'ephemeral GPU per job, terminated after download']],
+      figLabel: 'input vs output', figRight: 'left input · right output',
+      figures: [['assets/infurn-living-input.jpg', 'Empty kitchen / living room', 'fig. 1 — kitchen / living, input'], ['assets/infurn-living-mid-century.jpg', 'Kitchen / living furnished in mid-century style', 'fig. 2 — kitchen / living, mid-century'], ['assets/infurn-desk-input.jpg', 'Empty desk room', 'fig. 3 — desk, input'], ['assets/infurn-desk-japandi.jpg', 'Desk room furnished in japandi style', 'fig. 4 — desk, japandi'], ['assets/infurn-ui-results.jpg', 'Desktop app results tab with wipe compare', 'fig. 5 — desktop app, results · wipe']],
+      stack: ['Python', 'desktop UI', 'ephemeral GPU']
+    },
+    'factory-os': {
+      tag: 'AI industrial OS on an MQTT Unified Namespace',
+      about: ['An AI-driven industrial OS on top of a Unified Namespace. Talk to plant data, configure agents, and get detections and actions out of industrial telemetry.', 'A simulated (later real) factory publishes over MQTT and is historized. The hub layer adds chat, agents and insight tooling on top.'],
+      paramsLabel: 'architecture', paramsRight: 'three layers',
+      params: [['data layer', 'factory simulator → MQTT UNS + historian'], ['ai / os layer', 'chatbot, agents, detections, actions'], ['interface', 'ask why output drops or which machine looks abnormal']],
+      stack: ['MQTT', 'UNS', 'LLM agents', 'Postgres historian']
+    },
+    sparkplug: {
+      tag: 'Python framework for Sparkplug B messaging',
+      about: ['A small framework for MQTT communication using the Sparkplug B protocol.', 'Connect, publish structured payloads, subscribe with callbacks, and handle birth and death certificates automatically.'],
+      paramsLabel: 'api', paramsRight: '',
+      params: [['connect', 'broker session with Sparkplug identity'], ['publish', 'structured Sparkplug payloads'], ['subscribe', 'topic handlers via custom callbacks'], ['lifecycle', 'NBIRTH / NDEATH handled by the client']],
+      stack: ['Python', 'MQTT', 'Sparkplug B']
+    },
+    cutsched: {
+      tag: 'LLM optimization benchmark · cutting stock + scheduling',
+      about: ['CutSched measures how well an LLM or agent can speed up a working combinatorial-optimization solver without breaking it.', 'The problem couples cutting-stock with parallel-machine scheduling. A correct-but-modest CP-SAT baseline ships with the suite; models may rewrite anything as long as the contract and quality targets hold.'],
+      paramsLabel: 'suite', paramsRight: 'contract · baseline · score',
+      params: [['contract', 'solve.sh is the frozen entry point; feasibility and objective checking are canonical'], ['baseline', 'a CP-SAT solver sets quality floors on generated gate instances'], ['score', 'wall-clock time on hidden instances inside a resource-pinned Docker container'], ['files', 'SPEC.md (problem, contract, scoring) · PROMPT.md (what the model sees) · verifier · hidden set']],
+      stack: ['Python', 'CP-SAT', 'Docker', 'benchmarking']
+    }
+  };
+  career = [
+    { period: '2023-09 – now', role: 'AI & Software Engineer', org: 'Coretecs, Belgium' },
+    { period: '2022 – 2023', role: 'Advanced Master of Artificial Intelligence', org: 'KU Leuven' },
+    { period: '2021 – 2022', role: 'Master of Industrial Engineering', org: 'KU Leuven' },
+    { period: '2018 – 2021', role: 'Bachelor of Industrial Engineering', org: 'KU Leuven' }
+  ];
+  clients = [
+    { date: '2025-06', client: 'Nitto', subject: 'Unified Namespace exploration and setup' },
+    { date: '2025-03', client: 'Fluvius', subject: 'High-availability PostgreSQL for MQTT device authentication and authorization' },
+    { date: '2024-12', client: 'IMEC', subject: 'Emergency-stop circuit integration into Yokogawa CI Server SCADA via OPC UA' },
+    { date: '2024-11', client: 'Technoform', subject: 'Real-time laser label detection on extruded strips: line-scan camera, YOLO, OCR' },
+    { date: '2024-08', client: 'Technoform', subject: 'In-line computer-vision quality control for surface anomalies on plastic extrusion' },
+    { date: '2024-06', client: 'Coretecs R&D', subject: 'LoRA fine-tuning of SAM for segmenting electrical-cabinet components' },
+    { date: '2024-04', client: 'IMEC', subject: 'SCADA and Power BI integration for sensors off a PILZ safety PLC' },
+    { date: '2023-12', client: 'Flanders Make', subject: 'Dataset generation, YOLO training, anomaly-detection framework testing' },
+    { date: '2023-10', client: 'IMEC', subject: 'SIFT-MS gas measurement integration into Yokogawa CI Server SCADA' }
+  ];
+  writing = [
+    { date: '2024-08', title: 'In-line quality control for plastic extrusion', kind: 'blog post', file: 'van-eetvelde-technoform-accelerator-inline-quality-control-blogpost.pdf' },
+    { date: '2024-06', title: 'LoRA fine-tuning of SAM for electrical-cabinet segmentation', kind: 'whitepaper', file: 'van-eetvelde-sam-lora-electrical-cabinet-segmentation-whitepaper.pdf' },
+    { date: '2022-06', title: 'End-to-end food detection on a compartmentalized plate', kind: 'master’s thesis', file: 'van-eetvelde-end-to-end-food-detection-thesis.pdf' }
+  ].map(w => ({ ...w, url: 'https://arno1235.github.io/files/' + w.file }));
+  componentDidMount() {
+    let stored = null, css = null;
+    try { stored = localStorage.getItem('ave-theme'); css = localStorage.getItem('ave-css'); } catch (e) {}
+    const pref = this.props.theme ?? 'system';
+    const dark = pref === 'dark' ? true : pref === 'light' ? false : stored ? stored === 'dark' : !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    this.applyTheme(dark);
+    this.applyCss(css === 'none');
+  }
+  componentDidUpdate(prev) {
+    const t = this.props.theme ?? 'system';
+    if ((prev.theme ?? 'system') !== t && t !== 'system') this.applyTheme(t === 'dark');
+  }
+  applyTheme(dark) { document.body.classList.toggle('dark', dark); this.setState({ dark }); }
+  setTheme(dark, e) { if (e) e.preventDefault(); try { localStorage.setItem('ave-theme', dark ? 'dark' : 'light'); } catch (err) {} this.applyTheme(dark); }
+  // "no css": body.nocss makes the helmet rule revert every property in the page to the user-agent stylesheet
+  applyCss(off) { document.body.classList.toggle('nocss', off); this.setState({ nocss: off }); }
+  setCss(off, e) { if (e) e.preventDefault(); try { localStorage.setItem('ave-css', off ? 'none' : 'css'); } catch (err) {} this.applyCss(off); }
+  go(slug) { this.setState({ slug }); window.scrollTo(0, 0); }
+  renderVals() {
+    const t1 = this.props.tier1Name ?? 'engineered', t3 = this.props.tier3Name ?? 'archived', notes = this.props.showTierNotes ?? true;
+    const tierDefs = { e: [t1, 'Written by hand. Tested, documented, maintained.'], v: ['vibed', 'Spec by me, code by coding agents. Reviewed, not hand-written.'], a: [t3, 'Discontinued, unfinished, or one-evening experiments.'] };
+    const all = this.all.map(p => ({ ...p, tierLabel: tierDefs[p.tier][0].toLowerCase(), open: e => { e.preventDefault(); this.go(p.slug); } }));
+    const per = Math.max(1, this.props.projectsPerTier ?? 1);
+    // "most worked out" first: number of detail sections, then repo, then recency
+    const score = p => { const d = this.details[p.slug]; return (d ? ['about', 'params', 'metrics', 'figures', 'pre', 'stack'].filter(k => d[k]).length * 10 : 0) + (p.repo ? 1 : 0); };
+    const tiers = ['e', 'v', 'a'].map((id, i) => {
+      const pool = all.filter(p => p.tier === id);
+      const pick = pool.slice().sort((a, b) => score(b) - score(a) || b.date.localeCompare(a.date)).slice(0, per);
+      const items = pool.filter(p => pick.includes(p) || p.slug === 'branding'); // 00 arno1235 (the site's own spec) is always listed
+      return { id, no: '01.0' + (i + 1), label: tierDefs[id][0], desc: notes ? tierDefs[id][1] : '', countLabel: per > 1 ? ' · ' + items.length : '', items };
+    });
+    const shown = tiers.flatMap(t => t.items), years = shown.map(p => +p.date.slice(0, 4));
+    const projectsMeta = shown.length + ' items · 3 tiers · ' + Math.min(...years) + '–' + Math.max(...years);
+    const { slug, dark, nocss } = this.state;
+    const idx = all.findIndex(p => p.slug === slug);
+    let cur = {};
+    if (idx >= 0) {
+      const p = all[idx], d = this.details[slug] || {}, si = shown.findIndex(x => x.slug === slug), prev = si > 0 ? shown[si - 1] : null, next = si >= 0 ? shown[si + 1] : null;
+      cur = {
+        ...p, dwg: 'arno1235-' + p.no, crumb: 'projects / ' + p.dir, tag: d.tag || p.blurb, about: d.about || [p.blurb],
+        hasRepo: !!p.repo, visibility: p.repo ? 'public' : 'private', url: 'arno1235.github.io/projects/' + p.slug, isBranding: p.slug === 'branding',
+        hasParams: !!d.params, paramsLabel: d.paramsLabel || 'parameters', paramsRight: d.paramsRight || '', params: (d.params || []).map(([k, v]) => ({ k, v })),
+        hasMetrics: !!d.metrics, metrics: (d.metrics || []).map(([k, a, b]) => ({ k, a, b })),
+        hasFigures: !!d.figures, figLabel: d.figLabel || 'figures', figRight: d.figRight || '', figures: (d.figures || []).map(([src, alt, cap]) => ({ src, alt, cap, img: React.createElement('img', { src, alt, style: { display: 'block', width: '100%', height: 'auto', border: '1px solid var(--line)' } }) })),
+        hasPre: !!d.pre, preLabel: d.preLabel || '', pre: d.pre || '',
+        hasStack: !!d.stack, stackLine: (d.stack || []).join(' · '),
+        hasPrev: !!prev, prevName: prev ? prev.name : '', prevOpen: prev ? prev.open : null,
+        hasNext: !!next, nextName: next ? next.name : '', nextOpen: next ? next.open : null
+      };
+    }
+    return {
+      isHome: idx < 0, isProject: idx >= 0, cur, tiers, projectsMeta, career: this.career, clients: this.clients, writing: this.writing,
+      isDark: dark, isLight: !dark, isCss: !nocss, isNoCss: nocss,
+      goHome: e => { e.preventDefault(); this.go(null); },
+      setLight: e => this.setTheme(false, e), setDark: e => this.setTheme(true, e),
+      cssOn: e => this.setCss(false, e), cssOff: e => this.setCss(true, e)
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+body {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 48px 24px 36px;
+  box-sizing: border-box;
+  font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --fg: #000;
+  --bg: #fff;
+  --mute: #555;
+  --line: #e5e5e5;
+  color: var(--fg);
+  background: var(--bg);
+  color-scheme: light;
+}
+
+html.dark body,
+body.dark {
+  --fg: #f2f2f2;
+  --bg: #111;
+  --mute: #9a9a9a;
+  --line: #2a2a2a;
+  color-scheme: dark;
+}
+
+h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h2,
+th,
+small,
+time {
+  font: 11px/1.6 ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+  color: var(--mute);
+}
+
+h2 {
+  margin: 44px 0 6px;
+}
+
+code,
+pre {
+  font: 12px/1.6 ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+}
+
+pre {
+  margin: 0;
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
+  white-space: pre-wrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+  text-align: left;
+  vertical-align: baseline;
+}
+
+td + td,
+th + th {
+  padding-left: 14px;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid var(--fg);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  border: 1px solid var(--line);
+}
+
+b {
+  font-weight: 500;
+}
+
+a,
+a:visited {
+  color: inherit;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 9px 0 9px 1.25em;
+  border-top: 1px solid var(--line);
+}
+
+li + li {
+  margin-top: 4px;
+}
+
+:focus-visible {
+  outline: 1px solid var(--fg);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 24px 20px 48px;
+    padding-top: calc(24px + env(safe-area-inset-top, 0px));
+  }
+
+  tr {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    column-gap: 14px;
+    padding: 9px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  td,
+  th {
+    border-top: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  tr > :first-child {
+    grid-column: 1;
+    grid-row: 1 / 20;
+  }
+
+  td + td,
+  th + th {
+    padding-left: 0;
+  }
+
+  td[width="50%"],
+  th[colspan] {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    width: auto;
+  }
+}

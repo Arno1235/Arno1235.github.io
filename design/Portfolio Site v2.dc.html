@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><style>body{margin:0;--fg:#000;--bg:#fff;--mute:#555;--line:#e5e5e5;background:var(--bg);color:var(--fg);color-scheme:light}body.dark{--fg:#f2f2f2;--bg:#111;--mute:#9a9a9a;--line:#2a2a2a;color-scheme:dark}
+main{max-width:880px;margin:0 auto;padding:48px 24px 36px;box-sizing:border-box;min-height:100vh;font:14px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif}
+main h1{margin:0;font-size:20px;font-weight:500;line-height:1.2;letter-spacing:-.01em}
+main h2,main th,main small,main time{font:11px/1.6 ui-monospace,'SF Mono',Menlo,Monaco,monospace;color:var(--mute)}
+main h2{margin:44px 0 6px}
+main code,main pre{font:12px/1.6 ui-monospace,'SF Mono',Menlo,Monaco,monospace}
+main pre{margin:0;padding-top:9px;border-top:1px solid var(--line);white-space:pre-wrap}
+main table{width:100%;border-collapse:collapse}
+main td,main th{padding:9px 0;border-top:1px solid var(--line);text-align:left;vertical-align:baseline}
+main td+td,main th+th{padding-left:14px}
+main hr{margin:20px 0;border:0;border-top:1px solid var(--fg)}
+main img{max-width:100%;height:auto;box-sizing:border-box;border:1px solid var(--line)}
+main b{font-weight:500}
+main a{color:inherit}main a:hover{color:inherit}
+body.blue main a{color:LinkText}body.blue main a:visited{color:VisitedText}body.blue main a *{color:inherit}
+body.nocss main,body.nocss main *{all:revert!important}body.nocss main img{max-width:100%!important;height:auto!important}</style></helmet>
+<main>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<section data-screen-label="Home">
+<h1>Arno Van Eetvelde</h1>
+<p>Software Engineer — AI &amp; Industry · Coretecs, Belgium<br><small>arno1235 · v2.0.0 · <sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ setLight }}">light</a> / dark</sc-if><sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}">light / <a href="#" onClick="{{ setDark }}">dark</a></sc-if> · <sc-if value="{{ isCss }}" hint-placeholder-val="{{ true }}">css / <a href="#" onClick="{{ cssOff }}" title="render without css">none</a></sc-if><sc-if value="{{ isNoCss }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ cssOn }}" title="restore css">css</a> / none</sc-if></small></p>
+<hr>
+<p><small><a href="#projects">01 projects</a> · <a href="#writing">02 writing</a> · <a href="#experience">03 experience</a> · <a href="#contact">04 contact</a></small></p>
+<p>Industrial software — SCADA, MQTT / UNS, PLC integration — and computer vision / ML. Personal projects below in three tiers; source is public where a repository is listed.</p>
+<h2 id="projects">01 projects · {{ projectsMeta }}</h2>
+<table>
+<sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+<tbody>
+<tr><th sc-camel-col-span="2">{{ t.no }} {{ t.label }}{{ t.countLabel }}</th><th sc-camel-col-span="3" style="text-align:right">{{ t.desc }}</th></tr>
+<sc-for list="{{ t.items }}" as="p" hint-placeholder-count="1">
+<tr><td width="64"><time>{{ p.ym }}</time></td><td width="130"><a href="#projects/{{ p.slug }}" onClick="{{ p.open }}">{{ p.name }}</a></td><td width="84"><small>{{ p.dir }}</small></td><td>{{ p.blurb }}</td><td><sc-if value="{{ p.hasRepo }}" hint-placeholder-val="{{ true }}"><a href="{{ p.repoUrl }}" target="_blank" rel="noopener"><small>{{ p.repoLabel }}</small></a></sc-if><sc-if value="{{ p.noRepo }}" hint-placeholder-val="{{ false }}"><small>—</small></sc-if></td></tr>
+</sc-for>
+</tbody>
+</sc-for>
+</table>
+<h2 id="writing">02 writing · 3 files · pdf</h2>
+<table><tbody>
+<sc-for list="{{ writing }}" as="w" hint-placeholder-count="3">
+<tr><td width="64"><time>{{ w.date }}</time></td><td><a href="{{ w.url }}" target="_blank" rel="noopener">{{ w.title }}</a></td><td width="130"><small>{{ w.kind }}</small></td></tr>
+</sc-for>
+</tbody></table>
+<h2 id="experience">03 experience</h2>
+<table><tbody>
+<sc-for list="{{ career }}" as="e" hint-placeholder-count="4">
+<tr><td width="100"><small>{{ e.period }}</small></td><td><b>{{ e.role }}</b></td><td>{{ e.org }}</td></tr>
+</sc-for>
+</tbody></table>
+<table><tbody>
+<tr><th sc-camel-col-span="3">selected client work · coretecs</th></tr>
+<sc-for list="{{ clients }}" as="c" hint-placeholder-count="6">
+<tr><td width="100"><time>{{ c.date }}</time></td><td width="130"><b>{{ c.client }}</b></td><td>{{ c.subject }}</td></tr>
+</sc-for>
+</tbody></table>
+<h2 id="contact">04 contact</h2>
+<table><tbody>
+<tr><th scope="row" width="64">github</th><td><a href="https://github.com/arno1235" target="_blank" rel="noopener"><code>github.com/arno1235</code></a></td></tr>
+<tr><th scope="row">web</th><td><a href="https://arno1235.github.io" target="_blank" rel="noopener"><code>arno1235.github.io</code></a></td></tr>
+<tr><th scope="row">mail</th><td><a href="mailto:arno.ve2000@gmail.com"><code>arno.ve2000@gmail.com</code></a></td></tr>
+<tr><th scope="row">gsm</th><td><a href="tel:+32490111778"><code>+32 490 11 17 78</code></a></td></tr>
+</tbody></table>
+<hr>
+<p><small>arno1235 · v2.0.0 · arno1235.github.io</small></p>
+</section>
+</sc-if>
+
+<sc-if value="{{ isProject }}" hint-placeholder-val="{{ false }}">
+<section data-screen-label="Project">
+<h1>{{ cur.name }}</h1>
+<p>{{ cur.tag }}<br><small><a href="#" onClick="{{ goHome }}">arno van eetvelde</a> / projects / {{ cur.dir }} · {{ cur.dwg }} · v2.0.0 · <sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ setLight }}">light</a> / dark</sc-if><sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}">light / <a href="#" onClick="{{ setDark }}">dark</a></sc-if> · <sc-if value="{{ isCss }}" hint-placeholder-val="{{ true }}">css / <a href="#" onClick="{{ cssOff }}" title="render without css">none</a></sc-if><sc-if value="{{ isNoCss }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ cssOn }}" title="restore css">css</a> / none</sc-if></small></p>
+<hr>
+<p><small><a href="#" onClick="{{ goHome }}">← projects</a><sc-if value="{{ cur.hasRepo }}" hint-placeholder-val="{{ false }}"> · source <a href="{{ cur.repoUrl }}" target="_blank" rel="noopener">{{ cur.repoPath }}</a></sc-if> · {{ cur.visibility }} · {{ cur.tierLabel }}</small></p>
+<sc-for list="{{ cur.about }}" as="para" hint-placeholder-count="0"><p>{{ para }}</p></sc-for>
+<sc-if value="{{ cur.hasStack }}" hint-placeholder-val="{{ false }}"><p><small>{{ cur.stackLine }}</small></p></sc-if>
+<sc-if value="{{ cur.hasParams }}" hint-placeholder-val="{{ false }}">
+<h2>{{ cur.paramsHead }}</h2>
+<table><tbody><sc-for list="{{ cur.params }}" as="kv" hint-placeholder-count="0"><tr><th scope="row" width="100">{{ kv.k }}</th><td><code>{{ kv.v }}</code></td></tr></sc-for></tbody></table>
+</sc-if>
+<sc-if value="{{ cur.hasMetrics }}" hint-placeholder-val="{{ false }}">
+<h2>results</h2>
+<table><thead><tr><th></th><th width="130">strategy</th><th width="130">spy</th></tr></thead><tbody><sc-for list="{{ cur.metrics }}" as="m" hint-placeholder-count="0"><tr><td>{{ m.k }}</td><td><code>{{ m.a }}</code></td><td><small><code>{{ m.b }}</code></small></td></tr></sc-for></tbody></table>
+</sc-if>
+<sc-if value="{{ cur.hasFigures }}" hint-placeholder-val="{{ false }}">
+<h2>{{ cur.figHead }}</h2>
+<table style="table-layout:fixed"><tbody><sc-for list="{{ cur.figureRows }}" as="r" hint-placeholder-count="0"><tr><td width="50%">{{ r.a.img }}<br><small>{{ r.a.cap }}</small></td><td width="50%"><sc-if value="{{ r.hasB }}" hint-placeholder-val="{{ false }}">{{ r.b.img }}<br><small>{{ r.b.cap }}</small></sc-if></td></tr></sc-for></tbody></table>
+</sc-if>
+<sc-if value="{{ cur.hasPre }}" hint-placeholder-val="{{ false }}">
+<h2>{{ cur.preHead }}</h2>
+<pre>{{ cur.pre }}</pre>
+</sc-if>
+<sc-if value="{{ cur.isBranding }}" hint-placeholder-val="{{ false }}">
+<h2>type · one sans, one mono</h2>
+<table><tbody>
+<tr><th scope="row" width="100">h1</th><td>Helvetica Neue 500 · 20 px · the title above</td></tr>
+<tr><th scope="row">p td</th><td>Helvetica Neue 400 · 14 px · words</td></tr>
+<tr><th scope="row">b</th><td><b>Helvetica Neue 500 · 14 px · roles, clients</b></td></tr>
+<tr><th scope="row">h2 th small time</th><td><small>Menlo 11 px · section lines, headers, metadata, dates</small></td></tr>
+<tr><th scope="row">code pre</th><td><code>Menlo 12 px · values, contact, tokens</code></td></tr>
+</tbody></table>
+<h2>palette · four greys</h2>
+<table><thead><tr><th width="100"></th><th sc-camel-col-span="2">light</th><th sc-camel-col-span="2">dark</th></tr></thead><tbody>
+<tr><th scope="row">paper</th><td width="25%" bgcolor="#ffffff"></td><td><small>#ffffff</small></td><td width="25%" bgcolor="#111111"></td><td><small>#111111</small></td></tr>
+<tr><th scope="row">ink</th><td bgcolor="#000000"></td><td><small>#000000</small></td><td bgcolor="#f2f2f2"></td><td><small>#f2f2f2</small></td></tr>
+<tr><th scope="row">muted</th><td bgcolor="#555555"></td><td><small>#555555</small></td><td bgcolor="#9a9a9a"></td><td><small>#9a9a9a</small></td></tr>
+<tr><th scope="row">hairline</th><td bgcolor="#e5e5e5"></td><td><small>#e5e5e5</small></td><td bgcolor="#2a2a2a"></td><td><small>#2a2a2a</small></td></tr>
+</tbody></table>
+</sc-if>
+<hr>
+<p><small><sc-if value="{{ cur.hasPrev }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ cur.prevOpen }}">← {{ cur.prevName }}</a></sc-if>{{ cur.sep }}<sc-if value="{{ cur.hasNext }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ cur.nextOpen }}">{{ cur.nextName }} →</a></sc-if></small></p>
+<p><small>{{ cur.dwg }} · v2.0.0 · {{ cur.url }}</small></p>
+</section>
+</sc-if>
+
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;system&quot;,&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;system&quot;,&quot;tsType&quot;:&quot;'system' | 'light' | 'dark'&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;links&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ink&quot;,&quot;browser&quot;],&quot;default&quot;:&quot;ink&quot;,&quot;tsType&quot;:&quot;'ink' | 'browser'&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;branding&quot;,&quot;openinsider&quot;,&quot;infurn&quot;,&quot;factory-os&quot;,&quot;sparkplug&quot;,&quot;cutsched&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Screen&quot;},&quot;projectsPerTier&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:1,&quot;max&quot;:15,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Project tiers&quot;},&quot;showTierNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Project tiers&quot;}}">
+class Component extends DCLogic {
+  state = { slug: null, dark: false, nocss: false };
+  pageRef = React.createRef();
+  // the production stylesheet, shown verbatim on project 00
+  css = [
+    'body{margin:0 auto;max-width:880px;padding:48px 24px 36px;box-sizing:border-box;font:14px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;--fg:#000;--bg:#fff;--mute:#555;--line:#e5e5e5;color:var(--fg);background:var(--bg);color-scheme:light}',
+    'body.dark{--fg:#f2f2f2;--bg:#111;--mute:#9a9a9a;--line:#2a2a2a;color-scheme:dark}',
+    'h1{margin:0;font-size:20px;font-weight:500;line-height:1.2;letter-spacing:-.01em}',
+    'h2,th,small,time{font:11px/1.6 ui-monospace,"SF Mono",Menlo,Monaco,monospace;color:var(--mute)}',
+    'h2{margin:44px 0 6px}',
+    'code,pre{font:12px/1.6 ui-monospace,"SF Mono",Menlo,Monaco,monospace}',
+    'pre{margin:0;padding-top:9px;border-top:1px solid var(--line);white-space:pre-wrap}',
+    'table{width:100%;border-collapse:collapse}',
+    'td,th{padding:9px 0;border-top:1px solid var(--line);text-align:left;vertical-align:baseline}',
+    'td+td,th+th{padding-left:14px}',
+    'hr{margin:20px 0;border:0;border-top:1px solid var(--fg)}',
+    'img{max-width:100%;height:auto;box-sizing:border-box;border:1px solid var(--line)}',
+    'b{font-weight:500}',
+    'a{color:inherit}'
+  ].join('\n');
+  all = [
+    ['00', 'arno1235', 'branding', 'design', '2026-09-15', 'arno1235.github.io', 'Personal brand and this site: two typefaces, four greys, fourteen rules of css. Designed in dialogue with Claude.', 'v'],
+    ['01', 'CutSched', 'cutsched', 'vision-ml', '2026-07-22', '', 'LLM optimization benchmark: speed up a cutting-stock + scheduling CP-SAT solver without breaking the contract.', 'v'],
+    ['02', 'DataLab', 'datalab', 'vision-ml', '2026-07-12', '', 'Desktop toolkit for CSV anonymization and progressive statistical / ML analysis.', 'v'],
+    ['03', 'Quant Arena', 'quant-arena', 'markets', '2026-06-25', '', 'Agents submit stock-trading algorithms and race on a shared backtest leaderboard.', 'v'],
+    ['04', 'factory-os', 'factory-os', 'homelab-iot', '2026-04-23', '', 'AI layer on an MQTT Unified Namespace: chat with plant data, configure agents, surface detections.', 'v'],
+    ['05', 'OpenInsider', 'openinsider', 'markets', '2026-03-09', 'openinsider_notifier', 'Telegram alerts and a Streamlit backtester for clustered insider trades on openinsider.com.', 'v'],
+    ['06', 'infurn', 'infurn', 'ai-wrapper', '2026-02-15', '', 'Photoreal virtual staging: empty room photo to furnished room, architecture preserved.', 'v'],
+    ['07', 'MQTT → HA', 'mqtt-ha', 'homelab-iot', '2026-02-06', '', 'Automatic Home Assistant MQTT discovery from wildcard topics, packaged for Kubernetes.', 'v'],
+    ['08', 'Roborock MQTT', 'roborock-mqtt', 'homelab-iot', '2025-12-12', 'RoborockMQTTBridge', 'Bridges Roborock vacuum telemetry into MQTT for a k3s / Home Assistant setup.', 'e'],
+    ['09', 'PCB drone', 'pcb-drone', 'hardware', '2025-08-09', '', 'Raspberry Pi Pico flight controller on custom PCBs: ESC, IMU, power, SBUS, printable frame.', 'e'],
+    ['10', 'HiveMQ UNS ext.', 'hivemq-uns', 'homelab-iot', '2025-06-13', '', 'HiveMQ extension experiments around Unified Namespace monitoring.', 'a'],
+    ['11', 'Volvo widgets', 'volvo-widgets', 'hardware', '2025-04-22', '', 'Swift battery widget and trip rendering for a Volvo EV.', 'e'],
+    ['12', 'Market Ops', 'market-ops', 'markets', '2025-03-11', '', 'Trading research: pipelines, Saxo flows, agent-built strategies.', 'v'],
+    ['13', 'MVTec YOLO', 'mvtec-yolo', 'vision-ml', '2024-09-28', 'MVTec_YOLO', 'YOLO detection and segmentation on the MVTec anomaly-detection dataset.', 'e'],
+    ['14', 'Sparkplug B', 'sparkplug', 'homelab-iot', '2024-09-18', 'MQTT_SparkplugB_Client', 'Python client framework for MQTT Sparkplug B: birth/death, publish, subscribe, callbacks.', 'e'],
+    ['15', 'SAM LoRA', 'sam-lora', 'vision-ml', '2024-03-21', '', 'Fine-tuning Segment Anything with LoRA adapters for domain-specific segmentation.', 'e'],
+    ['16', 'YAMAL', 'yamal', 'homelab-iot', '2024-02-07', 'YAMAL', 'ROS-inspired Python framework for parallel nodes and messaging via YAML launch files.', 'e'],
+    ['17', 'Catch The Dot', 'catch-the-dot', 'vision-ml', '2023-08-02', 'CatchTheDot', 'Webcam finger-tracking game on MediaPipe hand landmarks.', 'e'],
+    ['18', 'Touch ID password', 'touchid', 'apps', '2023-05-31', 'TouchID_password', 'Pock Touch Bar widget that unlocks a password with Touch ID.', 'e'],
+    ['19', 'DL from scratch', 'dl-scratch', 'vision-ml', '2023-01-29', 'DeepLearning_from_scratch', 'Neural-net framework written from scratch in Python and NumPy.', 'e'],
+    ['20', 'chess bot', 'chess-bot', 'apps', '2023-01-22', '', 'Chess engine challenge: NumPy only, a move within three seconds.', 'e'],
+    ['21', 'McDo bots', 'mcdo-bots', 'apps', '2022-12-05', 'McDo_BurgerBuilding', 'Python bots for McDonald’s promotional browser games.', 'a'],
+    ['22', 'CryptoAI', 'cryptoai', 'markets', '2021-04-04', 'CryptoAI', 'Early crypto price-prediction experiments. Discontinued.', 'a'],
+    ['23', 'Farmy', 'farmy', 'apps', '2020-11-29', 'Farmy--Hackathon-', 'AR tower-defense game built at a hackathon. Discontinued.', 'a'],
+    ['24', 'BLE Notificator', 'ble-notificator', 'apps', '2020-08-19', 'BLENotificator', 'Android app that notifies when Bluetooth LE devices come into range. On the Play Store.', 'e'],
+    ['25', 'FitnessApp', 'fitnessapp', 'apps', '2020-06-26', 'FitnessApp', 'Workout builder and progress tracker. On hold.', 'a'],
+    ['26', 'Gimbal / tracking', 'gimbal', 'hardware', '2019-05-31', '', 'Object-tracking gimbal software so a camera follows a selected target.', 'e']
+  ].map(([no, name, slug, dir, date, repo, blurb, tier]) => ({ no, name, slug, dir, date, ym: date.slice(0, 7), repo, repoLabel: repo || '—', repoUrl: repo ? 'https://github.com/Arno1235/' + repo : '#', repoPath: 'github.com/Arno1235/' + repo, blurb, tier }));
+  details = {
+    branding: {
+      tag: 'Personal brand and the design of this site',
+      about: ['A design system for one person: this site and whatever document comes next. Brief: minimal, industrial, the calm of Apple Terminal in light mode and the honesty of unstyled HTML.', 'v2 takes the second half of that brief seriously. The page is written as a plain document — headings, paragraphs, tables, hr, pre — and the stylesheet is fourteen rules of element defaults: two fonts, a measure, four greys, hairlines. No classes, no grid, no hover states. Switch css / none above to see the document the rules sit on.'],
+      paramsLabel: 'system', paramsRight: 'v2.0.0',
+      params: [['type', 'Helvetica Neue 400 / 500 for words · Menlo (SF Mono) for metadata, values, tokens'], ['scale', '20 · 14 · 12 · 11 px — sans title and body · mono values and metadata'], ['light', '#ffffff paper · #000000 ink · #555555 muted · #e5e5e5 hairline'], ['dark', '#111111 paper · #f2f2f2 ink · #9a9a9a muted · #2a2a2a hairline'], ['rules', 'hr is the ink rule — under the header, before prev / next · every table row opens with a hairline · no boxes, no radius, no shadow, no hover'], ['elements', 'h1 h2 p hr table tr th td time small code b pre a img · no div, no span, no class'], ['grammar', 'numbered sections 01–04, tiers 01.01 … · lowercase mono section lines · metadata inline, separated by ·'], ['identity', 'arno1235 as drawing number · semantic version, bumped on every change'], ['links', 'underlined, in ink · or left to the browser — LinkText, VisitedText'], ['mobile', 'the same document; tables fold to two columns — date, then everything else'], ['tone', 'dry, technical, ISO dates, no adjectives'], ['weight', 'fonts: system only, 0 KB · css: 14 rules, about 1 KB · js: the theme switch']],
+      preLabel: 'stylesheet', preRight: 'the whole thing',
+      pre: this.css,
+      stack: ['HTML', 'CSS — 14 rules', 'Claude']
+    },
+    openinsider: {
+      tag: 'Telegram alerts and a Streamlit backtester for clustered insider trades',
+      about: ['Two tools that share one scraper of openinsider.com. A Telegram notifier polls every few hours and alerts when three or more executives at a company each buy or sell at least $200k. A Streamlit backtester replays those signals against configurable strategy rules and compares equity to the S&P 500.', 'Alerts are deduplicated for 24 hours. The backtest below runs the default cluster-buy rule from January 2023 to today against buy-and-hold SPY.'],
+      paramsLabel: 'backtest', paramsRight: '2023-01-02 → 2026-09-09',
+      params: [['signal', 'cluster buy · 3+ executives · ≥ $200k each · 30-day window'], ['hold', '20 trading days'], ['capital', '$100k · equal-weight · max 10 positions'], ['fill', 'next-day open'], ['benchmark', 'SPY, buy and hold']],
+      metrics: [['Total return', '+90.9%', '+100.2%'], ['CAGR', '19.2%', '20.7%'], ['Sharpe', '0.81', '1.20'], ['Max drawdown', '−31.7%', '−19.0%'], ['Alpha (annual)', '+9.6%', '—'], ['Beta vs SPY', '0.53', '1.00'], ['Trades / win rate', '277 / 52.4%', '—']],
+      figLabel: 'figures', figRight: 'exported from the streamlit backtester',
+      figures: [['assets/openinsider-equity.jpg', 'Equity curve vs SPY', 'fig. 1 — equity vs spy, exposure'], ['assets/openinsider-drawdown.jpg', 'Drawdown', 'fig. 2 — drawdown']],
+      preLabel: 'sample alert',
+      pre: 'Insider Cluster Alert — Apple Inc. (AAPL) — 4 executives\n  2024-03-15  Tim Cook (CEO)         BUY  $2.45M\n  2024-03-14  Luca Maestri (CFO)     BUY  $890,000\n  2024-03-12  Jeff Williams (COO)    BUY  $1.20M\n  2024-03-11  Kate Adams (GC)        BUY  $320,000\n  total $4.86M · deduplicated 24h',
+      stack: ['Python', 'Streamlit', 'Telegram Bot API']
+    },
+    infurn: {
+      tag: 'Photoreal virtual staging — empty room photo to furnished room, architecture preserved',
+      about: ['Photoreal virtual staging: an empty room photo becomes a furnished room without changing the architecture — walls, ceiling, floor, windows, doors, geometry.', 'A desktop app prepares the job, rents an ephemeral GPU, runs it, downloads the results and terminates the machine. Results open in a wipe compare or a grid.'],
+      paramsLabel: 'scope', paramsRight: '5 rooms · 14 styles',
+      params: [['rooms', 'bathroom · child bedroom · desk · kitchen / living · master bedroom'], ['styles', 'art deco · bohemian · coastal · contemporary warm · farmhouse · industrial · japandi · luxury · mediterranean · mid-century · minimal zen · modern clean · rustic · scandinavian'], ['constraint', 'architecture preserved — walls, ceiling, floor, windows, doors, geometry'], ['compute', 'ephemeral GPU per job, terminated after download']],
+      figLabel: 'input vs output', figRight: 'left input · right output',
+      figures: [['assets/infurn-living-input.jpg', 'Empty kitchen / living room', 'fig. 1 — kitchen / living, input'], ['assets/infurn-living-mid-century.jpg', 'Kitchen / living furnished in mid-century style', 'fig. 2 — kitchen / living, mid-century'], ['assets/infurn-desk-input.jpg', 'Empty desk room', 'fig. 3 — desk, input'], ['assets/infurn-desk-japandi.jpg', 'Desk room furnished in japandi style', 'fig. 4 — desk, japandi'], ['assets/infurn-ui-results.jpg', 'Desktop app results tab with wipe compare', 'fig. 5 — desktop app, results · wipe']],
+      stack: ['Python', 'desktop UI', 'ephemeral GPU']
+    },
+    'factory-os': {
+      tag: 'AI industrial OS on an MQTT Unified Namespace',
+      about: ['An AI-driven industrial OS on top of a Unified Namespace. Talk to plant data, configure agents, and get detections and actions out of industrial telemetry.', 'A simulated (later real) factory publishes over MQTT and is historized. The hub layer adds chat, agents and insight tooling on top.'],
+      paramsLabel: 'architecture', paramsRight: 'three layers',
+      params: [['data layer', 'factory simulator → MQTT UNS + historian'], ['ai / os layer', 'chatbot, agents, detections, actions'], ['interface', 'ask why output drops or which machine looks abnormal']],
+      stack: ['MQTT', 'UNS', 'LLM agents', 'Postgres historian']
+    },
+    sparkplug: {
+      tag: 'Python framework for Sparkplug B messaging',
+      about: ['A small framework for MQTT communication using the Sparkplug B protocol.', 'Connect, publish structured payloads, subscribe with callbacks, and handle birth and death certificates automatically.'],
+      paramsLabel: 'api', paramsRight: '',
+      params: [['connect', 'broker session with Sparkplug identity'], ['publish', 'structured Sparkplug payloads'], ['subscribe', 'topic handlers via custom callbacks'], ['lifecycle', 'NBIRTH / NDEATH handled by the client']],
+      stack: ['Python', 'MQTT', 'Sparkplug B']
+    },
+    cutsched: {
+      tag: 'LLM optimization benchmark · cutting stock + scheduling',
+      about: ['CutSched measures how well an LLM or agent can speed up a working combinatorial-optimization solver without breaking it.', 'The problem couples cutting-stock with parallel-machine scheduling. A correct-but-modest CP-SAT baseline ships with the suite; models may rewrite anything as long as the contract and quality targets hold.'],
+      paramsLabel: 'suite', paramsRight: 'contract · baseline · score',
+      params: [['contract', 'solve.sh is the frozen entry point; feasibility and objective checking are canonical'], ['baseline', 'a CP-SAT solver sets quality floors on generated gate instances'], ['score', 'wall-clock time on hidden instances inside a resource-pinned Docker container'], ['files', 'SPEC.md (problem, contract, scoring) · PROMPT.md (what the model sees) · verifier · hidden set']],
+      stack: ['Python', 'CP-SAT', 'Docker', 'benchmarking']
+    }
+  };
+  career = [
+    { period: '2023-09 – now', role: 'AI & Software Engineer', org: 'Coretecs, Belgium' },
+    { period: '2022 – 2023', role: 'Advanced Master of Artificial Intelligence', org: 'KU Leuven' },
+    { period: '2021 – 2022', role: 'Master of Industrial Engineering', org: 'KU Leuven' },
+    { period: '2018 – 2021', role: 'Bachelor of Industrial Engineering', org: 'KU Leuven' }
+  ];
+  clients = [
+    { date: '2025-06', client: 'Nitto', subject: 'Unified Namespace exploration and setup' },
+    { date: '2025-03', client: 'Fluvius', subject: 'High-availability PostgreSQL for MQTT device authentication and authorization' },
+    { date: '2024-12', client: 'IMEC', subject: 'Emergency-stop circuit integration into Yokogawa CI Server SCADA via OPC UA' },
+    { date: '2024-11', client: 'Technoform', subject: 'Real-time laser label detection on extruded strips: line-scan camera, YOLO, OCR' },
+    { date: '2024-08', client: 'Technoform', subject: 'In-line computer-vision quality control for surface anomalies on plastic extrusion' },
+    { date: '2024-06', client: 'Coretecs R&D', subject: 'LoRA fine-tuning of SAM for segmenting electrical-cabinet components' },
+    { date: '2024-04', client: 'IMEC', subject: 'SCADA and Power BI integration for sensors off a PILZ safety PLC' },
+    { date: '2023-12', client: 'Flanders Make', subject: 'Dataset generation, YOLO training, anomaly-detection framework testing' },
+    { date: '2023-10', client: 'IMEC', subject: 'SIFT-MS gas measurement integration into Yokogawa CI Server SCADA' }
+  ];
+  writing = [
+    { date: '2024-08', title: 'In-line quality control for plastic extrusion', kind: 'blog post', file: 'van-eetvelde-technoform-accelerator-inline-quality-control-blogpost.pdf' },
+    { date: '2024-06', title: 'LoRA fine-tuning of SAM for electrical-cabinet segmentation', kind: 'whitepaper', file: 'van-eetvelde-sam-lora-electrical-cabinet-segmentation-whitepaper.pdf' },
+    { date: '2022-06', title: 'End-to-end food detection on a compartmentalized plate', kind: 'master’s thesis', file: 'van-eetvelde-end-to-end-food-detection-thesis.pdf' }
+  ].map(w => ({ ...w, url: 'https://arno1235.github.io/files/' + w.file }));
+  componentDidMount() {
+    let stored = null, css = null;
+    try { stored = localStorage.getItem('ave-theme'); css = localStorage.getItem('ave2-css'); } catch (e) {}
+    const pref = this.props.theme ?? 'system';
+    const dark = pref === 'dark' ? true : pref === 'light' ? false : stored ? stored === 'dark' : !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    this.applyTheme(dark);
+    this.applyCss(css === 'none');
+    this.applyLinks();
+    const s = this.props.screen ?? 'home';
+    if (s !== 'home') this.setState({ slug: s });
+  }
+  componentDidUpdate(prev) {
+    const t = this.props.theme ?? 'system';
+    if ((prev.theme ?? 'system') !== t && t !== 'system') this.applyTheme(t === 'dark');
+    if ((prev.links ?? 'ink') !== (this.props.links ?? 'ink')) this.applyLinks();
+    const s = this.props.screen ?? 'home';
+    if ((prev.screen ?? 'home') !== s) this.go(s === 'home' ? null : s);
+  }
+  applyTheme(dark) { document.body.classList.toggle('dark', dark); this.setState({ dark }); }
+  setTheme(dark, e) { if (e) e.preventDefault(); try { localStorage.setItem('ave-theme', dark ? 'dark' : 'light'); } catch (err) {} this.applyTheme(dark); }
+  // "browser" links: the UA's own LinkText / VisitedText colours instead of ink
+  applyLinks() { document.body.classList.toggle('blue', (this.props.links ?? 'ink') === 'browser'); }
+  // "none": body.nocss reverts every property inside <main> to the user-agent stylesheet — the document under the 14 rules
+  applyCss(off) { document.body.classList.toggle('nocss', off); this.setState({ nocss: off }); }
+  setCss(off, e) { if (e) e.preventDefault(); try { localStorage.setItem('ave2-css', off ? 'none' : 'css'); } catch (err) {} this.applyCss(off); }
+  go(slug) {
+    this.setState({ slug });
+    window.scrollTo(0, 0);
+    const el = this.pageRef.current, sc = el && el.parentElement; // mobile: the phone screen scrolls, not the window
+    if (sc) sc.scrollTop = 0;
+  }
+  renderVals() {
+    const notes = this.props.showTierNotes ?? true;
+    const tierDefs = { e: ['engineered', 'Written by hand. Tested, documented, maintained.'], v: ['vibed', 'Spec by me, code by coding agents. Reviewed, not hand-written.'], a: ['archived', 'Discontinued, unfinished, or one-evening experiments.'] };
+    const all = this.all.map(p => ({ ...p, tierLabel: tierDefs[p.tier][0], hasRepo: !!p.repo, noRepo: !p.repo, open: e => { e.preventDefault(); this.go(p.slug); } }));
+    const per = Math.max(1, this.props.projectsPerTier ?? 3);
+    // "most worked out" first: number of detail sections, then repo, then recency
+    const score = p => { const d = this.details[p.slug]; return (d ? ['about', 'params', 'metrics', 'figures', 'pre', 'stack'].filter(k => d[k]).length * 10 : 0) + (p.repo ? 1 : 0); };
+    const tiers = ['e', 'v', 'a'].map((id, i) => {
+      const pool = all.filter(p => p.tier === id);
+      const pick = pool.slice().sort((a, b) => score(b) - score(a) || b.date.localeCompare(a.date)).slice(0, per);
+      const items = pool.filter(p => pick.includes(p) || p.slug === 'branding'); // 00 arno1235 (the site's own spec) is always listed
+      const desc = notes ? tierDefs[id][1].toLowerCase() : '';
+      return { id, no: '01.0' + (i + 1), label: tierDefs[id][0], desc, hasDesc: !!desc, countLabel: per > 1 ? ' · ' + items.length : '', items };
+    });
+    const shown = tiers.flatMap(t => t.items), years = shown.map(p => +p.date.slice(0, 4));
+    const projectsMeta = shown.length + ' items · 3 tiers · ' + Math.min(...years) + '–' + Math.max(...years);
+    const { slug, dark, nocss } = this.state;
+    const idx = all.findIndex(p => p.slug === slug);
+    let cur = {};
+    if (idx >= 0) {
+      const p = all[idx], d = this.details[slug] || {}, si = shown.findIndex(x => x.slug === slug), prev = si > 0 ? shown[si - 1] : null, next = si >= 0 ? shown[si + 1] : null;
+      const head = (l, r) => r ? l + ' · ' + r : l;
+      const figures = (d.figures || []).map(([src, alt, cap]) => ({ src, alt, cap, img: React.createElement('img', { src, alt }) })); // built here so no unresolved src is ever fetched
+      const figureRows = [];
+      for (let i = 0; i < figures.length; i += 2) figureRows.push({ a: figures[i], b: figures[i + 1] || {}, hasB: !!figures[i + 1] });
+      cur = {
+        ...p, dwg: 'arno1235-' + p.no, tag: d.tag || p.blurb, about: d.about || [p.blurb],
+        visibility: p.repo ? 'public' : 'private', url: 'arno1235.github.io/projects/' + p.slug, isBranding: p.slug === 'branding',
+        hasParams: !!d.params, paramsHead: head(d.paramsLabel || 'parameters', d.paramsRight), params: (d.params || []).map(([k, v]) => ({ k, v })),
+        hasMetrics: !!d.metrics, metrics: (d.metrics || []).map(([k, a, b]) => ({ k, a, b })),
+        hasFigures: !!d.figures, figHead: head(d.figLabel || 'figures', d.figRight), figures, figureRows,
+        hasPre: !!d.pre, preHead: head(d.preLabel || '', d.preRight), pre: d.pre || '',
+        hasStack: !!d.stack, stackLine: (d.stack || []).join(' · '),
+        hasPrev: !!prev, prevName: prev ? prev.name : '', prevOpen: prev ? prev.open : null,
+        hasNext: !!next, nextName: next ? next.name : '', nextOpen: next ? next.open : null,
+        sep: prev && next ? ' · ' : ''
+      };
+    }
+    return {
+      isHome: idx < 0, isProject: idx >= 0, cur, tiers, projectsMeta, career: this.career, clients: this.clients, writing: this.writing,
+      isDark: dark, isLight: !dark, isCss: !nocss, isNoCss: nocss, frameDark: dark && !nocss, pageRef: this.pageRef,
+      goHome: e => { e.preventDefault(); this.go(null); },
+      setLight: e => this.setTheme(false, e), setDark: e => this.setTheme(true, e),
+      cssOn: e => this.setCss(false, e), cssOff: e => this.setCss(true, e)
+    };
+  }
+}
+</script>
+</body>
+</html>
