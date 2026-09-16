@@ -9,131 +9,177 @@
     (function () {
       try {
         var t = localStorage.getItem("ave-theme");
-        if (t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches) {
-          document.documentElement.classList.add("dark");
-        }
+        var dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
       } catch (e) {}
     })();
   </script>
 </head>
 <body>
-  <h1>example</h1>
-  <p>A copy-me project page: headings, lists, tables, figures, and pre<br>
-  <small><a href="../../../">arno van eetvelde</a> / projects / example · arno1235-00 · v2.0.0 · </small><small id="theme">light / dark</small></p>
-  <hr>
-  <p><small><a href="../../../">← projects</a> · private · engineered</small></p>
-  <p>This folder is the template. Duplicate it, drop files in <code>assets/</code>, and edit this HTML. Home lists one row per project; empty tiers stay as headers with no rows.</p>
-  <p>Layout is the v2 document: headings, paragraphs, tables, hr, pre, images. No classes. The stylesheet is fourteen element defaults plus a dark theme and a mobile fold.</p>
-  <p><small>HTML · CSS · no build</small></p>
+  <script>
+    if (document.documentElement.classList.contains("dark")) document.body.classList.add("dark");
+  </script>
+  <div class="site project-page" data-site>
+    <p class="meta-line"><span>arno1235-00 · v1.2.0</span>
+      <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    <header class="header">
+      <div>
+        <p class="crumb"><a href="../../../">arno van eetvelde</a> / projects / example</p>
+        <h1>example</h1>
+        <p class="tag">A copy-me project page: headings, lists, figures, and pre</p>
+      </div>
+      <p class="header-meta">arno1235-00<br>v1.2.0 · <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    </header>
+    <nav class="nav project-nav" data-meta="private · engineered · example">
+      <a href="../../../">← projects</a>
+      <span>private</span>
+      <span>engineered</span>
+      <span>example</span>
+    </nav>
 
-  <h2>system · v2.0.0</h2>
-  <table>
-    <tbody>
-      <tr><th scope="row" width="100">type</th><td><code>Helvetica Neue 400 / 500 for words · Menlo (SF Mono) for metadata, values, tokens</code></td></tr>
-      <tr><th scope="row">scale</th><td><code>20 · 14 · 12 · 11 px — sans title and body · mono values and metadata</code></td></tr>
-      <tr><th scope="row">light</th><td><code>#ffffff paper · #000000 ink · #555555 muted · #e5e5e5 hairline</code></td></tr>
-      <tr><th scope="row">dark</th><td><code>#111111 paper · #f2f2f2 ink · #9a9a9a muted · #2a2a2a hairline</code></td></tr>
-      <tr><th scope="row">rules</th><td><code>hr is the ink rule — under the header, before prev / next · every table row opens with a hairline · no boxes, no radius, no shadow, no hover</code></td></tr>
-      <tr><th scope="row">elements</th><td><code>h1 h2 p hr table tr th td time small code b pre a img ul ol · no div, no span, no class</code></td></tr>
-      <tr><th scope="row">grammar</th><td><code>bare section words — projects, writing, experience, contact · tiers engineered, vibed, archived · lowercase mono section lines · metadata inline, separated by ·</code></td></tr>
-      <tr><th scope="row">identity</th><td><code>arno1235 as drawing number · semantic version, bumped on every change</code></td></tr>
-      <tr><th scope="row">folder</th><td><code>projects/engineered/example/ — copy this directory</code></td></tr>
-      <tr><th scope="row">mobile</th><td><code>the same document; tables fold to two columns — date, then everything else</code></td></tr>
-    </tbody>
-  </table>
+    <div class="about">
+      <p>This folder is the template. Duplicate it, drop files in <code>assets/</code>, and edit this HTML. Home lists one row per project; empty tiers stay as headings with no rows.</p>
+      <p>The layout matches the v1.2.0 spec sheet: two typefaces, five greys, hairline rows, no boxes. Delete any block a real project does not need.</p>
+    </div>
 
-  <h2>results</h2>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th width="130">strategy</th>
-        <th width="130">spy</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Total return</td><td><code>+12.4%</code></td><td><small><code>+8.1%</code></small></td></tr>
-      <tr><td>CAGR</td><td><code>6.2%</code></td><td><small><code>4.0%</code></small></td></tr>
-      <tr><td>Sharpe</td><td><code>0.91</code></td><td><small><code>0.74</code></small></td></tr>
-      <tr><td>Max drawdown</td><td><code>−9.3%</code></td><td><small><code>−14.8%</code></small></td></tr>
-      <tr><td>Notes / n/a</td><td><code>dummy</code></td><td><small><code>—</code></small></td></tr>
-    </tbody>
-  </table>
+    <div class="section-line">
+      <h2>system</h2>
+      <span>v1.2.0</span>
+    </div>
+    <dl class="params">
+      <div class="param"><dt>type</dt><dd>Helvetica Neue 400 / 500 for words · Menlo (SF Mono) for metadata, figures, labels</dd></div>
+      <div class="param"><dt>scale</dt><dd>20 · 15 · 14 · 13 · 12 · 11 · 10 px — two families, no display sizes</dd></div>
+      <div class="param"><dt>light</dt><dd>#FFFFFF paper · #000000 ink · #555555 muted · #E5E5E5 hairline · #FAFAFA hover</dd></div>
+      <div class="param"><dt>dark</dt><dd>#111111 paper · #F2F2F2 ink · #9A9A9A muted · #2A2A2A hairline · #1A1A1A hover</dd></div>
+      <div class="param"><dt>rules</dt><dd>one 1 px ink rule under the header; hairlines everywhere else; no boxes, no radius, no shadow</dd></div>
+      <div class="param"><dt>grammar</dt><dd>lowercase mono section lines · header metadata right-aligned · numbering off</dd></div>
+      <div class="param"><dt>identity</dt><dd>arno1235 as drawing number, left · semantic version, right · bumped on every change · 85 × 55 mm card, two-sided</dd></div>
+      <div class="param"><dt>folder</dt><dd>projects/engineered/example/ — copy this directory</dd></div>
+      <div class="param"><dt>mobile</dt><dd>one column · name + dir on one line, blurb and repo beneath · whole row taps</dd></div>
+      <div class="param"><dt>fonts</dt><dd>system only — the site ships 0 KB of type</dd></div>
+    </dl>
 
-  <h2>figures · dummy assets</h2>
-  <table style="table-layout:fixed">
-    <tbody>
-      <tr>
-        <td width="50%"><img src="assets/fig-1.png" alt="Dummy line chart"><br><small>fig. 1 — line, equity-style</small></td>
-        <td width="50%"><img src="assets/fig-2.png" alt="Dummy bar chart"><br><small>fig. 2 — bars, drawdown-style</small></td>
-      </tr>
-      <tr>
-        <td width="50%"><img src="assets/fig-3.png" alt="Dummy grid figure"><br><small>fig. 3 — grid, odd cell</small></td>
-        <td width="50%"></td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="section-line">
+      <h2>results</h2>
+      <span>strategy · spy</span>
+    </div>
+    <ul class="rows">
+      <li class="metric"><span class="k">Total return</span><span class="a">+12.4%</span><span class="b">+8.1%</span></li>
+      <li class="metric"><span class="k">CAGR</span><span class="a">6.2%</span><span class="b">4.0%</span></li>
+      <li class="metric"><span class="k">Sharpe</span><span class="a">0.91</span><span class="b">0.74</span></li>
+      <li class="metric"><span class="k">Max drawdown</span><span class="a">−9.3%</span><span class="b">−14.8%</span></li>
+      <li class="metric"><span class="k">Notes / n/a</span><span class="a">dummy</span><span class="b">—</span></li>
+    </ul>
 
-  <h2>notes</h2>
-  <ul>
-    <li>Replace the title, tag line, and about paragraphs with the project.</li>
-    <li>Swap the dummy figures for files in <code>assets/</code> (jpg, png, svg, pdf).</li>
-    <li>Delete any block this project does not need: results, figures, lists, pre, specimen.</li>
-  </ul>
+    <div class="section-line figures">
+      <h2>figures</h2>
+      <span>dummy assets</span>
+    </div>
+    <div class="figures">
+      <figure>
+        <img src="assets/fig-1.png" alt="Dummy line chart">
+        <figcaption>fig. 1 — line, equity-style</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/fig-2.png" alt="Dummy area chart">
+        <figcaption>fig. 2 — area, drawdown-style</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/fig-3.png" alt="Dummy bar chart">
+        <figcaption>fig. 3 — bars, odd cell</figcaption>
+      </figure>
+    </div>
 
-  <h2>sequence</h2>
-  <ol>
-    <li>Copy this folder to <code>projects/&lt;tier&gt;/&lt;slug&gt;/</code>.</li>
-    <li>Edit <code>index.html</code> in the copy.</li>
-    <li>Add one row to the matching tier table on the home page.</li>
-  </ol>
+    <div class="section-line"><h2>notes</h2></div>
+    <ul class="notes">
+      <li>Replace the title, tag line, and about paragraphs with the project.</li>
+      <li>Swap the dummy figures for files in <code>assets/</code>.</li>
+      <li>Delete any block this project does not need.</li>
+    </ul>
 
-  <h2>stylesheet · the whole thing</h2>
-  <pre>body{margin:0 auto;max-width:880px;padding:48px 24px 36px;box-sizing:border-box;font:14px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;--fg:#000;--bg:#fff;--mute:#555;--line:#e5e5e5;color:var(--fg);background:var(--bg);color-scheme:light}
-body.dark{--fg:#f2f2f2;--bg:#111;--mute:#9a9a9a;--line:#2a2a2a;color-scheme:dark}
-h1{margin:0;font-size:20px;font-weight:500;line-height:1.2;letter-spacing:-.01em}
-h2,th,small,time{font:11px/1.6 ui-monospace,"SF Mono",Menlo,Monaco,monospace;color:var(--mute)}
-h2{margin:44px 0 6px}
-code,pre{font:12px/1.6 ui-monospace,"SF Mono",Menlo,Monaco,monospace}
-pre{margin:0;padding-top:9px;border-top:1px solid var(--line);white-space:pre-wrap}
-table{width:100%;border-collapse:collapse}
-td,th{padding:9px 0;border-top:1px solid var(--line);text-align:left;vertical-align:baseline}
-td+td,th+th{padding-left:14px}
-hr{margin:20px 0;border:0;border-top:1px solid var(--fg)}
-img{max-width:100%;height:auto;box-sizing:border-box;border:1px solid var(--line)}
-b{font-weight:500}
-a{color:inherit}</pre>
+    <div class="section-line"><h2>sequence</h2></div>
+    <ol class="steps">
+      <li>Copy this folder to <code>projects/&lt;tier&gt;/&lt;slug&gt;/</code>.</li>
+      <li>Edit <code>index.html</code> in the copy.</li>
+      <li>Add one row under the matching tier on the home page.</li>
+    </ol>
 
-  <h2>type · one sans, one mono</h2>
-  <table>
-    <tbody>
-      <tr><th scope="row" width="100">h1</th><td>Helvetica Neue 500 · 20 px · the title above</td></tr>
-      <tr><th scope="row">p td</th><td>Helvetica Neue 400 · 14 px · words</td></tr>
-      <tr><th scope="row">b</th><td><b>Helvetica Neue 500 · 14 px · roles, clients</b></td></tr>
-      <tr><th scope="row">h2 th small time</th><td><small>Menlo 11 px · section lines, headers, metadata, dates</small></td></tr>
-      <tr><th scope="row">code pre</th><td><code>Menlo 12 px · values, contact, tokens</code></td></tr>
-    </tbody>
-  </table>
+    <div class="section-line">
+      <h2>tokens</h2>
+      <span class="pre-scroll">scrolls →</span>
+    </div>
+    <pre class="block">--paper   #ffffff  |  #111111
+--ink     #000000  |  #f2f2f2
+--muted   #555555  |  #9a9a9a
+--line    #e5e5e5  |  #2a2a2a
+--hover   #fafafa  |  #1a1a1a
 
-  <h2>palette · four greys</h2>
-  <table>
-    <thead>
-      <tr>
-        <th width="100"></th>
-        <th colspan="2">light</th>
-        <th colspan="2">dark</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><th scope="row">paper</th><td width="25%" bgcolor="#ffffff">&nbsp;</td><td><small>#ffffff</small></td><td width="25%" bgcolor="#111111">&nbsp;</td><td><small>#111111</small></td></tr>
-      <tr><th scope="row">ink</th><td bgcolor="#000000">&nbsp;</td><td><small>#000000</small></td><td bgcolor="#f2f2f2">&nbsp;</td><td><small>#f2f2f2</small></td></tr>
-      <tr><th scope="row">muted</th><td bgcolor="#555555">&nbsp;</td><td><small>#555555</small></td><td bgcolor="#9a9a9a">&nbsp;</td><td><small>#9a9a9a</small></td></tr>
-      <tr><th scope="row">hairline</th><td bgcolor="#e5e5e5">&nbsp;</td><td><small>#e5e5e5</small></td><td bgcolor="#2a2a2a">&nbsp;</td><td><small>#2a2a2a</small></td></tr>
-    </tbody>
-  </table>
+--sans    "Helvetica Neue", Helvetica, Arial, sans-serif
+--mono    ui-monospace, "SF Mono", Menlo, Monaco, monospace
 
-  <hr>
-  <p><small>arno1235-00 · v2.0.0 · arno1235.github.io/projects/engineered/example</small></p>
-  <script src="../../../js/theme.js"></script>
+--rule    1px solid var(--ink)      header
+--hair    1px solid var(--line)     rows, footer
+--measure 60ch                      prose</pre>
+
+    <div class="section-line">
+      <h2>specimen</h2>
+      <span>type · colour · card</span>
+    </div>
+    <div class="specimen">
+      <div class="type-ladder">
+        <div class="t20">Helvetica Neue 500 — 20</div>
+        <div class="t15">Helvetica Neue 400 — 15, prose</div>
+        <div class="t14">400 — 14, muted</div>
+        <div class="t13">400 — 13, descriptions</div>
+        <div class="m12">Menlo 12 — contact, figures</div>
+        <div class="m11">Menlo 11 — dates, repos, header meta</div>
+        <div class="m10">menlo 10 — section lines, footer</div>
+      </div>
+      <div class="swatches">
+        <div><i style="background:#fff"></i>#fff</div>
+        <div><i style="background:#000"></i>#000</div>
+        <div><i style="background:#555"></i>#555</div>
+        <div><i style="background:#e5e5e5"></i>#e5e5e5</div>
+        <div><i style="background:#fafafa"></i>#fafafa</div>
+        <div><i style="background:#111"></i>#111</div>
+        <div><i style="background:#f2f2f2"></i>#f2f2f2</div>
+        <div><i style="background:#9a9a9a"></i>#9a9a9a</div>
+        <div><i style="background:#2a2a2a"></i>#2a2a2a</div>
+        <div><i style="background:#1a1a1a"></i>#1a1a1a</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div>
+        <div class="card">
+          <div class="cn">Arno Van Eetvelde</div>
+          <div class="cr">Software Engineer — AI &amp; Industry</div>
+          <div class="strip"><span>arno1235</span><span>v1.2.0</span></div>
+        </div>
+        <div class="card-cap">card — front, 85 × 55 mm</div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-back">
+            <span class="lab">github</span><span>github.com/arno1235</span>
+            <span class="lab">web</span><span>arno1235.github.io</span>
+            <span class="lab">mail</span><span>arno.ve2000@gmail.com</span>
+            <span class="lab">gsm</span><span>+32 490 11 17 78</span>
+          </div>
+          <div class="strip"><span>arno1235</span><span>v1.2.0</span></div>
+        </div>
+        <div class="card-cap">card — back</div>
+      </div>
+    </div>
+
+    <div class="section-line"><h2>stack</h2></div>
+    <p class="stack">HTML · CSS custom properties · theme toggle</p>
+
+    <footer class="foot">
+      <span>arno1235-00 · v1.2.0</span>
+      <span class="url">arno1235.github.io/projects/engineered/example</span>
+    </footer>
+  </div>
+  <script src="../../../js/site.js"></script>
 </body>
 </html>

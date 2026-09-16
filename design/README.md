@@ -1,1 +1,1 @@
-Source canvases and the v1.2.0 handoff package. Production site matches Portfolio Site v2.dc.html (v2.0.0).
+Source canvases and the v1.2.0 handoff package. The live site follows the v1.2.0 README defaults: indices off, no YYYY-MM column, no intro, no tier notes, no section counters, no selected client work.

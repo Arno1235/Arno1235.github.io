@@ -9,168 +9,133 @@
     (function () {
       try {
         var t = localStorage.getItem("ave-theme");
-        if (t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches) {
-          document.documentElement.classList.add("dark");
-        }
+        var dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
       } catch (e) {}
     })();
   </script>
 </head>
 <body>
-  <h1>Arno Van Eetvelde</h1>
-  <p>Software Engineer — AI &amp; Industry · Coretecs, Belgium<br>
-  <small id="theme" data-prefix="arno1235 · v2.0.0">arno1235 · v2.0.0 · light / dark</small></p>
-  <hr>
-  <p><small><a href="#projects">projects</a> · <a href="#writing">writing</a> · <a href="#experience">experience</a> · <a href="#contact">contact</a></small></p>
-  <p>Industrial software — SCADA, MQTT / UNS, PLC integration — and computer vision / ML. Personal projects below in three tiers; source is public where a repository is listed.</p>
+  <script>
+    if (document.documentElement.classList.contains("dark")) document.body.classList.add("dark");
+  </script>
+  <div class="site" data-site>
+    <p class="meta-line"><span>arno1235 · v1.2.0</span>
+      <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    <header class="header">
+      <div>
+        <h1>Arno Van Eetvelde</h1>
+        <p class="role">Software Engineer — AI &amp; Industry</p>
+      </div>
+      <p class="header-meta">arno1235<br>v1.2.0 · <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    </header>
+    <nav class="nav">
+      <a href="#projects">projects</a>
+      <a href="#writing">writing</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </nav>
 
-  <h2 id="projects">projects · 1 item · 3 tiers · 2026–2026</h2>
-  <table>
-    <tbody>
-      <tr>
-        <th colspan="2">engineered · 1</th>
-        <th colspan="2" align="right">written by hand. tested, documented, maintained.</th>
-      </tr>
-      <tr>
-        <td width="130"><a href="projects/engineered/example/">example</a></td>
-        <td width="84"><small>example</small></td>
-        <td>A copy-me project page: headings, lists, tables, figures, and pre.</td>
-        <td><small>—</small></td>
-      </tr>
-    </tbody>
-    <tbody>
-      <tr>
-        <th colspan="2">vibed · 0</th>
-        <th colspan="2" align="right">spec by me, code by coding agents. reviewed, not hand-written.</th>
-      </tr>
-    </tbody>
-    <tbody>
-      <tr>
-        <th colspan="2">archived · 0</th>
-        <th colspan="2" align="right">discontinued, unfinished, or one-evening experiments.</th>
-      </tr>
-    </tbody>
-  </table>
+    <h2 id="projects" class="section section-projects">projects</h2>
+    <h3 class="tier">engineered</h3>
+    <ul class="rows">
+      <li class="project">
+        <div class="inner">
+          <div class="line1">
+            <a class="name" href="projects/engineered/example/">example</a>
+            <span class="dir">example</span>
+          </div>
+          <span class="blurb">A copy-me project page: headings, lists, figures, and pre.</span>
+          <span class="repo">—</span>
+        </div>
+      </li>
+    </ul>
+    <h3 class="tier">vibed</h3>
+    <ul class="rows"></ul>
+    <h3 class="tier">archived</h3>
+    <ul class="rows"></ul>
 
-  <h2 id="writing">writing · 3 files · pdf</h2>
-  <table>
-    <tbody>
-      <tr>
-        <td><a href="files/van-eetvelde-technoform-accelerator-inline-quality-control-blogpost.pdf" target="_blank" rel="noopener">In-line quality control for plastic extrusion</a></td>
-        <td width="130"><small>blog post</small></td>
-      </tr>
-      <tr>
-        <td><a href="files/van-eetvelde-sam-lora-electrical-cabinet-segmentation-whitepaper.pdf" target="_blank" rel="noopener">LoRA fine-tuning of SAM for electrical-cabinet segmentation</a></td>
-        <td width="130"><small>whitepaper</small></td>
-      </tr>
-      <tr>
-        <td><a href="files/van-eetvelde-end-to-end-food-detection-thesis.pdf" target="_blank" rel="noopener">End-to-end food detection on a compartmentalized plate</a></td>
-        <td width="130"><small>master’s thesis</small></td>
-      </tr>
-    </tbody>
-  </table>
+    <h2 id="writing" class="section">writing</h2>
+    <ul class="rows">
+      <li>
+        <a class="writing" href="files/van-eetvelde-technoform-accelerator-inline-quality-control-blogpost.pdf" target="_blank" rel="noopener">
+          <span class="title">In-line quality control for plastic extrusion</span>
+          <span class="meta">
+            <span class="kind">blog post</span>
+            <span class="file">van-eetvelde-technoform-accelerator-inline-quality-control-blogpost.pdf</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="writing" href="files/van-eetvelde-sam-lora-electrical-cabinet-segmentation-whitepaper.pdf" target="_blank" rel="noopener">
+          <span class="title">LoRA fine-tuning of SAM for electrical-cabinet segmentation</span>
+          <span class="meta">
+            <span class="kind">whitepaper</span>
+            <span class="file">van-eetvelde-sam-lora-electrical-cabinet-segmentation-whitepaper.pdf</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="writing" href="files/van-eetvelde-end-to-end-food-detection-thesis.pdf" target="_blank" rel="noopener">
+          <span class="title">End-to-end food detection on a compartmentalized plate</span>
+          <span class="meta">
+            <span class="kind">master’s thesis</span>
+            <span class="file">van-eetvelde-end-to-end-food-detection-thesis.pdf</span>
+          </span>
+        </a>
+      </li>
+    </ul>
 
-  <h2 id="experience">experience</h2>
-  <table>
-    <tbody>
-      <tr>
-        <td width="100"><small>2023-09 – now</small></td>
-        <td><b>AI &amp; Software Engineer</b></td>
-        <td>Coretecs, Belgium</td>
-      </tr>
-      <tr>
-        <td width="100"><small>2022 – 2023</small></td>
-        <td><b>Advanced Master of Artificial Intelligence</b></td>
-        <td>KU Leuven</td>
-      </tr>
-      <tr>
-        <td width="100"><small>2021 – 2022</small></td>
-        <td><b>Master of Industrial Engineering</b></td>
-        <td>KU Leuven</td>
-      </tr>
-      <tr>
-        <td width="100"><small>2018 – 2021</small></td>
-        <td><b>Bachelor of Industrial Engineering</b></td>
-        <td>KU Leuven</td>
-      </tr>
-    </tbody>
-  </table>
-  <table>
-    <tbody>
-      <tr>
-        <th colspan="3">selected client work · coretecs</th>
-      </tr>
-      <tr>
-        <td width="100"><time>2025-06</time></td>
-        <td width="130"><b>Nitto</b></td>
-        <td>Unified Namespace exploration and setup</td>
-      </tr>
-      <tr>
-        <td width="100"><time>2025-03</time></td>
-        <td width="130"><b>Fluvius</b></td>
-        <td>High-availability PostgreSQL for MQTT device authentication and authorization</td>
-      </tr>
-      <tr>
-        <td width="100"><time>2024-12</time></td>
-        <td width="130"><b>IMEC</b></td>
-        <td>Emergency-stop circuit integration into Yokogawa CI Server SCADA via OPC UA</td>
-      </tr>
-      <tr>
-        <td width="100"><time>2024-11</time></td>
-        <td width="130"><b>Technoform</b></td>
-        <td>Real-time laser label detection on extruded strips: line-scan camera, YOLO, OCR</td>
-      </tr>
-      <tr>
-        <td width="100"><time>2024-08</time></td>
-        <td width="130"><b>Technoform</b></td>
-        <td>In-line computer-vision quality control for surface anomalies on plastic extrusion</td>
-      </tr>
-      <tr>
-        <td width="100"><time>2024-06</time></td>
-        <td width="130"><b>Coretecs R&amp;D</b></td>
-        <td>LoRA fine-tuning of SAM for segmenting electrical-cabinet components</td>
-      </tr>
-      <tr>
-        <td width="100"><time>2024-04</time></td>
-        <td width="130"><b>IMEC</b></td>
-        <td>SCADA and Power BI integration for sensors off a PILZ safety PLC</td>
-      </tr>
-      <tr>
-        <td width="100"><time>2023-12</time></td>
-        <td width="130"><b>Flanders Make</b></td>
-        <td>Dataset generation, YOLO training, anomaly-detection framework testing</td>
-      </tr>
-      <tr>
-        <td width="100"><time>2023-10</time></td>
-        <td width="130"><b>IMEC</b></td>
-        <td>SIFT-MS gas measurement integration into Yokogawa CI Server SCADA</td>
-      </tr>
-    </tbody>
-  </table>
+    <h2 id="experience" class="section">experience</h2>
+    <ul class="rows">
+      <li class="experience">
+        <span class="period">2023-09 – now</span>
+        <span class="job-block">
+          <span class="job">AI &amp; Software Engineer</span>
+          <span class="org">Coretecs, Belgium</span>
+        </span>
+      </li>
+      <li class="experience">
+        <span class="period">2022 – 2023</span>
+        <span class="job-block">
+          <span class="job">Advanced Master of Artificial Intelligence</span>
+          <span class="org">KU Leuven</span>
+        </span>
+      </li>
+      <li class="experience">
+        <span class="period">2021 – 2022</span>
+        <span class="job-block">
+          <span class="job">Master of Industrial Engineering</span>
+          <span class="org">KU Leuven</span>
+        </span>
+      </li>
+      <li class="experience">
+        <span class="period">2018 – 2021</span>
+        <span class="job-block">
+          <span class="job">Bachelor of Industrial Engineering</span>
+          <span class="org">KU Leuven</span>
+        </span>
+      </li>
+    </ul>
 
-  <h2 id="contact">contact</h2>
-  <table>
-    <tbody>
-      <tr>
-        <th scope="row" width="64">github</th>
-        <td><a href="https://github.com/arno1235" target="_blank" rel="noopener"><code>github.com/arno1235</code></a></td>
-      </tr>
-      <tr>
-        <th scope="row">web</th>
-        <td><a href="https://arno1235.github.io" target="_blank" rel="noopener"><code>arno1235.github.io</code></a></td>
-      </tr>
-      <tr>
-        <th scope="row">mail</th>
-        <td><a href="mailto:arno.ve2000@gmail.com"><code>arno.ve2000@gmail.com</code></a></td>
-      </tr>
-      <tr>
-        <th scope="row">gsm</th>
-        <td><a href="tel:+32490111778"><code>+32 490 11 17 78</code></a></td>
-      </tr>
-    </tbody>
-  </table>
-  <hr>
-  <p><small>arno1235 · v2.0.0 · arno1235.github.io</small></p>
-  <script src="js/theme.js"></script>
+    <h2 id="contact" class="section">contact</h2>
+    <dl class="contact">
+      <dt>github</dt>
+      <dd><a href="https://github.com/arno1235" target="_blank" rel="noopener">github.com/arno1235</a></dd>
+      <dt>web</dt>
+      <dd><a href="https://arno1235.github.io" target="_blank" rel="noopener">arno1235.github.io</a></dd>
+      <dt>mail</dt>
+      <dd><a href="mailto:arno.ve2000@gmail.com">arno.ve2000@gmail.com</a></dd>
+      <dt>gsm</dt>
+      <dd><a href="tel:+32490111778">+32 490 11 17 78</a></dd>
+    </dl>
+
+    <footer class="foot">
+      <span>arno1235 · v1.2.0</span>
+      <span>arno1235.github.io</span>
+    </footer>
+  </div>
+  <script src="js/site.js"></script>
 </body>
 </html>
