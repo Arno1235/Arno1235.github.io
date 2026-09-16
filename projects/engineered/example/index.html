@@ -27,7 +27,7 @@
       <div>
         <p class="crumb"><a href="../../../">arno van eetvelde</a> / projects / example</p>
         <h1>example</h1>
-        <p class="tag">A copy-me project page: headings, lists, figures, and pre</p>
+        <p class="tag">A copy-me project page: headings, lists, figures, pre, code, and quotes</p>
       </div>
       <p class="header-meta">arno1235-00<br>v1.2.0 · <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
     </header>
@@ -95,7 +95,7 @@
     <ul class="notes">
       <li>Replace the title, tag line, and about paragraphs with the project.</li>
       <li>Swap the dummy figures for files in <code>assets/</code>.</li>
-      <li>Delete any block this project does not need.</li>
+      <li>Delete any block this project does not need — including the dummy snippet and quotes.</li>
     </ul>
 
     <div class="section-line"><h2>sequence</h2></div>
@@ -104,6 +104,37 @@
       <li>Edit <code>index.html</code> in the copy.</li>
       <li>Add one row under the matching tier on the home page.</li>
     </ol>
+
+    <div class="section-line">
+      <h2>snippet</h2>
+      <span class="pre-scroll">scrolls →</span>
+    </div>
+    <pre class="block"><code>from paho.mqtt.client import Client
+
+def on_connect(client, _userdata, _flags, rc):
+    if rc != 0:
+        raise RuntimeError("mqtt connect failed")
+    client.subscribe("spBv1.0/Plant/#")
+
+client = Client(client_id="edge-01")
+client.on_connect = on_connect
+client.connect("mqtt.plant.local", 1883, 60)</code></pre>
+
+    <div class="section-line"><h2>quotes</h2></div>
+    <blockquote class="quote">
+      <p>Placeholder LinkedIn quote — swap this paragraph for a recommendation or post excerpt, then point the link at the real URL.</p>
+      <footer>
+        LinkedIn · dummy reference ·
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">linkedin.com</a>
+      </footer>
+    </blockquote>
+    <blockquote class="quote">
+      <p>Placeholder X post — swap this paragraph for the tweet text you want to cite, then point the link at the status URL.</p>
+      <footer>
+        X · dummy reference ·
+        <a href="https://x.com/" target="_blank" rel="noopener">x.com</a>
+      </footer>
+    </blockquote>
 
     <div class="section-line">
       <h2>tokens</h2>

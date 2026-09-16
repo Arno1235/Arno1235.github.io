@@ -351,6 +351,37 @@ pre.block {
   white-space: pre-wrap;
 }
 
+pre.block code {
+  font: inherit;
+  color: inherit;
+  background: none;
+}
+
+.quote {
+  margin: 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+  text-wrap: pretty;
+}
+
+.quote p { margin: 0; }
+
+.quote footer {
+  display: block;
+  margin-top: 8px;
+  font: 11px/1.5 var(--mono);
+  font-style: normal;
+  color: var(--mute);
+}
+
+.quote a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.quote a:hover { text-decoration: underline; }
+
 .notes,
 .steps {
   margin: 0;
@@ -639,6 +670,12 @@ pre.block {
     font: 10.5px/1.6 var(--mono);
     white-space: pre;
     overflow-x: auto;
+  }
+
+  .quote a {
+    display: inline-block;
+    padding: 14px 0;
+    margin: -14px 0;
   }
 
   .specimen { display: block; border-top: 0; }
