@@ -41,8 +41,20 @@
 
     <div class="about">
       <p>Two tools that share one scraper of openinsider.com. A Telegram notifier polls every few hours and alerts when three or more executives at a company each buy or sell at least $200k. A Streamlit backtester replays those signals against configurable strategy rules and compares equity to the S&amp;P 500.</p>
-      <p>Alerts are deduplicated for 24 hours. The figures below are the default cluster-buy rule from 2 January 2023 to 9 September 2026 against buy-and-hold SPY: three or more executives, each at least $200k, 20-day hold, $100k equal-weight.</p>
+      <p>Alerts are deduplicated for 24 hours. The backtest below runs the default cluster-buy rule from January 2023 to today against buy-and-hold SPY.</p>
     </div>
+
+    <div class="section-line">
+      <h2>backtest</h2>
+      <span>2023-01-02 → 2026-09-09</span>
+    </div>
+    <dl class="params">
+      <div class="param"><dt>signal</dt><dd>cluster buy · 3+ executives · ≥ $200k each · 30-day window</dd></div>
+      <div class="param"><dt>hold</dt><dd>20 trading days</dd></div>
+      <div class="param"><dt>capital</dt><dd>$100k · equal-weight · max 10 positions</dd></div>
+      <div class="param"><dt>fill</dt><dd>next-day open</dd></div>
+      <div class="param"><dt>benchmark</dt><dd>SPY, buy and hold</dd></div>
+    </dl>
 
     <div class="section-line">
       <h2>results</h2>
@@ -60,7 +72,7 @@
 
     <div class="section-line figures">
       <h2>figures</h2>
-      <span>streamlit backtester</span>
+      <span>exported from the streamlit backtester</span>
     </div>
     <div class="figures">
       <figure>
@@ -80,6 +92,20 @@
         <figcaption>fig. 4 — drawdown</figcaption>
       </figure>
     </div>
+
+    <div class="section-line">
+      <h2>sample alert</h2>
+      <span class="pre-scroll">scrolls →</span>
+    </div>
+    <pre class="block"><code>Insider Cluster Alert — Apple Inc. (AAPL) — 4 executives
+  2024-03-15  Tim Cook (CEO)         BUY  $2.45M
+  2024-03-14  Luca Maestri (CFO)     BUY  $890,000
+  2024-03-12  Jeff Williams (COO)    BUY  $1.20M
+  2024-03-11  Kate Adams (GC)        BUY  $320,000
+  total $4.86M · deduplicated 24h</code></pre>
+
+    <div class="section-line"><h2>stack</h2></div>
+    <p class="stack">Python · Streamlit · Telegram Bot API</p>
 
     <footer class="foot">
       <span>arno1235-05 · v1.2.0</span>
