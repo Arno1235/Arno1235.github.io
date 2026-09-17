@@ -1,5 +1,141 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arno Van Eetvelde</title>
+  <link rel="stylesheet" href="css/site.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("ave-theme");
+        var dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <script>
+    if (document.documentElement.classList.contains("dark")) document.body.classList.add("dark");
+  </script>
+  <div class="site" data-site>
+    <p class="meta-line"><span>arno1235 · v1.2.0</span>
+      <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    <header class="header">
+      <div>
+        <h1>Arno Van Eetvelde</h1>
+        <p class="role">Software Engineer — AI &amp; Industry</p>
+      </div>
+      <p class="header-meta">arno1235<br>v1.2.0 · <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    </header>
+    <nav class="nav">
+      <a href="#projects">projects</a>
+      <a href="#writing">writing</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </nav>
 
----
+    <h2 id="projects" class="section section-projects">projects</h2>
+    <h3 class="tier">engineered</h3>
+    <ul class="rows">
+      <li class="project">
+        <div class="inner">
+          <div class="line1">
+            <a class="name" href="projects/engineered/example/">example</a>
+            <span class="dir">example</span>
+          </div>
+          <span class="blurb">A copy-me project page: headings, lists, figures, pre, code, and quotes.</span>
+          <span class="repo">—</span>
+        </div>
+      </li>
+    </ul>
+    <h3 class="tier">vibed</h3>
+    <ul class="rows"></ul>
+    <h3 class="tier">archived</h3>
+    <ul class="rows"></ul>
 
-<a href="projects/projects.html">projects</a>
+    <h2 id="writing" class="section">writing</h2>
+    <ul class="rows">
+      <li>
+        <a class="writing" href="files/van-eetvelde-technoform-accelerator-inline-quality-control-blogpost.pdf" target="_blank" rel="noopener">
+          <span class="title">In-line quality control for plastic extrusion</span>
+          <span class="meta">
+            <span class="kind">blog post</span>
+            <span class="file">van-eetvelde-technoform-accelerator-inline-quality-control-blogpost.pdf</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="writing" href="files/van-eetvelde-sam-lora-electrical-cabinet-segmentation-whitepaper.pdf" target="_blank" rel="noopener">
+          <span class="title">LoRA fine-tuning of SAM for electrical-cabinet segmentation</span>
+          <span class="meta">
+            <span class="kind">whitepaper</span>
+            <span class="file">van-eetvelde-sam-lora-electrical-cabinet-segmentation-whitepaper.pdf</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="writing" href="files/van-eetvelde-end-to-end-food-detection-thesis.pdf" target="_blank" rel="noopener">
+          <span class="title">End-to-end food detection on a compartmentalized plate</span>
+          <span class="meta">
+            <span class="kind">master’s thesis</span>
+            <span class="file">van-eetvelde-end-to-end-food-detection-thesis.pdf</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <h2 id="experience" class="section">experience</h2>
+    <ul class="rows">
+      <li class="experience">
+        <span class="period">2023-09 – now</span>
+        <span class="job-block">
+          <span class="job">AI &amp; Software Engineer</span>
+          <span class="org">Coretecs, Belgium</span>
+        </span>
+      </li>
+      <li class="experience">
+        <span class="period">2022 – 2023</span>
+        <span class="job-block">
+          <span class="job">Advanced Master of Artificial Intelligence</span>
+          <span class="org">KU Leuven</span>
+        </span>
+      </li>
+      <li class="experience">
+        <span class="period">2021 – 2022</span>
+        <span class="job-block">
+          <span class="job">Master of Industrial Engineering</span>
+          <span class="org">KU Leuven</span>
+        </span>
+      </li>
+      <li class="experience">
+        <span class="period">2018 – 2021</span>
+        <span class="job-block">
+          <span class="job">Bachelor of Industrial Engineering</span>
+          <span class="org">KU Leuven</span>
+        </span>
+      </li>
+    </ul>
+
+    <h2 id="contact" class="section">contact</h2>
+    <dl class="contact">
+      <dt>github</dt>
+      <dd><a href="https://github.com/arno1235" target="_blank" rel="noopener">github.com/arno1235</a></dd>
+      <dt>web</dt>
+      <dd><a href="https://arno1235.github.io" target="_blank" rel="noopener">arno1235.github.io</a></dd>
+      <dt>mail</dt>
+      <dd><a href="mailto:arno.ve2000@gmail.com">arno.ve2000@gmail.com</a></dd>
+      <dt>gsm</dt>
+      <dd><a href="tel:+32490111778">+32 490 11 17 78</a></dd>
+    </dl>
+
+    <footer class="foot">
+      <span>arno1235 · v1.2.0</span>
+      <span>arno1235.github.io</span>
+    </footer>
+  </div>
+  <script src="js/site.js"></script>
+</body>
+</html>

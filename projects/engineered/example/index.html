@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>example — Arno Van Eetvelde</title>
+  <link rel="stylesheet" href="../../../css/site.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("ave-theme");
+        var dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <script>
+    if (document.documentElement.classList.contains("dark")) document.body.classList.add("dark");
+  </script>
+  <div class="site project-page" data-site>
+    <p class="meta-line"><span>arno1235-00 · v1.2.0</span>
+      <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    <header class="header">
+      <div>
+        <p class="crumb"><a href="../../../">arno van eetvelde</a> / projects / example</p>
+        <h1>example</h1>
+        <p class="tag">A copy-me project page: headings, lists, figures, pre, code, and quotes</p>
+      </div>
+      <p class="header-meta">arno1235-00<br>v1.2.0 · <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    </header>
+    <nav class="nav project-nav" data-meta="private · engineered · example">
+      <a href="../../../">← projects</a>
+      <span>private</span>
+      <span>engineered</span>
+      <span>example</span>
+    </nav>
+
+    <div class="about">
+      <p>This folder is the template. Duplicate it, drop files in <code>assets/</code>, and edit this HTML. Home lists one row per project; empty tiers stay as headings with no rows.</p>
+      <p>The layout matches the v1.2.0 spec sheet: two typefaces, five greys, hairline rows, no boxes. Delete any block a real project does not need.</p>
+    </div>
+
+    <div class="section-line">
+      <h2>system</h2>
+      <span>v1.2.0</span>
+    </div>
+    <dl class="params">
+      <div class="param"><dt>type</dt><dd>Helvetica Neue 400 / 500 for words · Menlo (SF Mono) for metadata, figures, labels</dd></div>
+      <div class="param"><dt>scale</dt><dd>20 · 15 · 14 · 13 · 12 · 11 · 10 px — two families, no display sizes</dd></div>
+      <div class="param"><dt>light</dt><dd>#FFFFFF paper · #000000 ink · #555555 muted · #E5E5E5 hairline · #FAFAFA hover</dd></div>
+      <div class="param"><dt>dark</dt><dd>#111111 paper · #F2F2F2 ink · #9A9A9A muted · #2A2A2A hairline · #1A1A1A hover</dd></div>
+      <div class="param"><dt>rules</dt><dd>one 1 px ink rule under the header; hairlines everywhere else; no boxes, no radius, no shadow</dd></div>
+      <div class="param"><dt>grammar</dt><dd>lowercase mono section lines · header metadata right-aligned · numbering off</dd></div>
+      <div class="param"><dt>identity</dt><dd>arno1235 as drawing number, left · semantic version, right · bumped on every change · 85 × 55 mm card, two-sided</dd></div>
+      <div class="param"><dt>folder</dt><dd>projects/engineered/example/ — copy this directory</dd></div>
+      <div class="param"><dt>mobile</dt><dd>one column · name + dir on one line, blurb and repo beneath · whole row taps</dd></div>
+      <div class="param"><dt>fonts</dt><dd>system only — the site ships 0 KB of type</dd></div>
+    </dl>
+
+    <div class="section-line">
+      <h2>results</h2>
+      <span>strategy · spy</span>
+    </div>
+    <ul class="rows">
+      <li class="metric"><span class="k">Total return</span><span class="a">+12.4%</span><span class="b">+8.1%</span></li>
+      <li class="metric"><span class="k">CAGR</span><span class="a">6.2%</span><span class="b">4.0%</span></li>
+      <li class="metric"><span class="k">Sharpe</span><span class="a">0.91</span><span class="b">0.74</span></li>
+      <li class="metric"><span class="k">Max drawdown</span><span class="a">−9.3%</span><span class="b">−14.8%</span></li>
+      <li class="metric"><span class="k">Notes / n/a</span><span class="a">dummy</span><span class="b">—</span></li>
+    </ul>
+
+    <div class="section-line figures">
+      <h2>figures</h2>
+      <span>dummy assets</span>
+    </div>
+    <div class="figures">
+      <figure>
+        <img src="assets/fig-1.png" alt="Dummy line chart">
+        <figcaption>fig. 1 — line, equity-style</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/fig-2.png" alt="Dummy area chart">
+        <figcaption>fig. 2 — area, drawdown-style</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/fig-3.png" alt="Dummy bar chart">
+        <figcaption>fig. 3 — bars, odd cell</figcaption>
+      </figure>
+    </div>
+
+    <div class="section-line"><h2>notes</h2></div>
+    <ul class="notes">
+      <li>Replace the title, tag line, and about paragraphs with the project.</li>
+      <li>Swap the dummy figures for files in <code>assets/</code>.</li>
+      <li>Delete any block this project does not need — including the dummy snippet and quotes.</li>
+    </ul>
+
+    <div class="section-line"><h2>sequence</h2></div>
+    <ol class="steps">
+      <li>Copy this folder to <code>projects/&lt;tier&gt;/&lt;slug&gt;/</code>.</li>
+      <li>Edit <code>index.html</code> in the copy.</li>
+      <li>Add one row under the matching tier on the home page.</li>
+    </ol>
+
+    <div class="section-line">
+      <h2>snippet</h2>
+      <span class="pre-scroll">scrolls →</span>
+    </div>
+    <pre class="block"><code>from paho.mqtt.client import Client
+
+def on_connect(client, _userdata, _flags, rc):
+    if rc != 0:
+        raise RuntimeError("mqtt connect failed")
+    client.subscribe("spBv1.0/Plant/#")
+
+client = Client(client_id="edge-01")
+client.on_connect = on_connect
+client.connect("mqtt.plant.local", 1883, 60)</code></pre>
+
+    <div class="section-line"><h2>quotes</h2></div>
+    <blockquote class="quote">
+      <p>Placeholder LinkedIn quote — swap this paragraph for a recommendation or post excerpt, then point the link at the real URL.</p>
+      <footer>
+        LinkedIn · dummy reference ·
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">linkedin.com</a>
+      </footer>
+    </blockquote>
+    <blockquote class="quote">
+      <p>Placeholder X post — swap this paragraph for the tweet text you want to cite, then point the link at the status URL.</p>
+      <footer>
+        X · dummy reference ·
+        <a href="https://x.com/" target="_blank" rel="noopener">x.com</a>
+      </footer>
+    </blockquote>
+
+    <div class="section-line">
+      <h2>tokens</h2>
+      <span class="pre-scroll">scrolls →</span>
+    </div>
+    <pre class="block">--paper   #ffffff  |  #111111
+--ink     #000000  |  #f2f2f2
+--muted   #555555  |  #9a9a9a
+--line    #e5e5e5  |  #2a2a2a
+--hover   #fafafa  |  #1a1a1a
+
+--sans    "Helvetica Neue", Helvetica, Arial, sans-serif
+--mono    ui-monospace, "SF Mono", Menlo, Monaco, monospace
+
+--rule    1px solid var(--ink)      header
+--hair    1px solid var(--line)     rows, footer
+--measure 60ch                      prose</pre>
+
+    <div class="section-line">
+      <h2>specimen</h2>
+      <span>type · colour · card</span>
+    </div>
+    <div class="specimen">
+      <div class="type-ladder">
+        <div class="t20">Helvetica Neue 500 — 20</div>
+        <div class="t15">Helvetica Neue 400 — 15, prose</div>
+        <div class="t14">400 — 14, muted</div>
+        <div class="t13">400 — 13, descriptions</div>
+        <div class="m12">Menlo 12 — contact, figures</div>
+        <div class="m11">Menlo 11 — dates, repos, header meta</div>
+        <div class="m10">menlo 10 — section lines, footer</div>
+      </div>
+      <div class="swatches">
+        <div><i style="background:#fff"></i>#fff</div>
+        <div><i style="background:#000"></i>#000</div>
+        <div><i style="background:#555"></i>#555</div>
+        <div><i style="background:#e5e5e5"></i>#e5e5e5</div>
+        <div><i style="background:#fafafa"></i>#fafafa</div>
+        <div><i style="background:#111"></i>#111</div>
+        <div><i style="background:#f2f2f2"></i>#f2f2f2</div>
+        <div><i style="background:#9a9a9a"></i>#9a9a9a</div>
+        <div><i style="background:#2a2a2a"></i>#2a2a2a</div>
+        <div><i style="background:#1a1a1a"></i>#1a1a1a</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div>
+        <div class="card">
+          <div class="cn">Arno Van Eetvelde</div>
+          <div class="cr">Software Engineer — AI &amp; Industry</div>
+          <div class="strip"><span>arno1235</span><span>v1.2.0</span></div>
+        </div>
+        <div class="card-cap">card — front, 85 × 55 mm</div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-back">
+            <span class="lab">github</span><span>github.com/arno1235</span>
+            <span class="lab">web</span><span>arno1235.github.io</span>
+            <span class="lab">mail</span><span>arno.ve2000@gmail.com</span>
+            <span class="lab">gsm</span><span>+32 490 11 17 78</span>
+          </div>
+          <div class="strip"><span>arno1235</span><span>v1.2.0</span></div>
+        </div>
+        <div class="card-cap">card — back</div>
+      </div>
+    </div>
+
+    <div class="section-line"><h2>stack</h2></div>
+    <p class="stack">HTML · CSS custom properties · theme toggle</p>
+
+    <footer class="foot">
+      <span>arno1235-00 · v1.2.0</span>
+      <span class="url">arno1235.github.io/projects/engineered/example</span>
+    </footer>
+  </div>
+  <script src="../../../js/site.js"></script>
+</body>
+</html>
