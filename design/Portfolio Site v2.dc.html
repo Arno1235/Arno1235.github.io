@@ -243,9 +243,9 @@ class Component extends DCLogic {
     { date: '2023-10', client: 'IMEC', subject: 'SIFT-MS gas measurement integration into Yokogawa CI Server SCADA' }
   ];
   writing = [
-    { date: '2024-08', title: 'In-line quality control for plastic extrusion', kind: 'blog post', file: 'van-eetvelde-technoform-accelerator-inline-quality-control-blogpost.pdf' },
-    { date: '2024-06', title: 'LoRA fine-tuning of SAM for electrical-cabinet segmentation', kind: 'whitepaper', file: 'van-eetvelde-sam-lora-electrical-cabinet-segmentation-whitepaper.pdf' },
-    { date: '2022-06', title: 'End-to-end food detection on a compartmentalized plate', kind: 'master’s thesis', file: 'van-eetvelde-end-to-end-food-detection-thesis.pdf' }
+    { date: '2024-08', title: 'In-line quality control for plastic extrusion', kind: 'blog post', file: 'technoform-accelerator-inline-quality-control-blogpost.pdf' },
+    { date: '2024-06', title: 'LoRA fine-tuning of SAM for electrical-cabinet segmentation', kind: 'whitepaper', file: 'sam-lora-electrical-cabinet-segmentation-whitepaper.pdf' },
+    { date: '2022-06', title: 'End-to-end food detection on a compartmentalized plate', kind: 'master’s thesis', file: 'end-to-end-food-detection-thesis.pdf' }
   ].map(w => ({ ...w, url: 'https://arno1235.github.io/files/' + w.file }));
   componentDidMount() {
     let stored = null, css = null;
