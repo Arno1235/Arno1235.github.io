@@ -2,6 +2,16 @@
 
 Static HTML. Open `index.html`. No build, no packages.
 
+## Screenshots
+
+![Home, light](screenshots/home-light.png)
+
+![Home, dark](screenshots/home-dark.png)
+
+![OpenInsider](screenshots/openinsider.png)
+
+![example](screenshots/example.png)
+
 ## Add a project
 
 1. Copy `projects/engineered/example/` to `projects/<tier>/<slug>/`.
