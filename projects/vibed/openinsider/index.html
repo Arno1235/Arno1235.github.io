@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenInsider — Arno Van Eetvelde</title>
+  <link rel="stylesheet" href="../../../css/site.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("ave-theme");
+        var dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <script>
+    if (document.documentElement.classList.contains("dark")) document.body.classList.add("dark");
+  </script>
+  <div class="site project-page" data-site>
+    <p class="meta-line"><span>arno1235-05 · v1.2.0</span>
+      <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    <header class="header">
+      <div>
+        <p class="crumb"><a href="../../../">arno van eetvelde</a> / projects / markets</p>
+        <h1>OpenInsider</h1>
+        <p class="tag">Telegram alerts and a Streamlit backtester for clustered insider trades</p>
+      </div>
+      <p class="header-meta">arno1235-05<br>v1.2.0 · <span data-theme-toggle><span>light</span> / <button type="button" data-set="dark">dark</button></span></p>
+    </header>
+    <nav class="nav project-nav" data-meta="public · vibed · markets">
+      <a href="../../../">← projects</a>
+      <span class="source">source <a href="https://github.com/Arno1235/openinsider_notifier" target="_blank" rel="noopener">github.com/Arno1235/openinsider_notifier</a></span>
+      <span>public</span>
+      <span>vibed</span>
+      <span>markets</span>
+    </nav>
+
+    <div class="about">
+      <p>Two tools that share one scraper of openinsider.com. A Telegram notifier polls every few hours and alerts when three or more executives at a company each buy or sell at least $200k. A Streamlit backtester replays those signals against configurable strategy rules and compares equity to the S&amp;P 500.</p>
+      <p>Alerts are deduplicated for 24 hours. The figures below are the default cluster-buy rule from 2 January 2023 to 9 September 2026 against buy-and-hold SPY: three or more executives, each at least $200k, 20-day hold, $100k equal-weight.</p>
+    </div>
+
+    <div class="section-line">
+      <h2>results</h2>
+      <span>strategy · spy</span>
+    </div>
+    <ul class="rows">
+      <li class="metric"><span class="k">Total return</span><span class="a">+90.9%</span><span class="b">+100.2%</span></li>
+      <li class="metric"><span class="k">CAGR</span><span class="a">19.2%</span><span class="b">20.7%</span></li>
+      <li class="metric"><span class="k">Sharpe</span><span class="a">0.81</span><span class="b">1.20</span></li>
+      <li class="metric"><span class="k">Max drawdown</span><span class="a">−31.7%</span><span class="b">−19.0%</span></li>
+      <li class="metric"><span class="k">Alpha (annual)</span><span class="a">+9.6%</span><span class="b">—</span></li>
+      <li class="metric"><span class="k">Beta vs SPY</span><span class="a">0.53</span><span class="b">1.00</span></li>
+      <li class="metric"><span class="k">Trades / win rate</span><span class="a">277 / 52.4%</span><span class="b">—</span></li>
+    </ul>
+
+    <div class="section-line figures">
+      <h2>figures</h2>
+      <span>streamlit backtester</span>
+    </div>
+    <div class="figures">
+      <figure>
+        <img src="assets/fig-1-landing.png" alt="OpenInsider Backtester landing page with cluster-buy settings">
+        <figcaption>fig. 1 — landing, cluster-buy settings</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/fig-2-overview.png" alt="Overview KPIs compared with SPY">
+        <figcaption>fig. 2 — overview KPIs vs spy</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/fig-3-equity.png" alt="Equity curve versus SPY with exposure">
+        <figcaption>fig. 3 — equity vs spy, exposure</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/fig-4-drawdown.png" alt="Drawdown underwater plot versus SPY">
+        <figcaption>fig. 4 — drawdown</figcaption>
+      </figure>
+    </div>
+
+    <footer class="foot">
+      <span>arno1235-05 · v1.2.0</span>
+      <span class="url">arno1235.github.io/projects/vibed/openinsider</span>
+    </footer>
+  </div>
+  <script src="../../../js/site.js"></script>
+</body>
+</html>

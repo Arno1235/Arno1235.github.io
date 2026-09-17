@@ -137,6 +137,12 @@ a { color: var(--fg); }
 
 .nav span { color: var(--mute); }
 
+.nav .source a {
+  color: var(--fg);
+}
+
+.nav .source a:hover { text-decoration: underline; }
+
 .section {
   margin: 44px 0 6px;
   font: 10px/1 var(--mono);
@@ -580,6 +586,19 @@ pre.block code {
 
   .project-nav::after {
     content: attr(data-meta);
+  }
+
+  .project-nav .source {
+    display: block;
+    flex: 1 0 100%;
+    margin-top: 6px;
+    overflow-wrap: anywhere;
+  }
+
+  .project-nav .source a {
+    display: inline-block;
+    padding: 14px 0;
+    margin: -14px 0;
   }
 
   .project {
