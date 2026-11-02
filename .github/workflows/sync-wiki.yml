@@ -1,0 +1,22 @@
+name: Sync wiki
+on:
+  gollum:            # fires on every wiki edit
+  workflow_dispatch: # manual button in the Actions tab
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy wiki into /wiki
+        run: |
+          git clone --depth 1 https://github.com/${{ github.repository }}.wiki.git /tmp/wiki
+          mkdir -p wiki
+          rsync -a --delete --exclude .git /tmp/wiki/ wiki/
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add wiki
+          git diff --cached --quiet || (git commit -m "Sync wiki" && git push)
